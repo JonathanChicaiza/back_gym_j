@@ -4,7 +4,6 @@ const historialpago = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         pagoId: DataTypes.INTEGER,
         fechaRegistro: DataTypes.STRING,

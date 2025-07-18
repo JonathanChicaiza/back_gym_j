@@ -4,7 +4,6 @@ const visita = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         clienteId: DataTypes.INTEGER,
         stateVisita: DataTypes.STRING,

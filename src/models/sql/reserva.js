@@ -4,7 +4,6 @@ const reserva = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         estado: DataTypes.STRING,
         clienteId: DataTypes.INTEGER,

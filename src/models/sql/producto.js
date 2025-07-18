@@ -4,7 +4,6 @@ const producto = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         nombre: DataTypes.STRING,
         precio: DataTypes.DECIMAL(10, 2),

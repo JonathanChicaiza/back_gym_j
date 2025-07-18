@@ -4,7 +4,6 @@ const empleado = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
             primaryKey: true,
-            unique: true
         },
         cargo: DataTypes.STRING,
         salario: DataTypes.DECIMAL(10, 2), // Coincide con NUMERIC(10,2) en SQL

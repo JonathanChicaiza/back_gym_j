@@ -4,7 +4,6 @@ const cliente = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
             primaryKey: true,
-            unique: true
         },
         telefono: DataTypes.STRING,
         direccion: DataTypes.TEXT, // Coincide con TEXT en SQL

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const claseController = require('../controller/clase.controller');
+const inventarioController = require('../controller/inventario.controller');
+const { check } = require('express-validator');
 
 // Middleware para validar ID
 router.param('id', (req, res, next, id) => {
@@ -13,27 +14,27 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// Obtener todas las clases
+// Obtener todos los inventarios
 router.get('/', async (req, res) => {
     try {
-        const result = await claseController.mostrarClases(req, res);
+        const result = await inventarioController.mostrarInventarios(req, res);
         res.json({ 
             success: true, 
-            data: result.clases || [] 
+            data: result.inventarios || [] 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener clases',
+            error: 'Error al obtener los inventarios',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Obtener una clase por ID
+// Obtener un inventario por ID
 router.get('/:id', async (req, res) => {
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
+        const result = await inventarioController.mostrarInventarioPorId(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -49,24 +50,27 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener la clase',
+            error: 'Error al obtener el inventario',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Crear una nueva clase
-router.post('/', async (req, res) => {
+// Crear un nuevo registro de inventario
+router.post('/', [
+    check('productoId').notEmpty().withMessage('El ID del producto es requerido'),
+    check('cantidad').isInt({ min: 0 }).withMessage('La cantidad debe ser un número entero positivo')
+], async (req, res) => {
     try {
-        // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
             return res.status(400).json({
                 success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
+                errors: errors.array()
             });
         }
 
-        const result = await claseController.crearClase(req, res);
+        const result = await inventarioController.crearInventario(req, res);
         
         if (result.error) {
             return res.status(400).json({ 
@@ -78,21 +82,31 @@ router.post('/', async (req, res) => {
         res.status(201).json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idInventario: result.idInventario 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al crear la clase',
+            error: 'Error al crear el inventario',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Actualizar una clase existente
-router.put('/:id', async (req, res) => {
+// Actualizar un registro de inventario
+router.put('/:id', [
+    check('cantidad').optional().isInt({ min: 0 }).withMessage('La cantidad debe ser un número entero positivo')
+], async (req, res) => {
     try {
-        const result = await claseController.actualizarClase(req, res);
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                errors: errors.array()
+            });
+        }
+
+        const result = await inventarioController.actualizarInventario(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -104,21 +118,21 @@ router.put('/:id', async (req, res) => {
         res.json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idInventario: result.idInventario 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al actualizar la clase',
+            error: 'Error al actualizar el inventario',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Eliminar una clase
+// Eliminar un registro de inventario
 router.delete('/:id', async (req, res) => {
     try {
-        const result = await claseController.eliminarClase(req, res);
+        const result = await inventarioController.eliminarInventario(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -134,7 +148,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al eliminar la clase',
+            error: 'Error al eliminar el inventario',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }

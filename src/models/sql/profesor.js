@@ -4,7 +4,6 @@ const profesor = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
             primaryKey: true,
-            unique: true
         },
         especialidad: DataTypes.STRING,
         // Si tienes campos como stateProfesor, createProfesor, updateProfesor en tu modelo Sequelize

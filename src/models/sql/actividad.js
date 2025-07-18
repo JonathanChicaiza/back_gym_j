@@ -4,7 +4,6 @@ const actividad = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         usuarioId: DataTypes.INTEGER,
         accion: DataTypes.STRING,

@@ -4,7 +4,6 @@ const ventaProducto = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         clienteId: DataTypes.INTEGER,
         productoId: DataTypes.INTEGER,

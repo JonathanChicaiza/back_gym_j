@@ -4,7 +4,6 @@ const rol = (sequelize, type) =>{
             type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         nameRol: type.STRING,
         stateRol: type.STRING,

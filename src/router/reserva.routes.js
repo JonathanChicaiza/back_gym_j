@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const claseController = require('../controller/clase.controller');
+const reservaController = require('../controller/reserva.controller');
 
 // Middleware para validar ID
 router.param('id', (req, res, next, id) => {
@@ -13,27 +13,26 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// Obtener todas las clases
+// Obtener todas las reservas
 router.get('/', async (req, res) => {
     try {
-        const result = await claseController.mostrarClases(req, res);
+        const result = await reservaController.mostrarReservas(req, res);
         res.json({ 
             success: true, 
-            data: result.clases || [] 
+            data: result.reservas || [] 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener clases',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al obtener las reservas' 
         });
     }
 });
 
-// Obtener una clase por ID
+// Obtener una reserva por ID
 router.get('/:id', async (req, res) => {
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
+        const result = await reservaController.mostrarReservaPorId(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -49,24 +48,15 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al obtener la reserva' 
         });
     }
 });
 
-// Crear una nueva clase
+// Crear una nueva reserva
 router.post('/', async (req, res) => {
     try {
-        // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
-            return res.status(400).json({
-                success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
-            });
-        }
-
-        const result = await claseController.crearClase(req, res);
+        const result = await reservaController.crearReserva(req, res);
         
         if (result.error) {
             return res.status(400).json({ 
@@ -78,21 +68,20 @@ router.post('/', async (req, res) => {
         res.status(201).json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idReserva: result.idReserva 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al crear la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al crear la reserva' 
         });
     }
 });
 
-// Actualizar una clase existente
+// Actualizar una reserva existente
 router.put('/:id', async (req, res) => {
     try {
-        const result = await claseController.actualizarClase(req, res);
+        const result = await reservaController.actualizarReserva(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -104,21 +93,20 @@ router.put('/:id', async (req, res) => {
         res.json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idReserva: result.idReserva 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al actualizar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al actualizar la reserva' 
         });
     }
 });
 
-// Eliminar una clase
+// Eliminar una reserva
 router.delete('/:id', async (req, res) => {
     try {
-        const result = await claseController.eliminarClase(req, res);
+        const result = await reservaController.eliminarReserva(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -134,8 +122,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al eliminar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al eliminar la reserva' 
         });
     }
 });

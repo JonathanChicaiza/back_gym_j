@@ -4,7 +4,6 @@ const inventario = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
-            unique: true
         },
         productoId: DataTypes.INTEGER,
         cantidad: DataTypes.INTEGER,

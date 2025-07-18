@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const claseController = require('../controller/clase.controller');
+const membresiaController = require('../controller/membresia.controller');
+const { check } = require('express-validator');
 
 // Middleware para validar ID
 router.param('id', (req, res, next, id) => {
@@ -13,27 +14,27 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// Obtener todas las clases
+// Obtener todas las membresías
 router.get('/', async (req, res) => {
     try {
-        const result = await claseController.mostrarClases(req, res);
+        const result = await membresiaController.mostrarMembresias(req, res);
         res.json({ 
             success: true, 
-            data: result.clases || [] 
+            data: result.membresias || [] 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener clases',
+            error: 'Error al obtener membresías',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Obtener una clase por ID
+// Obtener una membresía por ID
 router.get('/:id', async (req, res) => {
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
+        const result = await membresiaController.mostrarMembresiaPorId(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -49,24 +50,30 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener la clase',
+            error: 'Error al obtener la membresía',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Crear una nueva clase
-router.post('/', async (req, res) => {
+// Crear una nueva membresía
+router.post('/', [
+    check('nombre').notEmpty().withMessage('El nombre es requerido'),
+    check('precio').isFloat({ min: 0 }).withMessage('El precio debe ser un número positivo'),
+    check('duracionDias').isInt({ min: 1 }).withMessage('La duración debe ser al menos 1 día'),
+    check('descripcion').optional().isString(),
+    check('beneficios').optional().isArray()
+], async (req, res) => {
     try {
-        // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
             return res.status(400).json({
                 success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
+                errors: errors.array()
             });
         }
 
-        const result = await claseController.crearClase(req, res);
+        const result = await membresiaController.crearMembresia(req, res);
         
         if (result.error) {
             return res.status(400).json({ 
@@ -78,21 +85,35 @@ router.post('/', async (req, res) => {
         res.status(201).json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idMembresia: result.idMembresia 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al crear la clase',
+            error: 'Error al crear la membresía',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Actualizar una clase existente
-router.put('/:id', async (req, res) => {
+// Actualizar una membresía existente
+router.put('/:id', [
+    check('nombre').optional().notEmpty().withMessage('El nombre no puede estar vacío'),
+    check('precio').optional().isFloat({ min: 0 }).withMessage('El precio debe ser un número positivo'),
+    check('duracionDias').optional().isInt({ min: 1 }).withMessage('La duración debe ser al menos 1 día'),
+    check('descripcion').optional().isString(),
+    check('beneficios').optional().isArray()
+], async (req, res) => {
     try {
-        const result = await claseController.actualizarClase(req, res);
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                success: false,
+                errors: errors.array()
+            });
+        }
+
+        const result = await membresiaController.actualizarMembresia(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -104,21 +125,21 @@ router.put('/:id', async (req, res) => {
         res.json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idMembresia: result.idMembresia 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al actualizar la clase',
+            error: 'Error al actualizar la membresía',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Eliminar una clase
+// Eliminar una membresía
 router.delete('/:id', async (req, res) => {
     try {
-        const result = await claseController.eliminarClase(req, res);
+        const result = await membresiaController.eliminarMembresia(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -134,7 +155,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al eliminar la clase',
+            error: 'Error al eliminar la membresía',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }

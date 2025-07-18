@@ -32,10 +32,10 @@ app.set('port', process.env.PORT || 5000);
 
 // Habilitar CORS (configura según tus necesidades)
 app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
-  credentials: true
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
+    credentials: true
 }));
 
 // ==================== CONFIGURACIÓN DE LOGS MEJORADA ====================
@@ -199,7 +199,7 @@ app.use((req, res, next) => {
             req.query[key] = escape(req.query[key]);
         }
     }
-    
+
     // Sanitizar cuerpo de la petición
     if (req.body) {
         for (const key in req.body) {
@@ -208,7 +208,7 @@ app.use((req, res, next) => {
             }
         }
     }
-    
+
     next();
 });
 
@@ -241,7 +241,7 @@ app.use((req, res, next) => {
         };
         return res.status(status).json(response);
     };
-    
+
     res.apiError = (message, status = 400, errors = null) => {
         const response = {
             success: false,
@@ -250,14 +250,38 @@ app.use((req, res, next) => {
         };
         return res.status(status).json(response);
     };
-    
+
     next();
 });
 
 // ==================== RUTAS API ====================
-// Importar y configurar rutas como API
-app.use(require('./router/index'))
-//app.use('/pagina', require('./router/pagina.router'))
+// Importar y configurar rutas como API con prefijo '/api'
+
+// Rutas principales
+app.use('/api', require('./router/index'));
+
+// Rutas de módulos principales
+app.use('/api/auth', require('./router/auth.routes'));
+app.use('/api/clientes', require('./router/cliente.routes'));
+app.use('/api/empleados', require('./router/empleado.routes'));
+app.use('/api/usuarios', require('./router/usuario.routes'));
+app.use('/api/membresias', require('./router/membresia.routes'));
+
+// Rutas de operaciones
+app.use('/api/pagos', require('./router/pago.routes'));
+app.use('/api/historial-pagos', require('./router/historial-pago.routes'));
+app.use('/api/ventas-productos', require('./router/venta-producto.routes'));
+
+// Rutas de servicios
+app.use('/api/clases', require('./router/class.routes'));
+app.use('/api/actividades', require('./router/actividad.routes'));
+app.use('/api/rutinas', require('./router/rutina.routes'));
+app.use('/api/reservas', require('./router/reserva.routes'));
+app.use('/api/asistencias', require('./router/asistencia.routes'));
+
+// Rutas de recursos
+app.use('/api/inventarios', require('./router/inventario.routes'));
+app.use('/api/productos', require('./router/producto.routes'));
 
 // Configurar variables globales
 app.use((req, res, next) => {
@@ -292,7 +316,7 @@ app.use((err, req, res, next) => {
         error: process.env.NODE_ENV === 'development' ? err.message : undefined,
         stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
     };
-    
+
     res.status(500).json(errorResponse);
 });
 

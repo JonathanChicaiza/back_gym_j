@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const claseController = require('../controller/clase.controller');
+const ventaProductoController = require('../controller/ventaProducto.controller');
 
 // Middleware para validar ID
 router.param('id', (req, res, next, id) => {
@@ -13,27 +13,26 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// Obtener todas las clases
+// Obtener todas las ventas de productos
 router.get('/', async (req, res) => {
     try {
-        const result = await claseController.mostrarClases(req, res);
+        const result = await ventaProductoController.mostrarVentas(req, res);
         res.json({ 
             success: true, 
-            data: result.clases || [] 
+            data: result.ventas || [] 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener clases',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al obtener ventas de productos' 
         });
     }
 });
 
-// Obtener una clase por ID
+// Obtener una venta de producto por ID
 router.get('/:id', async (req, res) => {
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
+        const result = await ventaProductoController.mostrarVentaPorId(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -49,24 +48,15 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al obtener la venta de producto' 
         });
     }
 });
 
-// Crear una nueva clase
+// Crear una nueva venta de producto
 router.post('/', async (req, res) => {
     try {
-        // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
-            return res.status(400).json({
-                success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
-            });
-        }
-
-        const result = await claseController.crearClase(req, res);
+        const result = await ventaProductoController.crearVenta(req, res);
         
         if (result.error) {
             return res.status(400).json({ 
@@ -78,21 +68,20 @@ router.post('/', async (req, res) => {
         res.status(201).json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idVenta: result.idVenta 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al crear la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al crear la venta de producto' 
         });
     }
 });
 
-// Actualizar una clase existente
+// Actualizar una venta de producto existente
 router.put('/:id', async (req, res) => {
     try {
-        const result = await claseController.actualizarClase(req, res);
+        const result = await ventaProductoController.actualizarVenta(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -104,21 +93,20 @@ router.put('/:id', async (req, res) => {
         res.json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idVenta: result.idVenta 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al actualizar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al actualizar la venta de producto' 
         });
     }
 });
 
-// Eliminar una clase
+// Eliminar una venta de producto
 router.delete('/:id', async (req, res) => {
     try {
-        const result = await claseController.eliminarClase(req, res);
+        const result = await ventaProductoController.eliminarVenta(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -134,8 +122,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al eliminar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+            error: 'Error al eliminar la venta de producto' 
         });
     }
 });

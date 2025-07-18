@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const claseController = require('../controller/clase.controller');
+const asistenciaController = require('../controller/asistencia.controller');
 
 // Middleware para validar ID
 router.param('id', (req, res, next, id) => {
@@ -13,27 +13,27 @@ router.param('id', (req, res, next, id) => {
     next();
 });
 
-// Obtener todas las clases
+// Obtener todas las asistencias
 router.get('/', async (req, res) => {
     try {
-        const result = await claseController.mostrarClases(req, res);
+        const result = await asistenciaController.mostrarAsistencias(req, res);
         res.json({ 
             success: true, 
-            data: result.clases || [] 
+            data: result.asistencias || [] 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener clases',
+            error: 'Error al obtener asistencias',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Obtener una clase por ID
+// Obtener una asistencia por ID
 router.get('/:id', async (req, res) => {
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
+        const result = await asistenciaController.mostrarAsistenciaPorId(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -49,24 +49,24 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al obtener la clase',
+            error: 'Error al obtener la asistencia',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Crear una nueva clase
+// Crear una nueva asistencia
 router.post('/', async (req, res) => {
     try {
         // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
+        if (!req.body.clienteId || !req.body.claseId) {
             return res.status(400).json({
                 success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
+                error: 'clienteId y claseId son requeridos'
             });
         }
 
-        const result = await claseController.crearClase(req, res);
+        const result = await asistenciaController.crearAsistencia(req, res);
         
         if (result.error) {
             return res.status(400).json({ 
@@ -78,21 +78,21 @@ router.post('/', async (req, res) => {
         res.status(201).json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idAsistencia: result.idAsistencia 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al crear la clase',
+            error: 'Error al crear la asistencia',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Actualizar una clase existente
+// Actualizar una asistencia existente
 router.put('/:id', async (req, res) => {
     try {
-        const result = await claseController.actualizarClase(req, res);
+        const result = await asistenciaController.actualizarAsistencia(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -104,21 +104,21 @@ router.put('/:id', async (req, res) => {
         res.json({ 
             success: true, 
             message: result.message,
-            idClase: result.idClase 
+            idAsistencia: result.idAsistencia 
         });
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al actualizar la clase',
+            error: 'Error al actualizar la asistencia',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
 
-// Eliminar una clase
+// Eliminar una asistencia
 router.delete('/:id', async (req, res) => {
     try {
-        const result = await claseController.eliminarClase(req, res);
+        const result = await asistenciaController.eliminarAsistencia(req, res);
         
         if (result.error) {
             return res.status(404).json({ 
@@ -134,7 +134,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             success: false, 
-            error: 'Error al eliminar la clase',
+            error: 'Error al eliminar la asistencia',
             details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
