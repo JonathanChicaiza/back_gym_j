@@ -257,7 +257,7 @@ app.use((req, res, next) => {
 // ==================== RUTAS API ====================
 // Importar y configurar rutas como API
 app.use(require('./router/index'))
-app.use('/pagina', require('./router/pagina.router'))
+//app.use('/pagina', require('./router/pagina.router'))
 
 // Configurar variables globales
 app.use((req, res, next) => {

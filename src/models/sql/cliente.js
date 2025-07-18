@@ -8,7 +8,6 @@ const cliente = (sequelize, DataTypes) => {
         },
         telefono: DataTypes.STRING,
         direccion: DataTypes.TEXT, // Coincide con TEXT en SQL
-        fechaNacimiento: DataTypes.DATE, // Coincide con DATE en SQL
         membresiaId: DataTypes.INTEGER,
         // Si tienes campos como stateCliente, createCliente, updateCliente en tu modelo Sequelize
         // y NO están en tu script SQL de CREATE TABLE, coméntalos o elimínalos aquí también.

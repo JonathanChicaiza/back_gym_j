@@ -7,7 +7,6 @@ const profesor = (sequelize, DataTypes) => {
             unique: true
         },
         especialidad: DataTypes.STRING,
-        horarioTrabajo: DataTypes.TEXT, // Coincide con TEXT en SQL
         // Si tienes campos como stateProfesor, createProfesor, updateProfesor en tu modelo Sequelize
         // y NO están en tu script SQL de CREATE TABLE, coméntalos o elimínalos aquí también.
         // stateProfesor: DataTypes.STRING,

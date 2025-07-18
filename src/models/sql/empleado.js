@@ -8,7 +8,6 @@ const empleado = (sequelize, DataTypes) => {
         },
         cargo: DataTypes.STRING,
         salario: DataTypes.DECIMAL(10, 2), // Coincide con NUMERIC(10,2) en SQL
-        fechaContratacion: DataTypes.DATE, // Coincide con DATE en SQL
         // Si tienes campos como stateEmpleado, createEmpleado, updateEmpleado en tu modelo Sequelize
         // y NO están en tu script SQL de CREATE TABLE, coméntalos o elimínalos aquí también.
         // stateEmpleado: DataTypes.STRING,
