@@ -1,67 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const historialPagoController = require('../controller/historialPago.controller');
-const { verificarToken, verificarRol } = require('../middleware/authMiddleware');
+const { 
 
-// Rutas para Historial de Pagos
-router.get('/', 
-    verificarToken, 
-    verificarRol(['admin', 'contador']), 
-    async (req, res) => {
-        const result = await historialPagoController.mostrarHistoriales(req, res);
-        if (result.error) {
-            return res.status(400).json(result);
-        }
-        res.status(200).json(result);
-    }
-);
+  obtenerHistorial,
+  crearHistorial,
+  actualizarHistorial,
+  eliminarHistorial
+} = require('../controller/historialPago.controller');
+const { verificarToken, verificarRol } = require('../middlewares/auth');
 
-router.get('/:id', 
-    verificarToken, 
-    verificarRol(['admin', 'contador']), 
-    async (req, res) => {
-        const result = await historialPagoController.mostrarHistorialPorId(req, res);
-        if (result.error) {
-            return res.status(404).json(result);
-        }
-        res.status(200).json(result);
-    }
-);
+// Middleware para todas las rutas
+router.use(verificarToken);
 
-router.post('/', 
-    verificarToken, 
-    verificarRol(['admin', 'contador']), 
-    async (req, res) => {
-        const result = await historialPagoController.crearHistorial(req, res);
-        if (result.error) {
-            return res.status(400).json(result);
-        }
-        res.status(201).json(result);
-    }
-);
-
-router.put('/:id', 
-    verificarToken, 
-    verificarRol(['admin', 'contador']), 
-    async (req, res) => {
-        const result = await historialPagoController.actualizarHistorial(req, res);
-        if (result.error) {
-            return res.status(400).json(result);
-        }
-        res.status(200).json(result);
-    }
-);
-
-router.delete('/:id', 
-    verificarToken, 
-    verificarRol(['admin']), 
-    async (req, res) => {
-        const result = await historialPagoController.eliminarHistorial(req, res);
-        if (result.error) {
-            return res.status(400).json(result);
-        }
-        res.status(200).json(result);
-    }
-);
+// Rutas CRUD con protección de roles
+router.get('/:id', verificarRol(['admin', 'contador']), obtenerHistorial);
+router.post('/', verificarRol(['admin', 'contador']), crearHistorial);
+router.put('/:id', verificarRol(['admin', 'contador']), actualizarHistorial);
+router.delete('/:id', verificarRol(['admin']), eliminarHistorial);
 
 module.exports = router;
