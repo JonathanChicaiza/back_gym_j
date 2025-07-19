@@ -1,21 +1,12 @@
 const mongoose = require('mongoose');
-
 const ConfiguracionSchema = new mongoose.Schema({
-  mision: {
-    type: String,
-    required: true
-  },
-  vision: {
-    type: String,
-    required: true
-  },
-  objetivos: {
-    type: String,
-    required: true
-  }
+ mision: String,
+ vision: String,
+ objetivos: String
 }, {
-  timestamps: false,  // Opcional: Si no quieres campos createdAt/updatedAt
-  collection: 'configuraciones'  // Nombre personalizado para la colección
+ // Especifica el nombre de la colección como "configuraciones"
+ collection: 'configuraciones',
+ timestamps: false // Desactiva los campos createdAt y updatedAt
 });
 
 module.exports = mongoose.model('Configuracion', ConfiguracionSchema);

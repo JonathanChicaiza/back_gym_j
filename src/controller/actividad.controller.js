@@ -1,9 +1,12 @@
-const actividadCtl = {};
+// src/controller/actividad.controller.js
+
+// Importar módulos necesarios
 const orm = require('../Database/dataBase.orm'); // Sequelize para MySQL
 const sql = require('../Database/dataBase.sql'); // Consultas SQL puras
 const mongo = require('../Database/dataBaseMongose'); // MongoDB
 const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
 
+// Función auxiliar para descifrar datos de forma segura
 function safeDecrypt(data) {
     try {
         return descifrarDatos(data);
@@ -13,8 +16,12 @@ function safeDecrypt(data) {
     }
 }
 
+// =======================================================
+// FUNCIONES DEL CONTROLADOR (AHORA EXPORTADAS DIRECTAMENTE)
+// =======================================================
+
 // Mostrar todas las actividades (MySQL + MongoDB)
-actividadCtl.mostrarActividades = async (req, res) => {
+const mostrarActividades = async (req, res) => { // Renombrada para exportación directa si se usa
     try {
         const [actividades] = await sql.promise().query('SELECT * FROM actividades');
 
@@ -30,16 +37,16 @@ actividadCtl.mostrarActividades = async (req, res) => {
                 mongo: actividadMongo || null
             });
         }
-
-        return { actividades: actividadesCompletas };
+        return res.apiResponse(actividadesCompletas, 200, 'Actividades obtenidas con éxito');
     } catch (error) {
         console.error('Error al obtener actividades:', error.message);
-        return { error: 'Error al obtener actividades' };
+        return res.apiError('Error al obtener actividades', 500, error.message);
     }
 };
 
-// Mostrar una actividad por ID (MySQL + MongoDB)
-actividadCtl.mostrarActividadPorId = async (req, res) => {
+// Obtener una actividad por ID (MySQL + MongoDB)
+// RENOMBRADA: 'mostrarActividadPorId' a 'obtenerActividad' para coincidir con actividad.routes.js
+const obtenerActividad = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -48,25 +55,26 @@ actividadCtl.mostrarActividadPorId = async (req, res) => {
         );
 
         if (actividadSql.length === 0) {
-            return { error: 'Actividad no encontrada en MySQL' };
+            return res.apiError('Actividad no encontrada en MySQL', 404);
         }
 
         const actividadMongo = await mongo.Actividad.findOne({
             id_log: parseInt(id)
         });
 
-        return {
+        const actividadCompleta = {
             mysql: actividadSql[0],
             mongo: actividadMongo || null
         };
+        return res.apiResponse(actividadCompleta, 200, 'Actividad obtenida con éxito');
     } catch (error) {
         console.error('Error al obtener actividad:', error.message);
-        return { error: 'Error al obtener actividad' };
+        return res.apiError('Error al obtener actividad', 500, error.message);
     }
 };
 
 // Crear una actividad (MySQL + MongoDB)
-actividadCtl.crearActividad = async (req, res) => {
+const crearActividad = async (req, res) => {
     const { usuarioId, accion, tablaAfectada, stateLog } = req.body;
 
     try {
@@ -90,18 +98,15 @@ actividadCtl.crearActividad = async (req, res) => {
 
         await nuevaActividadMongo.save();
 
-        return {
-            message: 'Actividad creada con éxito',
-            idLog
-        };
+        return res.apiResponse({ idLog }, 201, 'Actividad creada con éxito');
     } catch (error) {
         console.error('Error al crear actividad:', error.message);
-        return { error: 'Error al crear actividad' };
+        return res.apiError('Error al crear actividad', 500, error.message);
     }
 };
 
 // Actualizar una actividad (MySQL + MongoDB)
-actividadCtl.actualizarActividad = async (req, res) => {
+const actualizarActividad = async (req, res) => {
     const { id } = req.params;
     const { usuarioId, accion, tablaAfectada, stateLog } = req.body;
 
@@ -112,7 +117,7 @@ actividadCtl.actualizarActividad = async (req, res) => {
         );
 
         if (actividadExistente.length === 0) {
-            return { error: 'Actividad no encontrada en MySQL' };
+            return res.apiError('Actividad no encontrada en MySQL', 404);
         }
 
         const actividadActualizada = {
@@ -133,21 +138,21 @@ actividadCtl.actualizarActividad = async (req, res) => {
         });
 
         if (!actividadMongo) {
-            return { error: 'Actividad no encontrada en MongoDB' };
+            return res.apiError('Actividad no encontrada en MongoDB', 404);
         }
 
         actividadMongo.fecha_hora = new Date().toLocaleString();
         await actividadMongo.save();
 
-        return { message: 'Actividad actualizada con éxito', idLog: id };
+        return res.apiResponse({ idLog: id }, 200, 'Actividad actualizada con éxito');
     } catch (error) {
         console.error('Error al actualizar actividad:', error.message);
-        return { error: 'Error al actualizar actividad' };
+        return res.apiError('Error al actualizar actividad', 500, error.message);
     }
 };
 
 // Eliminar una actividad (MySQL + MongoDB)
-actividadCtl.eliminarActividad = async (req, res) => {
+const eliminarActividad = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -157,7 +162,7 @@ actividadCtl.eliminarActividad = async (req, res) => {
         );
 
         if (actividadExistente.length === 0) {
-            return { error: 'Actividad no encontrada en MySQL' };
+            return res.apiError('Actividad no encontrada en MySQL', 404);
         }
 
         await orm.actividad.destroy({
@@ -170,16 +175,23 @@ actividadCtl.eliminarActividad = async (req, res) => {
         });
 
         if (!actividadMongo) {
-            return { error: 'Actividad no encontrada en MongoDB' };
+            return res.apiError('Actividad no encontrada en MongoDB', 404);
         }
 
         await actividadMongo.deleteOne();
 
-        return { message: 'Actividad eliminada con éxito' };
+        return res.apiResponse(null, 200, 'Actividad eliminada con éxito');
     } catch (error) {
         console.error('Error al eliminar actividad:', error.message);
-        return { error: 'Error al eliminar actividad' };
+        return res.apiError('Error al eliminar actividad', 500, error.message);
     }
 };
 
-module.exports = actividadCtl;
+// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
+module.exports = {
+    mostrarActividades, // Si se usa en alguna otra ruta
+    obtenerActividad,
+    crearActividad,
+    actualizarActividad,
+    eliminarActividad
+};

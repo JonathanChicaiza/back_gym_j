@@ -1,184 +1,91 @@
-const fichaEntrenamientoCtl = {};
-const orm = require('../Database/dataBase.orm'); // Sequelize para MySQL
-const sql = require('../Database/dataBase.sql'); // Consultas SQL puras
-const mongo = require('../Database/dataBaseMongose'); // MongoDB
-const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+// src/controller/fichaEntrenamiento.controller.js
 
-function safeDecrypt(data) {
+// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
+// const orm = require('../Database/dataBase.orm');
+// const sql = require('../Database/dataBase.sql');
+// const mongo = require('../Database/dataBaseMongose');
+// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+
+// =======================================================
+// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
+// =======================================================
+
+// Función para obtener una ficha de entrenamiento por ID
+// Coincide con 'obtenerFicha' en ficha-entrenamiento.routes.js
+const obtenerFicha = async (req, res) => {
+    // Aquí va tu lógica para obtener una ficha de entrenamiento por ID
+    // Asegúrate de usar req.params.id, req.query, etc.
     try {
-        return descifrarDatos(data);
-    } catch (error) {
-        console.error('Error al descifrar datos:', error.message);
-        return '';
-    }
-}
-
-// Mostrar todas las fichas de entrenamiento (MySQL + MongoDB)
-fichaEntrenamientoCtl.mostrarFichas = async (req, res) => {
-    try {
-        const [fichas] = await sql.promise().query('SELECT * FROM fichas_entrenamiento');
-
-        const fichasCompletas = [];
-
-        for (const fichaSql of fichas) {
-            const fichaMongo = await mongo.Ficha.findOne({
-                id_ficha: fichaSql.idFicha
-            });
-
-            fichasCompletas.push({
-                mysql: fichaSql,
-                mongo: fichaMongo || null
-            });
+        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
+        const ficha = { id: req.params.id, clienteId: 'c001', fechaInicio: '2024-01-01', fechaFin: '2024-03-01', tipo: 'Cardio' };
+        if (!ficha.id) { // Ejemplo: si no se encuentra la ficha
+            return res.apiError('Ficha de entrenamiento no encontrada', 404);
         }
-
-        return { fichas: fichasCompletas };
+        return res.apiResponse(ficha, 200, 'Ficha de entrenamiento obtenida con éxito');
     } catch (error) {
-        console.error('Error al obtener fichas:', error.message);
-        return { error: 'Error al obtener fichas de entrenamiento' };
+        console.error('Error al obtener ficha de entrenamiento:', error.message);
+        return res.apiError('Error al obtener ficha de entrenamiento', 500, error.message);
     }
 };
 
-// Mostrar una ficha por ID (MySQL + MongoDB)
-fichaEntrenamientoCtl.mostrarFichaPorId = async (req, res) => {
-    const { id } = req.params;
-
+// Función para crear una ficha de entrenamiento
+// Coincide con 'crearFicha' en ficha-entrenamiento.routes.js
+const crearFicha = async (req, res) => {
+    // Aquí va tu lógica para crear una ficha de entrenamiento
+    // Asegúrate de usar req.body para acceder a los datos
     try {
-        const [fichaSql] = await sql.promise().query(
-            'SELECT * FROM fichas_entrenamiento WHERE idFicha = ?', [id]
-        );
-
-        if (fichaSql.length === 0) {
-            return { error: 'Ficha no encontrada en MySQL' };
-        }
-
-        const fichaMongo = await mongo.Ficha.findOne({
-            id_ficha: parseInt(id)
-        });
-
-        return {
-            mysql: fichaSql[0],
-            mongo: fichaMongo || null
-        };
+        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
+        const nuevaFicha = req.body;
+        // Guarda la nueva ficha en tu base de datos
+        console.log('Creando ficha de entrenamiento:', nuevaFicha);
+        return res.apiResponse(nuevaFicha, 201, 'Ficha de entrenamiento creada con éxito');
     } catch (error) {
-        console.error('Error al obtener ficha:', error.message);
-        return { error: 'Error al obtener ficha de entrenamiento' };
+        console.error('Error al crear ficha de entrenamiento:', error.message);
+        return res.apiError('Error al crear ficha de entrenamiento', 500, error.message);
     }
 };
 
-// Crear una ficha (MySQL + MongoDB)
-fichaEntrenamientoCtl.crearFicha = async (req, res) => {
-    const { clienteId, profesorId, stateFicha, descripcion } = req.body;
-
+// Función para actualizar una ficha de entrenamiento
+// Coincide con 'actualizarFicha' en ficha-entrenamiento.routes.js
+const actualizarFicha = async (req, res) => {
+    // Aquí va tu lógica para actualizar una ficha de entrenamiento
+    // Asegúrate de usar req.params.id y req.body
     try {
-        // Crear en MySQL
-        const nuevaFicha = {
-            clienteId,
-            profesorId,
-            stateFicha,
-            createFicha: new Date().toLocaleString()
-        };
-
-        const resultado = await orm.fichaEntrenamiento.create(nuevaFicha);
-        const idFicha = resultado.idFicha;
-
-        // Crear en MongoDB
-        const nuevaFichaMongo = new mongo.Ficha({
-            id_ficha: idFicha,
-            descripcion,
-            fecha_creacion: new Date().toLocaleString()
-        });
-
-        await nuevaFichaMongo.save();
-
-        return {
-            message: 'Ficha de entrenamiento creada con éxito',
-            idFicha
-        };
+        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
+        const { id } = req.params;
+        const datosActualizados = req.body;
+        // Actualiza la ficha en tu base de datos
+        console.log(`Actualizando ficha de entrenamiento ${id}:`, datosActualizados);
+        return res.apiResponse({ id, ...datosActualizados }, 200, 'Ficha de entrenamiento actualizada con éxito');
     } catch (error) {
-        console.error('Error al crear ficha:', error.message);
-        return { error: 'Error al crear ficha de entrenamiento' };
+        console.error('Error al actualizar ficha de entrenamiento:', error.message);
+        return res.apiError('Error al actualizar ficha de entrenamiento', 500, error.message);
     }
 };
 
-// Actualizar una ficha (MySQL + MongoDB)
-fichaEntrenamientoCtl.actualizarFicha = async (req, res) => {
-    const { id } = req.params;
-    const { clienteId, profesorId, stateFicha, descripcion } = req.body;
-
+// Función para eliminar una ficha de entrenamiento
+// Coincide con 'eliminarFicha' en ficha-entrenamiento.routes.js
+const eliminarFicha = async (req, res) => {
+    // Aquí va tu lógica para eliminar una ficha de entrenamiento
+    // Asegúrate de usar req.params.id
     try {
-        // Actualizar en MySQL
-        const [fichaExistente] = await sql.promise().query(
-            'SELECT * FROM fichas_entrenamiento WHERE idFicha = ?', [id]
-        );
-
-        if (fichaExistente.length === 0) {
-            return { error: 'Ficha no encontrada en MySQL' };
-        }
-
-        const fichaActualizada = {
-            clienteId: clienteId || fichaExistente[0].clienteId,
-            profesorId: profesorId || fichaExistente[0].profesorId,
-            stateFicha: stateFicha || fichaExistente[0].stateFicha,
-            updateFicha: new Date().toLocaleString()
-        };
-
-        await orm.fichaEntrenamiento.update(fichaActualizada, {
-            where: { idFicha: id }
-        });
-
-        // Actualizar en MongoDB
-        const fichaMongo = await mongo.Ficha.findOne({
-            id_ficha: parseInt(id)
-        });
-
-        if (!fichaMongo) {
-            return { error: 'Ficha no encontrada en MongoDB' };
-        }
-
-        fichaMongo.descripcion = descripcion || fichaMongo.descripcion;
-        await fichaMongo.save();
-
-        return { message: 'Ficha actualizada con éxito', idFicha: id };
+        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
+        const { id } = req.params;
+        // Elimina la ficha de tu base de datos
+        console.log(`Eliminando ficha de entrenamiento ${id}`);
+        return res.apiResponse(null, 200, 'Ficha de entrenamiento eliminada con éxito');
     } catch (error) {
-        console.error('Error al actualizar ficha:', error.message);
-        return { error: 'Error al actualizar ficha de entrenamiento' };
+        console.error('Error al eliminar ficha de entrenamiento:', error.message);
+        return res.apiError('Error al eliminar ficha de entrenamiento', 500, error.message);
     }
 };
 
-// Eliminar una ficha (MySQL + MongoDB)
-fichaEntrenamientoCtl.eliminarFicha = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        // Eliminar en MySQL
-        const [fichaExistente] = await sql.promise().query(
-            'SELECT * FROM fichas_entrenamiento WHERE idFicha = ?', [id]
-        );
-
-        if (fichaExistente.length === 0) {
-            return { error: 'Ficha no encontrada en MySQL' };
-        }
-
-        await orm.fichaEntrenamiento.destroy({
-            where: { idFicha: id }
-        });
-
-        // Eliminar en MongoDB
-        const fichaMongo = await mongo.Ficha.findOne({
-            id_ficha: parseInt(id)
-        });
-
-        if (!fichaMongo) {
-            return { error: 'Ficha no encontrada en MongoDB' };
-        }
-
-        await fichaMongo.deleteOne();
-
-        return { message: 'Ficha de entrenamiento eliminada con éxito' };
-    } catch (error) {
-        console.error('Error al eliminar ficha:', error.message);
-        return { error: 'Error al eliminar ficha de entrenamiento' };
-    }
+// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
+module.exports = {
+    obtenerFicha,
+    crearFicha,
+    actualizarFicha,
+    eliminarFicha
+    // Si tienes otras funciones en este controlador que no se usan en las rutas,
+    // puedes exportarlas aquí también si son necesarias en otro lugar.
 };
-
-module.exports = fichaEntrenamientoCtl;

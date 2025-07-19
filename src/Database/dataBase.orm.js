@@ -105,193 +105,97 @@ const asistencia = asistenciaModel(sequelize, Sequelize)
 
 
 //relaciones o foreingKeys
-usuario.belongsTo(rol, {
-  foreignKey: 'rolId',
-  targetKey: 'idRol'
-});
-rol.hasMany(usuario, {
-  foreignKey: 'rolId'
-});
+// Relación Usuario-Rol
+usuario.belongsTo(rol);
+rol.hasMany(usuario);
 
-cliente.belongsTo(usuario, {
-  foreignKey: 'idCliente',
-  targetKey: 'idUsuario'
-});
-usuario.hasOne(cliente, {
-  foreignKey: 'idCliente',
-  sourceKey: 'idUsuario'
-});
+// Relación Usuario-Cliente
+cliente.belongsTo(usuario);
+usuario.hasOne(cliente);
 
-empleado.belongsTo(usuario, {
-  foreignKey: 'idEmpleado',
-  targetKey: 'idUsuario'
-});
-usuario.hasOne(empleado, {
-  foreignKey: 'idEmpleado',
-  sourceKey: 'idUsuario'
-});
+// Relación Usuario-Empleado
+empleado.belongsTo(usuario);
+usuario.hasOne(empleado);
 
-profesor.belongsTo(empleado, {
-  foreignKey: 'idProfesor',
-  targetKey: 'idEmpleado'
-});
-empleado.hasOne(profesor, {
-  foreignKey: 'idProfesor',
-  sourceKey: 'idEmpleado'
-});
+// Relación Empleado-Profesor
+profesor.belongsTo(empleado);
+empleado.hasOne(profesor);
 
-cliente.belongsTo(membresia, {
-  foreignKey: 'membresiaId',
-  targetKey: 'idMembresia'
-});
-membresia.hasMany(cliente, {
-  foreignKey: 'membresiaId'
-});
+// Relación Cliente-Membresía
+cliente.belongsTo(membresia);
+membresia.hasMany(cliente);
 
-pago.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(pago, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-Pago
+pago.belongsTo(cliente);
+cliente.hasMany(pago);
 
-visita.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(visita, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-Visita
+visita.belongsTo(cliente);
+cliente.hasMany(visita);
 
-reserva.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(reserva, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-Reserva
+reserva.belongsTo(cliente);
+cliente.hasMany(reserva);
 
-ventaProducto.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(ventaProducto, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-VentaProducto
+ventaProducto.belongsTo(cliente);
+cliente.hasMany(ventaProducto);
 
+// Relación Cliente-FichaEntrenamiento
+fichaEntrenamiento.belongsTo(cliente);
+cliente.hasMany(fichaEntrenamiento);
 
-fichaEntrenamiento.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(fichaEntrenamiento, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-EvaluacionCliente
+evaluacionCliente.belongsTo(cliente);
+cliente.hasMany(evaluacionCliente);
 
-evaluacionCliente.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(evaluacionCliente, {
-  foreignKey: 'clienteId'
-});
+// Relación Cliente-Asistencia
+asistencia.belongsTo(cliente);
+cliente.hasMany(asistencia);
 
-asistencia.belongsTo(cliente, {
-  foreignKey: 'clienteId',
-  targetKey: 'idCliente'
-});
-cliente.hasMany(asistencia, {
-  foreignKey: 'clienteId'
-});
+// Relación Profesor-Clase
+clase.belongsTo(profesor);
+profesor.hasMany(clase);
 
-clase.belongsTo(profesor, {
-  foreignKey: 'profesorId',
-  targetKey: 'idProfesor'
-});
-profesor.hasMany(clase, {
-  foreignKey: 'profesorId'
-});
+// Relación Profesor-FichaEntrenamiento
+fichaEntrenamiento.belongsTo(profesor);
+profesor.hasMany(fichaEntrenamiento);
 
-fichaEntrenamiento.belongsTo(profesor, {
-  foreignKey: 'profesorId',
-  targetKey: 'idProfesor'
-});
-profesor.hasMany(fichaEntrenamiento, {
-  foreignKey: 'profesorId'
-});
+// Relación Profesor-Rutina
+rutina.belongsTo(profesor);
+profesor.hasMany(rutina);
 
-rutina.belongsTo(profesor, {
-  foreignKey: 'profesorId',
-  targetKey: 'idProfesor'
-});
-profesor.hasMany(rutina, {
-  foreignKey: 'profesorId'
-});
+// Relación Clase-Reserva
+reserva.belongsTo(clase);
+clase.hasMany(reserva);
 
-reserva.belongsTo(clase, {
-  foreignKey: 'claseId',
-  targetKey: 'idClase'
-});
-clase.hasMany(reserva, {
-  foreignKey: 'claseId'
-});
+// Relación Clase-EvaluacionCliente
+evaluacionCliente.belongsTo(clase);
+clase.hasMany(evaluacionCliente);
 
-evaluacionCliente.belongsTo(clase, {
-  foreignKey: 'claseId',
-  targetKey: 'idClase'
-});
-clase.hasMany(evaluacionCliente, {
-  foreignKey: 'claseId'
-});
+// Relación Clase-Asistencia
+asistencia.belongsTo(clase);
+clase.hasMany(asistencia);
 
-asistencia.belongsTo(clase, {
-  foreignKey: 'claseId',
-  targetKey: 'idClase'
-});
-clase.hasMany(asistencia, {
-  foreignKey: 'claseId'
-});
+// Relación Pago-HistorialPago
+historialPago.belongsTo(pago);
+pago.hasMany(historialPago);
 
-historialPago.belongsTo(pago, {
-  foreignKey: 'pagoId',
-  targetKey: 'idPago'
-});
-pago.hasMany(historialPago, {
-  foreignKey: 'pagoId'
-});
+// Relación Producto-Inventario
+inventario.belongsTo(producto);
+producto.hasMany(inventario);
 
-inventario.belongsTo(producto, {
-  foreignKey: 'productoId',
-  targetKey: 'idProducto'
-});
-producto.hasMany(inventario, {
-  foreignKey: 'productoId'
-});
+// Relación Producto-VentaProducto
+ventaProducto.belongsTo(producto);
+producto.hasMany(ventaProducto);
 
-ventaProducto.belongsTo(producto, {
-  foreignKey: 'productoId',
-  targetKey: 'idProducto'
-});
-producto.hasMany(ventaProducto, {
-  foreignKey: 'productoId'
-});
+// Relación Usuario-Notificación
+notificacion.belongsTo(usuario);
+usuario.hasMany(notificacion);
 
-notificacion.belongsTo(usuario, {
-  foreignKey: 'usuarioId',
-  targetKey: 'idUsuario'
-});
-usuario.hasMany(notificacion, {
-  foreignKey: 'usuarioId'
-});
-
-actividad.belongsTo(usuario, {
-  foreignKey: 'usuarioId',
-  targetKey: 'idUsuario'
-});
-usuario.hasMany(actividad, {
-  foreignKey: 'usuarioId'
-});
+// Relación Usuario-Actividad
+actividad.belongsTo(usuario);
+usuario.hasMany(actividad);
 
 // Exportar el objeto sequelize
 module.exports = {

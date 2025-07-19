@@ -258,8 +258,6 @@ app.use((req, res, next) => {
 // Importar y configurar rutas como API con prefijo '/api'
 
 // Rutas principales
-app.use('/api', require('./router/index'));
-
 // Rutas de módulos principales
 app.use('/api/auth', require('./router/auth.routes'));
 app.use('/api/clientes', require('./router/cliente.routes'));
@@ -273,7 +271,7 @@ app.use('/api/historial-pagos', require('./router/historial-pago.routes'));
 app.use('/api/ventas-productos', require('./router/venta-producto.routes'));
 
 // Rutas de servicios
-app.use('/api/clases', require('./router/class.routes'));
+app.use('/api/clases', require('./router/clase.routes'));
 app.use('/api/actividades', require('./router/actividad.routes'));
 app.use('/api/rutinas', require('./router/rutina.routes'));
 app.use('/api/reservas', require('./router/reserva.routes'));

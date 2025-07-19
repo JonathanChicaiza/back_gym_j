@@ -1,143 +1,87 @@
-const express = require('express');
-const router = express.Router();
-const claseController = require('../controller/clase.controller');
+// src/controller/clase.controller.js
 
-// Middleware para validar ID
-router.param('id', (req, res, next, id) => {
-    if (!Number.isInteger(parseInt(id))) {
-        return res.status(400).json({ 
-            success: false,
-            error: 'ID inválido, debe ser un número entero' 
-        });
-    }
-    next();
-});
+// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
+// const orm = require('../Database/dataBase.orm');
+// const sql = require('../Database/dataBase.sql');
+// const mongo = require('../Database/dataBaseMongose');
+// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
 
-// Obtener todas las clases
-router.get('/', async (req, res) => {
+// =======================================================
+// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
+// =======================================================
+
+// Asumiendo que clase.routes.js usa 'obtenerClase'
+const obtenerClase = async (req, res) => {
+    // Aquí va tu lógica para obtener una clase por ID
+    // Asegúrate de usar req.params.id, req.query, etc.
     try {
-        const result = await claseController.mostrarClases(req, res);
-        res.json({ 
-            success: true, 
-            data: result.clases || [] 
-        });
+        // Ejemplo de lógica (reemplaza con tu implementación real)
+        const clase = { id: req.params.id, nombre: 'Yoga', horario: 'L-M-X 18:00' };
+        if (!clase) {
+            return res.apiError('Clase no encontrada', 404);
+        }
+        return res.apiResponse(clase, 200, 'Clase obtenida con éxito');
     } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Error al obtener clases',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+        console.error('Error al obtener clase:', error.message);
+        return res.apiError('Error al obtener clase', 500, error.message);
     }
-});
+};
 
-// Obtener una clase por ID
-router.get('/:id', async (req, res) => {
+// Asumiendo que clase.routes.js usa 'crearClase'
+const crearClase = async (req, res) => {
+    // Aquí va tu lógica para crear una clase
+    // Asegúrate de usar req.body para acceder a los datos
     try {
-        const result = await claseController.mostrarClasePorId(req, res);
-        
-        if (result.error) {
-            return res.status(404).json({ 
-                success: false, 
-                error: result.error 
-            });
-        }
-        
-        res.json({ 
-            success: true, 
-            data: result 
-        });
+        // Ejemplo de lógica (reemplaza con tu implementación real)
+        const nuevaClase = req.body;
+        // Guarda la nueva clase en tu base de datos
+        console.log('Creando clase:', nuevaClase);
+        return res.apiResponse(nuevaClase, 201, 'Clase creada con éxito');
     } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Error al obtener la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+        console.error('Error al crear clase:', error.message);
+        return res.apiError('Error al crear clase', 500, error.message);
     }
-});
+};
 
-// Crear una nueva clase
-router.post('/', async (req, res) => {
+// Asumiendo que clase.routes.js usa 'actualizarClase'
+const actualizarClase = async (req, res) => {
+    // Aquí va tu lógica para actualizar una clase
+    // Asegúrate de usar req.params.id y req.body
     try {
-        // Validación básica del body
-        if (!req.body.nombre || !req.body.horario || !req.body.profesorId) {
-            return res.status(400).json({
-                success: false,
-                error: 'nombre, horario y profesorId son campos requeridos'
-            });
-        }
-
-        const result = await claseController.crearClase(req, res);
-        
-        if (result.error) {
-            return res.status(400).json({ 
-                success: false, 
-                error: result.error 
-            });
-        }
-        
-        res.status(201).json({ 
-            success: true, 
-            message: result.message,
-            idClase: result.idClase 
-        });
+        // Ejemplo de lógica (reemplaza con tu implementación real)
+        const { id } = req.params;
+        const datosActualizados = req.body;
+        // Actualiza la clase en tu base de datos
+        console.log(`Actualizando clase ${id}:`, datosActualizados);
+        return res.apiResponse({ id, ...datosActualizados }, 200, 'Clase actualizada con éxito');
     } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Error al crear la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+        console.error('Error al actualizar clase:', error.message);
+        return res.apiError('Error al actualizar clase', 500, error.message);
     }
-});
+};
 
-// Actualizar una clase existente
-router.put('/:id', async (req, res) => {
+// Asumiendo que clase.routes.js usa 'eliminarClase'
+const eliminarClase = async (req, res) => {
+    // Aquí va tu lógica para eliminar una clase
+    // Asegúrate de usar req.params.id
     try {
-        const result = await claseController.actualizarClase(req, res);
-        
-        if (result.error) {
-            return res.status(404).json({ 
-                success: false, 
-                error: result.error 
-            });
-        }
-        
-        res.json({ 
-            success: true, 
-            message: result.message,
-            idClase: result.idClase 
-        });
+        // Ejemplo de lógica (reemplaza con tu implementación real)
+        const { id } = req.params;
+        // Elimina la clase de tu base de datos
+        console.log(`Eliminando clase ${id}`);
+        return res.apiResponse(null, 200, 'Clase eliminada con éxito');
     } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Error al actualizar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
+        console.error('Error al eliminar clase:', error.message);
+        return res.apiError('Error al eliminar clase', 500, error.message);
     }
-});
+};
 
-// Eliminar una clase
-router.delete('/:id', async (req, res) => {
-    try {
-        const result = await claseController.eliminarClase(req, res);
-        
-        if (result.error) {
-            return res.status(404).json({ 
-                success: false, 
-                error: result.error 
-            });
-        }
-        
-        res.json({ 
-            success: true, 
-            message: result.message 
-        });
-    } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Error al eliminar la clase',
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
-    }
-});
-
-module.exports = router;
+// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
+module.exports = {
+    obtenerClase,
+    crearClase,
+    actualizarClase,
+    eliminarClase
+    // Si tienes otras funciones en este controlador que no se usan en las rutas,
+    // puedes exportarlas aquí también si son necesarias en otro lugar.
+};

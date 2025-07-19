@@ -7,7 +7,7 @@ const {
   actualizarHistorial,
   eliminarHistorial
 } = require('../controller/historialPago.controller');
-const { verificarToken, verificarRol } = require('../middlewares/auth');
+const { verificarToken, verificarRol } = require('../lib/auth');
 
 // Middleware para todas las rutas
 router.use(verificarToken);
