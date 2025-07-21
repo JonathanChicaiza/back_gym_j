@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {
-  mostrarReservaPorId,
-  crearReserva,
-  actualizarReserva,
-  eliminarReserva
+    mostrarReservaPorId,
+    crearReserva,
+    actualizarReserva,
+    eliminarReserva
 } = require('../controller/reserva.controller');
 
 // Routes

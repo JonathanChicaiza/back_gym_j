@@ -1,13 +1,19 @@
-const profesor = (sequelize, DataTypes) => {
+const profesor = (sequelize, type) => {
     return sequelize.define('profesores', {
         idProfesor: {
-            type: DataTypes.INTEGER,
-            // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
+            type: type.INTEGER,
             primaryKey: true,
         },
-        especialidad: DataTypes.STRING,
+        especialidad: type.STRING,
+        nombre: type.STRING,
+        apellido: type.STRING,
+        gmail: type.STRING,
+        telefono: type.STRING,
+        stateProfesor: type.STRING,
+        createProfesor:type.STRING,
+        updateProfesor: type.STRING
     }, {
-        timestamps: false, // Mantén esto si tus tablas SQL no tienen createdAt/updatedAt
+        timestamps: false,
         comment: 'Tabla de Profesores'
     });
 };

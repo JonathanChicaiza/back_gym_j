@@ -1,17 +1,17 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs'); // ¡Importante! Necesitas instalarlo: npm install bcryptjs
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 
-const { cifrarDatos, descifrarDatos } = require('./encrypDates');
+const { cifrarDatos, descifrarDatos } = require('./encrypDates'); 
 
 // Archivos de conexión a la base de datos
 const orm = require('../Database/dataBase.orm');
 const sql = require('../Database/dataBase.sql');
-const mongo = require('../Database/dataBaseMongose'); // Asegúrate de que este archivo exporta mongoose.model('Usuario') como 'Usuario'
+const mongo = require('../Database/dataBaseMongose'); 
 
 // Función auxiliar para descifrar datos de forma segura
 function safeDecrypt(data) {
@@ -24,13 +24,12 @@ function safeDecrypt(data) {
     }
 }
 
-// Función para guardar y subir archivos (mantenida de tu código original)
+// Función para guardar y subir archivos
 const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, req) => {
     const validaciones = {
         imagen: [".PNG", ".JPG", ".JPEG", ".GIF", ".TIF", ".png", ".jpg", ".jpeg", ".gif", ".tif", ".ico", ".ICO", ".webp", ".WEBP"],
         pdf: [".pdf", ".PDF"]
     };
-    // Ajuste: Determinar el tipo de archivo basado en la columna o en el contexto
     const tipoArchivo = (columnName.includes('photo')) ? 'imagen' : 'pdf';
     const validacion = path.extname(archivo.name);
 
@@ -49,7 +48,7 @@ const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, 
                     if (columnName.includes('Estudent')) {
                         tableName = 'students';
                         idColumnName = 'idEstudent';
-                    } else if (columnName.includes('Profesor')) {
+                    } else if (columnName.includes('Profesor') || columnName.includes('Teacher')) {
                         tableName = 'profesores';
                         idColumnName = 'idProfesor';
                     } else {
@@ -66,7 +65,7 @@ const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, 
 
                     const response = await axios.post(url, formData, {
                         headers: {
-                            'Content-Type': 'multipart/form-data',
+                            ...formData.getHeaders(),
                             'X-CSRF-Token': req.csrfToken(),
                             'Cookie': req.headers.cookie
                         },
@@ -378,9 +377,9 @@ passport.use(
                 // Crear entrada en MongoDB
                 const newMongoUser = {
                     id_usuario: idUsuarioSql, // Vinculamos con el ID de SQL
-                    fecha_registro: new Date(),
+                    fecha_registro: new Date().toISOString(), // Usar ISO 8601
                 };
-                await mongo.Usuario.create(newMongoUser);
+                await mongo.usuarioModel.create(newMongoUser); // Usar mongo.usuarioModel
 
                 // El usuario creado se devuelve a Passport para iniciar sesión
                 const userForSession = {
@@ -457,11 +456,11 @@ passport.use(
 passport.serializeUser((user, done) => {
     // Almacenamos un objeto mínimo en la sesión para identificar al usuario y su tipo
     let sessionData = {};
-    if (user.idUsuario) {
+    if (user.type === 'usuario') { // Usar 'type' para determinar
         sessionData = { id: user.idUsuario, type: 'usuario', rol: user.rolId };
-    } else if (user.idProfesor) {
+    } else if (user.type === 'profesor') {
         sessionData = { id: user.idProfesor, type: 'profesor', rol: user.rolProfesor };
-    } else if (user.idEstudent) {
+    } else if (user.type === 'student') {
         sessionData = { id: user.idEstudent, type: 'student', rol: user.rolStudent };
     }
     done(null, sessionData);

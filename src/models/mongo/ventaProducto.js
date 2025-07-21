@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const VentaSchema = new mongoose.Schema({
- id_venta: Number,
- fecha_venta: Date
+ id_ventaSql: String,
+ fecha_venta: String,
+ dispositivo_venta: String,
+ ubicacion_venta: String
 }, {
  // Especifica el nombre de la colección como "ventas"
  collection: 'ventas',

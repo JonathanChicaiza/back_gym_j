@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const MembresiaSchema = new mongoose.Schema({
- id_membresia: Number,
+ id_membresiaSql: String,
  descripcion: String,
- beneficios: [String]
+ beneficios: String,
+ historial_uso: String, 
+ acceso_recursos : String
 }, {
  // Especifica el nombre de la colección como "membresias"
  collection: 'membresias',

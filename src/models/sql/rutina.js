@@ -1,19 +1,17 @@
-const rutina = (sequelize, DataTypes) => {
+const rutina = (sequelize, type) => {
     return sequelize.define('rutinas', {
         idRutina: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             
         },
-        clienteId: DataTypes.INTEGER,
-        profesorId: DataTypes.INTEGER,
-        nombre: DataTypes.STRING,
-        duracionSemanas: DataTypes.INTEGER,
-        estado: DataTypes.STRING,
-        stateRutina: DataTypes.STRING,
-        createRutina: DataTypes.STRING,
-        updateRutina: DataTypes.STRING
+        nombre: type.STRING,
+        duracionSemanas: type.INTEGER,
+        estado: type.STRING,
+        stateRutina: type.STRING,
+        createRutina: type.STRING,
+        updateRutina: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Rutinas'

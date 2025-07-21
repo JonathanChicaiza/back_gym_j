@@ -1,107 +1,227 @@
-// src/controller/membresia.controller.js
+const orm = require('../Database/dataBase.orm');
+const sql = require('../Database/dataBase.sql');
+const mongo = require('../Database/dataBaseMongose');
 
-// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
-// const orm = require('../Database/dataBase.orm');
-// const sql = require('../Database/dataBase.sql');
-// const mongo = require('../Database/dataBaseMongose');
-// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+const membresiaCtl = {};
 
-// =======================================================
-// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
-// =======================================================
-
-// Función para obtener todas las membresías (aunque no se use en las rutas que me diste, se exporta)
-const obtenerMembresias = async (req, res) => {
+// Obtener todas las membresías
+membresiaCtl.obtenerMembresias = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
-        const membresias = [
-            { id: 'm001', nombre: 'Básica', precio: 30, duracionMeses: 1 },
-            { id: 'm002', nombre: 'Premium', precio: 50, duracionMeses: 3 }
-        ];
-        return res.apiResponse(membresias, 200, 'Membresías obtenidas con éxito');
+        // Consultar todas las membresías desde la base de datos SQL
+        const [listaMembresias] = await sql.promise().query(`
+            SELECT * FROM membresias
+        `);
+
+        // Para cada membresía SQL, buscar su contraparte en MongoDB
+        const membresiasCompletas = await Promise.all(
+            listaMembresias.map(async (membresia) => {
+                // Asumiendo que idMembresia en SQL se mapea a id_membresiaSql en MongoDB
+                const membresiaMongo = await mongo.Membresia.findOne({ 
+                    id_membresiaSql: membresia.idMembresia 
+                });
+                return {
+                    ...membresia,
+                    detallesMongo: membresiaMongo
+                };
+            })
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Membresías obtenidas exitosamente');
+        return res.apiResponse(membresiasCompletas, 200, 'Membresías obtenidas exitosamente');
     } catch (error) {
-        console.error('Error al obtener membresías:', error.message);
-        return res.apiError('Error al obtener membresías', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener membresías:', error);
+        res.flash('error', 'Error al obtener membresías');
+        return res.apiError('Error interno del servidor al obtener membresías', 500);
     }
 };
 
-// Función para obtener una membresía por ID
-// Coincide con 'obtenerMembresia' en membresia.routes.js
-const obtenerMembresia = async (req, res) => {
-    // Aquí va tu lógica para obtener una membresía por ID
-    // Asegúrate de usar req.params.id, req.query, etc.
+// Obtener una membresía por ID
+membresiaCtl.obtenerMembresia = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
-        const membresia = { id: req.params.id, nombre: 'Premium', precio: 50, duracionMeses: 3 };
-        if (!membresia.id) { // Ejemplo: si no se encuentra la membresía
+        const { id } = req.params;
+
+        // Consultar la membresía por ID desde la base de datos SQL
+        const [membresia] = await sql.promise().query(`
+            SELECT * FROM membresias WHERE idMembresia = ?
+        `, [id]);
+
+        // Si no se encuentra la membresía en SQL, enviar error 404
+        if (membresia.length === 0) {
+            res.flash('error', 'Membresía no encontrada');
             return res.apiError('Membresía no encontrada', 404);
         }
-        return res.apiResponse(membresia, 200, 'Membresía obtenida con éxito');
+
+        // Buscar la membresía correspondiente en MongoDB
+        const membresiaMongo = await mongo.Membresia.findOne({ 
+            id_membresiaSql: parseInt(id) 
+        });
+
+        // Combinar los datos de SQL y MongoDB
+        const membresiaCompleta = {
+            ...membresia[0],
+            detallesMongo: membresiaMongo
+        };
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Membresía obtenida exitosamente');
+        return res.apiResponse(membresiaCompleta, 200, 'Membresía obtenida exitosamente');
     } catch (error) {
-        console.error('Error al obtener membresía:', error.message);
-        return res.apiError('Error al obtener membresía', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener membresía:', error);
+        res.flash('error', 'Error al obtener membresía');
+        return res.apiError('Error interno del servidor al obtener la membresía', 500);
     }
 };
 
-// Función para crear una membresía
-// Coincide con 'crearMembresia' en membresia.routes.js
-const crearMembresia = async (req, res) => {
-    // Aquí va tu lógica para crear una membresía
-    // Asegúrate de usar req.body para acceder a los datos
+// Crear nueva membresía
+membresiaCtl.crearMembresia = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
-        const nuevaMembresia = req.body;
-        // Guarda la nueva membresía en tu base de datos
-        console.log('Creando membresía:', nuevaMembresia);
-        return res.apiResponse(nuevaMembresia, 201, 'Membresía creada con éxito');
+        const { nombre, precio, duracionDias, descripcion, beneficios, historial_uso, acceso_recursos } = req.body;
+
+        // Validar campos requeridos para la creación de la membresía en SQL
+        if (!nombre || !precio || !duracionDias) {
+            res.flash('error', 'Faltan campos requeridos para crear la membresía SQL (nombre, precio, duracionDias).');
+            return res.apiError('Faltan campos requeridos para crear la membresía SQL.', 400);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Crear la membresía en SQL
+        const datosSql = {
+            nombre,
+            precio,
+            duracionDias,
+            stateMembresia: 'activa', // Estado por defecto
+            createMembresia: currentTime, // Campo de fecha de creación en SQL
+            updateMembresia: currentTime // Inicialmente igual a create
+        };
+        
+        const nuevaMembresiaSql = await orm.membresia.create(datosSql);
+        const idMembresia = nuevaMembresiaSql.idMembresia; // Obtener el ID generado por SQL
+
+        // Crear la membresía en MongoDB, vinculándola con el ID de SQL
+        const datosMongo = {
+            id_membresiaSql: idMembresia,
+            descripcion: descripcion || '',
+            beneficios: beneficios || '',
+            historial_uso: historial_uso || '',
+            acceso_recursos: acceso_recursos || ''
+        };
+        
+        await mongo.Membresia.create(datosMongo);
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Membresía creada exitosamente');
+        return res.apiResponse(
+            { idMembresia }, 
+            201, 
+            'Membresía creada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al crear membresía:', error.message);
-        return res.apiError('Error al crear membresía', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al crear membresía:', error);
+        res.flash('error', 'Error al crear la membresía');
+        return res.apiError('Error interno del servidor al crear la membresía', 500);
     }
 };
 
-// Función para actualizar una membresía
-// Coincide con 'actualizarMembresia' en membresia.routes.js
-const actualizarMembresia = async (req, res) => {
-    // Aquí va tu lógica para actualizar una membresía
-    // Asegúrate de usar req.params.id y req.body
+// Actualizar membresía
+membresiaCtl.actualizarMembresia = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
         const { id } = req.params;
-        const datosActualizados = req.body;
-        // Actualiza la membresía en tu base de datos
-        console.log(`Actualizando membresía ${id}:`, datosActualizados);
-        return res.apiResponse({ id, ...datosActualizados }, 200, 'Membresía actualizada con éxito');
+        const { nombre, precio, duracionDias, stateMembresia, descripcion, beneficios, historial_uso, acceso_recursos } = req.body;
+
+        // Verificar la existencia de la membresía en SQL
+        const [membresiaExistenteSql] = await sql.promise().query(`
+            SELECT * FROM membresias WHERE idMembresia = ?
+        `, [id]);
+
+        if (membresiaExistenteSql.length === 0) {
+            res.flash('error', 'Membresía no encontrada');
+            return res.apiError('Membresía no encontrada', 404);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Actualizar en SQL
+        const datosActualizacionSql = {
+            nombre: nombre !== undefined ? nombre : membresiaExistenteSql[0].nombre,
+            precio: precio !== undefined ? precio : membresiaExistenteSql[0].precio,
+            duracionDias: duracionDias !== undefined ? duracionDias : membresiaExistenteSql[0].duracionDias,
+            stateMembresia: stateMembresia !== undefined ? stateMembresia : membresiaExistenteSql[0].stateMembresia,
+            updateMembresia: currentTime // Campo de fecha de actualización en SQL
+        };
+        
+        await orm.membresia.update(datosActualizacionSql, {
+            where: { idMembresia: id }
+        });
+
+        // Actualizar en MongoDB
+        const datosMongoActualizacion = {};
+        if (descripcion !== undefined) datosMongoActualizacion.descripcion = descripcion;
+        if (beneficios !== undefined) datosMongoActualizacion.beneficios = beneficios;
+        if (historial_uso !== undefined) datosMongoActualizacion.historial_uso = historial_uso;
+        if (acceso_recursos !== undefined) datosMongoActualizacion.acceso_recursos = acceso_recursos;
+
+        await mongo.Membresia.findOneAndUpdate(
+            { id_membresiaSql: parseInt(id) },
+            datosMongoActualizacion,
+            { new: true } // Para devolver el documento actualizado
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Membresía actualizada exitosamente');
+        return res.apiResponse(
+            { idMembresia: id }, 
+            200, 
+            'Membresía actualizada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al actualizar membresía:', error.message);
-        return res.apiError('Error al actualizar membresía', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al actualizar membresía:', error);
+        res.flash('error', 'Error al actualizar la membresía');
+        return res.apiError('Error interno del servidor al actualizar la membresía', 500);
     }
 };
 
-// Función para eliminar una membresía
-// Coincide con 'eliminarMembresia' en membresia.routes.js
-const eliminarMembresia = async (req, res) => {
-    // Aquí va tu lógica para eliminar una membresía
-    // Asegúrate de usar req.params.id
+// Eliminar membresía
+membresiaCtl.eliminarMembresia = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
         const { id } = req.params;
-        // Elimina la membresía de tu base de datos
-        console.log(`Eliminando membresía ${id}`);
-        return res.apiResponse(null, 200, 'Membresía eliminada con éxito');
+
+        // Verificar la existencia de la membresía en SQL
+        const [membresiaExistenteSql] = await sql.promise().query(`
+            SELECT * FROM membresias WHERE idMembresia = ?
+        `, [id]);
+
+        if (membresiaExistenteSql.length === 0) {
+            res.flash('error', 'Membresía no encontrada');
+            return res.apiError('Membresía no encontrada', 404);
+        }
+
+        // Eliminar en SQL
+        await orm.membresia.destroy({
+            where: { idMembresia: id }
+        });
+
+        // Eliminar en MongoDB
+        await mongo.Membresia.findOneAndDelete({ id_membresiaSql: parseInt(id) });
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Membresía eliminada exitosamente');
+        return res.apiResponse(
+            null, 
+            200, 
+            'Membresía eliminada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al eliminar membresía:', error.message);
-        return res.apiError('Error al eliminar membresía', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al eliminar membresía:', error);
+        res.flash('error', 'Error al eliminar la membresía');
+        return res.apiError('Error interno del servidor al eliminar la membresía', 500);
     }
 };
 
-// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
-module.exports = {
-    obtenerMembresias, // Exportada aunque no se use directamente en las rutas proporcionadas
-    obtenerMembresia,
-    crearMembresia,
-    actualizarMembresia,
-    eliminarMembresia
-    // Si tienes otras funciones en este controlador que no se usan en las rutas,
-    // puedes exportarlas aquí también si son necesarias en otro lugar.
-};
+module.exports = membresiaCtl;

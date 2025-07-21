@@ -1,20 +1,16 @@
-const cliente = (sequelize, DataTypes) => {
+const cliente = (sequelize, type) => {
     return sequelize.define('clientes', {
         idCliente: {
-            type: DataTypes.INTEGER,
-            // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
+            type: type.INTEGER,
             primaryKey: true,
         },
-        telefono: DataTypes.STRING,
-        direccion: DataTypes.TEXT, // Coincide con TEXT en SQL
-        membresiaId: DataTypes.INTEGER,
-        // Si tienes campos como stateCliente, createCliente, updateCliente en tu modelo Sequelize
-        // y NO están en tu script SQL de CREATE TABLE, coméntalos o elimínalos aquí también.
-        // stateCliente: DataTypes.STRING,
-        // createCliente: DataTypes.STRING,
-        // updateCliente: DataTypes.STRING
+        telefono: type.STRING,
+        direccion: type.STRING, 
+        stateCliente: type.STRING,
+        createCliente: type.STRING,
+        updateCliente: type.STRING
     }, {
-        timestamps: false, // Mantén esto si tus tablas SQL no tienen createdAt/updatedAt
+        timestamps: false, 
         comment: 'Tabla de Clientes'
     });
 };

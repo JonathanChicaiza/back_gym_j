@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const ActividadSchema = new mongoose.Schema({
-  id_log: String,
-  fecha_hora: String
+  id_logSql: String,
+  fecha: String,
+  hora:  String,
+  ciudad: String,
+  pais: String
 }, {
   // Especifica el nombre de la colección como "actividad"
   collection: 'actividad',

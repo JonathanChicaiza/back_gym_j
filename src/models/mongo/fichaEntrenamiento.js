@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const FichaSchema = new mongoose.Schema({
- id_ficha: Number,
+ id_fichaSql: String,
  descripcion: String,
- fecha_creacion: Date
+ fecha_creacion: String,
+ nivel_dificulta: String,
+ rutina: String,
+ duracion_minutos: String
 }, {
  // Especifica el nombre de la colección como "fichas_entrenamiento"
  collection: 'fichas_entrenamiento',

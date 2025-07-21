@@ -1,14 +1,18 @@
-const empleado = (sequelize, DataTypes) => {
+const empleado = (sequelize, type) => {
     return sequelize.define('empleados', {
         idEmpleado: {
-            type: DataTypes.INTEGER,
-            // autoIncrement: true, // ¡ESTA LÍNEA DEBE ESTAR ELIMINADA O COMENTADA!
+            type: type.INTEGER,
             primaryKey: true,
         },
-        cargo: DataTypes.STRING,
-        salario: DataTypes.DECIMAL(10, 2), 
+        cargo: type.STRING,
+        salario: type.STRING, 
+        telefono: type.STRING,
+        gmail: type.STRING,
+        stateEvaluacion: type.STRING,
+        createEvaluacion: type.STRING,
+        updateEvaluacion: type.STRING
     }, {
-        timestamps: false, // Mantén esto si tus tablas SQL no tienen createdAt/updatedAt
+        timestamps: false,
         comment: 'Tabla de Empleados'
     });
 };

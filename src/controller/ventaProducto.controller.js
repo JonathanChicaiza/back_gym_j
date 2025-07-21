@@ -1,91 +1,223 @@
-// src/controller/ventaProducto.controller.js
+const orm = require('../Database/dataBase.orm');
+const sql = require('../Database/dataBase.sql');
+const mongo = require('../Database/dataBaseMongose'); // Asegúrate de que este archivo exporta 'Venta'
 
-// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
-// const orm = require('../Database/dataBase.orm');
-// const sql = require('../Database/dataBase.sql');
-// const mongo = require('../Database/dataBaseMongose');
-// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+const ventaProductoCtl = {};
 
-// =======================================================
-// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
-// =======================================================
-
-// Función para obtener una venta por ID
-// Coincide con 'obtenerVenta' en venta-producto.routes.js
-const obtenerVenta = async (req, res) => {
-    // Aquí va tu lógica para obtener una venta por ID
-    // Asegúrate de usar req.params.id, req.query, etc.
+// Obtener todas las ventas de productos
+ventaProductoCtl.obtenerVentas = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
-        const venta = { id: req.params.id, productoId: 'p001', clienteId: 'c001', cantidad: 2, total: 91.98, fecha: '2024-07-19' };
-        if (!venta.id) { // Ejemplo: si no se encuentra la venta
-            return res.apiError('Venta no encontrada', 404);
+        // Consultar todas las ventas de productos desde la base de datos SQL
+        const [listaVentas] = await sql.promise().query(`
+            SELECT * FROM ventas_productos
+        `);
+
+        // Para cada venta de producto SQL, buscar su contraparte en MongoDB
+        const ventasCompletas = await Promise.all(
+            listaVentas.map(async (venta) => {
+                // Asumiendo que idVenta en SQL se mapea a id_ventaSql en MongoDB
+                const ventaMongo = await mongo.Venta.findOne({ 
+                    id_ventaSql: venta.idVenta.toString() // Convertir a string para coincidir con el tipo en Mongo
+                });
+                return {
+                    ...venta,
+                    detallesMongo: ventaMongo
+                };
+            })
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Ventas de productos obtenidas exitosamente');
+        return res.apiResponse(ventasCompletas, 200, 'Ventas de productos obtenidas exitosamente');
+    } catch (error) {
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener ventas de productos:', error);
+        res.flash('error', 'Error al obtener ventas de productos');
+        return res.apiError('Error interno del servidor al obtener ventas de productos', 500);
+    }
+};
+
+// Obtener una venta de producto por ID
+ventaProductoCtl.obtenerVenta = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Consultar la venta de producto por ID desde la base de datos SQL
+        const [venta] = await sql.promise().query(`
+            SELECT * FROM ventas_productos WHERE idVenta = ?
+        `, [id]);
+
+        // Si no se encuentra la venta en SQL, enviar error 404
+        if (venta.length === 0) {
+            res.flash('error', 'Venta de producto no encontrada');
+            return res.apiError('Venta de producto no encontrada', 404);
         }
-        return res.apiResponse(venta, 200, 'Venta obtenida con éxito');
+
+        // Buscar la venta correspondiente en MongoDB
+        const ventaMongo = await mongo.Venta.findOne({ 
+            id_ventaSql: id.toString() // Asegurarse de que el ID sea string para la búsqueda en Mongo
+        });
+
+        // Combinar los datos de SQL y MongoDB
+        const ventaCompleta = {
+            ...venta[0],
+            detallesMongo: ventaMongo
+        };
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Venta de producto obtenida exitosamente');
+        return res.apiResponse(ventaCompleta, 200, 'Venta de producto obtenida exitosamente');
     } catch (error) {
-        console.error('Error al obtener venta:', error.message);
-        return res.apiError('Error al obtener venta', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener venta de producto:', error);
+        res.flash('error', 'Error al obtener venta de producto');
+        return res.apiError('Error interno del servidor al obtener la venta de producto', 500);
     }
 };
 
-// Función para crear una venta
-// Coincide con 'crearVenta' en venta-producto.routes.js
-const crearVenta = async (req, res) => {
-    // Aquí va tu lógica para crear una venta
-    // Asegúrate de usar req.body para acceder a los datos
+// Crear nueva venta de producto
+ventaProductoCtl.crearVenta = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
-        const nuevaVenta = req.body;
-        // Guarda la nueva venta en tu base de datos
-        console.log('Creando venta:', nuevaVenta);
-        return res.apiResponse(nuevaVenta, 201, 'Venta creada con éxito');
+        const { cantidad, total, fecha_venta, dispositivo_venta, ubicacion_venta } = req.body;
+
+        // Validar campos requeridos para la creación de la venta en SQL
+        if (!cantidad || !total) {
+            res.flash('error', 'Faltan campos requeridos para crear la venta SQL (cantidad, total).');
+            return res.apiError('Faltan campos requeridos para crear la venta SQL.', 400);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Crear la venta en SQL
+        const datosSql = {
+            cantidad,
+            total,
+            stateVenta: 'completada', // Estado por defecto para la venta
+            createVenta: currentTime, // Campo de fecha de creación en SQL
+            updateVenta: currentTime // Inicialmente igual a create
+        };
+        
+        const nuevaVentaSql = await orm.ventaProducto.create(datosSql);
+        const idVenta = nuevaVentaSql.idVenta; // Obtener el ID generado por SQL
+
+        // Crear la venta en MongoDB, vinculándola con el ID de SQL
+        const datosMongo = {
+            id_ventaSql: idVenta.toString(), // Convertir a string para el ID de Mongo
+            fecha_venta: fecha_venta || currentTime, // Usar fecha_venta del body o la actual
+            dispositivo_venta: dispositivo_venta || '',
+            ubicacion_venta: ubicacion_venta || ''
+        };
+        
+        await mongo.Venta.create(datosMongo);
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Venta de producto creada exitosamente');
+        return res.apiResponse(
+            { idVenta }, 
+            201, 
+            'Venta de producto creada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al crear venta:', error.message);
-        return res.apiError('Error al crear venta', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al crear venta de producto:', error);
+        res.flash('error', 'Error al crear la venta de producto');
+        return res.apiError('Error interno del servidor al crear la venta de producto', 500);
     }
 };
 
-// Función para actualizar una venta
-// Coincide con 'actualizarVenta' en venta-producto.routes.js
-const actualizarVenta = async (req, res) => {
-    // Aquí va tu lógica para actualizar una venta
-    // Asegúrate de usar req.params.id y req.body
+// Actualizar venta de producto
+ventaProductoCtl.actualizarVenta = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
         const { id } = req.params;
-        const datosActualizados = req.body;
-        // Actualiza la venta en tu base de datos
-        console.log(`Actualizando venta ${id}:`, datosActualizados);
-        return res.apiResponse({ id, ...datosActualizados }, 200, 'Venta actualizada con éxito');
+        const { cantidad, total, stateVenta, fecha_venta, dispositivo_venta, ubicacion_venta } = req.body;
+
+        // Verificar la existencia de la venta en SQL
+        const [ventaExistenteSql] = await sql.promise().query(`
+            SELECT * FROM ventas_productos WHERE idVenta = ?
+        `, [id]);
+
+        if (ventaExistenteSql.length === 0) {
+            res.flash('error', 'Venta de producto no encontrada');
+            return res.apiError('Venta de producto no encontrada', 404);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Actualizar en SQL
+        const datosActualizacionSql = {
+            cantidad: cantidad !== undefined ? cantidad : ventaExistenteSql[0].cantidad,
+            total: total !== undefined ? total : ventaExistenteSql[0].total,
+            stateVenta: stateVenta !== undefined ? stateVenta : ventaExistenteSql[0].stateVenta,
+            updateVenta: currentTime // Campo de fecha de actualización en SQL
+        };
+        
+        await orm.ventaProducto.update(datosActualizacionSql, {
+            where: { idVenta: id }
+        });
+
+        // Actualizar en MongoDB
+        const datosMongoActualizacion = {};
+        if (fecha_venta !== undefined) datosMongoActualizacion.fecha_venta = fecha_venta;
+        if (dispositivo_venta !== undefined) datosMongoActualizacion.dispositivo_venta = dispositivo_venta;
+        if (ubicacion_venta !== undefined) datosMongoActualizacion.ubicacion_venta = ubicacion_venta;
+
+        await mongo.Venta.findOneAndUpdate(
+            { id_ventaSql: id.toString() }, // Asegurarse de que el ID sea string para la búsqueda en Mongo
+            datosMongoActualizacion,
+            { new: true } // Para devolver el documento actualizado
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Venta de producto actualizada exitosamente');
+        return res.apiResponse(
+            { idVenta: id }, 
+            200, 
+            'Venta de producto actualizada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al actualizar venta:', error.message);
-        return res.apiError('Error al actualizar venta', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al actualizar venta de producto:', error);
+        res.flash('error', 'Error al actualizar la venta de producto');
+        return res.apiError('Error interno del servidor al actualizar la venta de producto', 500);
     }
 };
 
-// Función para eliminar una venta
-// Coincide con 'eliminarVenta' en venta-producto.routes.js
-const eliminarVenta = async (req, res) => {
-    // Aquí va tu lógica para eliminar una venta
-    // Asegúrate de usar req.params.id
+// Eliminar venta de producto
+ventaProductoCtl.eliminarVenta = async (req, res) => {
     try {
-        // --- REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE BASE DE DATOS ---
         const { id } = req.params;
-        // Elimina la venta de tu base de datos
-        console.log(`Eliminando venta ${id}`);
-        return res.apiResponse(null, 200, 'Venta eliminada con éxito');
+
+        // Verificar la existencia de la venta en SQL
+        const [ventaExistenteSql] = await sql.promise().query(`
+            SELECT * FROM ventas_productos WHERE idVenta = ?
+        `, [id]);
+
+        if (ventaExistenteSql.length === 0) {
+            res.flash('error', 'Venta de producto no encontrada');
+            return res.apiError('Venta de producto no encontrada', 404);
+        }
+
+        // Eliminar en SQL
+        await orm.ventaProducto.destroy({
+            where: { idVenta: id }
+        });
+
+        // Eliminar en MongoDB
+        await mongo.Venta.findOneAndDelete({ id_ventaSql: id.toString() }); // Asegurarse de que el ID sea string para la búsqueda en Mongo
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Venta de producto eliminada exitosamente');
+        return res.apiResponse(
+            null, 
+            200, 
+            'Venta de producto eliminada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al eliminar venta:', error.message);
-        return res.apiError('Error al eliminar venta', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al eliminar venta de producto:', error);
+        res.flash('error', 'Error al eliminar la venta de producto');
+        return res.apiError('Error interno del servidor al eliminar la venta de producto', 500);
     }
 };
 
-// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
-module.exports = {
-    obtenerVenta,
-    crearVenta,
-    actualizarVenta,
-    eliminarVenta
-    // Si tienes otras funciones en este controlador que no se usan en las rutas,
-    // puedes exportarlas aquí también si son necesarias en otro lugar.
-};
+module.exports = ventaProductoCtl;

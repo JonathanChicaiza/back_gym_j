@@ -280,6 +280,7 @@ app.use('/api/asistencias', require('./router/asistencia.routes'));
 // Rutas de recursos
 app.use('/api/inventarios', require('./router/inventario.routes'));
 app.use('/api/productos', require('./router/producto.routes'));
+app.use ('/api/configuracion', require('./router/configuracion.routes'));
 
 // Configurar variables globales
 app.use((req, res, next) => {

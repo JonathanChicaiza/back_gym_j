@@ -1,16 +1,14 @@
-const reserva = (sequelize, DataTypes) => {
+const reserva = (sequelize, type) => {
     return sequelize.define('reservas', {
         idReserva: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        estado: DataTypes.STRING,
-        clienteId: DataTypes.INTEGER,
-        claseId: DataTypes.INTEGER,
-        stateReserva: DataTypes.STRING,
-        createReserva: DataTypes.STRING,
-        updateReserva: DataTypes.STRING
+        estado: type.STRING,
+        stateReserva: type.STRING,
+        createReserva: type.STRING,
+        updateReserva: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Reservas'

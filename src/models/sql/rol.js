@@ -6,6 +6,7 @@ const rol = (sequelize, type) =>{
             primaryKey: true,
         },
         nameRol: type.STRING,
+        descripcionRol: type.STRING,
         stateRol: type.STRING,
         createRol: type.STRING,
         updateRol: type.STRING,

@@ -1,21 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { 
 
-  obtenerHistorial,
-  crearHistorial,
-  actualizarHistorial,
-  eliminarHistorial
+const {
+    obtenerHistorialPago,
+    crearHistorialPago,
+    actualizarHistorialPago,
+    eliminarHistorialPago
 } = require('../controller/historialPago.controller');
-const { verificarToken, verificarRol } = require('../lib/auth');
 
-// Middleware para todas las rutas
-router.use(verificarToken);
-
-// Rutas CRUD con protección de roles
-router.get('/:id', verificarRol(['admin', 'contador']), obtenerHistorial);
-router.post('/', verificarRol(['admin', 'contador']), crearHistorial);
-router.put('/:id', verificarRol(['admin', 'contador']), actualizarHistorial);
-router.delete('/:id', verificarRol(['admin']), eliminarHistorial);
+router.get('/:id', obtenerHistorialPago);
+router.post('/crear', crearHistorialPago);
+router.put('/:id', actualizarHistorialPago);
+router.delete('/:id', eliminarHistorialPago);
 
 module.exports = router;

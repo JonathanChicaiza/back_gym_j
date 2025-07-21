@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
+const reserva = require('../sql/reserva');
 const ReservaSchema = new mongoose.Schema({
- id_reserva: Number,
- fecha_reserva: Date
+ id_reservaSql: String,
+ fecha_reserva: String,
+ tipo_reserva: String,
+ descripcion: String,
+ cantidad_personas: String
 }, {
  // Especifica el nombre de la colección como "reservas"
  collection: 'reservas',

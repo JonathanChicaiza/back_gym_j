@@ -1,15 +1,13 @@
-const fichaEntrenamiento = (sequelize, DataTypes) => {
+const fichaEntrenamiento = (sequelize, type) => {
     return sequelize.define('fichas_entrenamiento', {
         idFicha: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clienteId: DataTypes.INTEGER,
-        profesorId: DataTypes.INTEGER,
-        stateFicha: DataTypes.STRING,
-        createFicha: DataTypes.STRING,
-        updateFicha: DataTypes.STRING
+        stateFicha: type.STRING,
+        createFicha: type.STRING,
+        updateFicha: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Fichas de Entrenamiento'

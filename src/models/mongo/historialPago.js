@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const HistorialPagoSchema = new mongoose.Schema({
- id_historial: Number,
- observaciones: String
+ id_historialSql: String,
+ observaciones: String,
+ fecha_pago: String,
+ ubicacion: String
 }, {
  // Especifica el nombre de la colección como "historial_pagos"
  collection: 'historial_pagos',

@@ -1,87 +1,224 @@
-// src/controller/evaluacion.cliente.controller.js
+const orm = require('../Database/dataBase.orm');
+const sql = require('../Database/dataBase.sql');
+const mongo = require('../Database/dataBaseMongose');
 
-// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
-// const orm = require('../Database/dataBase.orm');
-// const sql = require('../Database/dataBase.sql');
-// const mongo = require('../Database/dataBaseMongose');
-// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+const evaluacionClienteCtl = {};
 
-// =======================================================
-// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
-// =======================================================
-
-// RENOMBRADA: 'obtenerEvaluacionCliente' a 'obtenerEvaluacion' para coincidir con el archivo de rutas
-const obtenerEvaluacion = async (req, res) => {
-    // Aquí va tu lógica para obtener una evaluación de cliente por ID
-    // Asegúrate de usar req.params.id, req.query, etc.
+// Obtener todas las evaluaciones de clientes
+evaluacionClienteCtl.obtenerEvaluaciones = async (req, res) => {
     try {
-        // Ejemplo de lógica (REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE DB)
-        const evaluacion = { id: req.params.id, clienteId: '123', fecha: new Date().toISOString(), puntaje: 85 };
-        if (!evaluacion.id) { // Asumiendo que si no hay ID, no se encontró
-            return res.apiError('Evaluación de cliente no encontrada', 404);
+        // Consultar todas las evaluaciones desde la base de datos SQL
+        const [listaEvaluaciones] = await sql.promise().query(`
+            SELECT * FROM evaluaciones_clientes
+        `);
+
+        // Para cada evaluación SQL, buscar su contraparte en MongoDB
+        const evaluacionesCompletas = await Promise.all(
+            listaEvaluaciones.map(async (evaluacion) => {
+                // Asumiendo que idEvaluacion en SQL se mapea a id_evaluacionSql en MongoDB
+                const evaluacionMongo = await mongo.EvaluacionCliente.findOne({ 
+                    id_evaluacionSql: evaluacion.idEvaluacion 
+                });
+                return {
+                    ...evaluacion,
+                    detallesMongo: evaluacionMongo
+                };
+            })
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Evaluaciones obtenidas exitosamente');
+        return res.apiResponse(evaluacionesCompletas, 200, 'Evaluaciones obtenidas exitosamente');
+    } catch (error) {
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener evaluaciones:', error);
+        res.flash('error', 'Error al obtener evaluaciones');
+        return res.apiError('Error interno del servidor al obtener evaluaciones', 500);
+    }
+};
+
+// Obtener una evaluación de cliente por ID
+evaluacionClienteCtl.obtenerEvaluacion = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Consultar la evaluación por ID desde la base de datos SQL
+        const [evaluacion] = await sql.promise().query(`
+            SELECT * FROM evaluaciones_clientes WHERE idEvaluacion = ?
+        `, [id]);
+
+        // Si no se encuentra la evaluación en SQL, enviar error 404
+        if (evaluacion.length === 0) {
+            res.flash('error', 'Evaluación no encontrada');
+            return res.apiError('Evaluación no encontrada', 404);
         }
-        return res.apiResponse(evaluacion, 200, 'Evaluación de cliente obtenida con éxito');
+
+        // Buscar la evaluación correspondiente en MongoDB
+        const evaluacionMongo = await mongo.EvaluacionCliente.findOne({ 
+            id_evaluacionSql: parseInt(id) 
+        });
+
+        // Combinar los datos de SQL y MongoDB
+        const evaluacionCompleta = {
+            ...evaluacion[0],
+            detallesMongo: evaluacionMongo
+        };
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Evaluación obtenida exitosamente');
+        return res.apiResponse(evaluacionCompleta, 200, 'Evaluación obtenida exitosamente');
     } catch (error) {
-        console.error('Error al obtener evaluación de cliente:', error.message);
-        return res.apiError('Error al obtener evaluación de cliente', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener evaluación:', error);
+        res.flash('error', 'Error al obtener evaluación');
+        return res.apiError('Error interno del servidor al obtener la evaluación', 500);
     }
 };
 
-// RENOMBRADA: 'crearEvaluacionCliente' a 'crearEvaluacion' para coincidir con el archivo de rutas
-const crearEvaluacion = async (req, res) => {
-    // Aquí va tu lógica para crear una evaluación de cliente
-    // Asegúrate de usar req.body para acceder a los datos
+// Crear nueva evaluación de cliente
+evaluacionClienteCtl.crearEvaluacion = async (req, res) => {
     try {
-        // Ejemplo de lógica (REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE DB)
-        const nuevaEvaluacion = req.body;
-        // Guarda la nueva evaluación en tu base de datos
-        console.log('Creando evaluación de cliente:', nuevaEvaluacion);
-        return res.apiResponse(nuevaEvaluacion, 201, 'Evaluación de cliente creada con éxito');
+        const { puntuacion, comentario, tipo_evaluacion, fecha_evaluacion, calificacion, ubicacion } = req.body;
+
+        // Validar campos requeridos para la creación de la evaluación en SQL
+        if (!puntuacion) {
+            res.flash('error', 'Faltan campos requeridos para crear la evaluación SQL (puntuacion).');
+            return res.apiError('Faltan campos requeridos para crear la evaluación SQL.', 400);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Crear la evaluación en SQL
+        const datosSql = {
+            puntuacion,
+            stateEvaluacion: 'activa', // Estado por defecto
+            createEvaluacion: currentTime, // Campo de fecha de creación en SQL
+            updateEvaluacion: currentTime // Inicialmente igual a create
+        };
+        
+        const nuevaEvaluacionSql = await orm.evaluacionCliente.create(datosSql);
+        const idEvaluacion = nuevaEvaluacionSql.idEvaluacion; // Obtener el ID generado por SQL
+
+        // Crear la evaluación en MongoDB, vinculándola con el ID de SQL
+        const datosMongo = {
+            id_evaluacionSql: idEvaluacion,
+            comentario: comentario || '',
+            tipo_evaluacion: tipo_evaluacion || '',
+            fecha_evaluacion: fecha_evaluacion || currentTime, // Usar fecha_evaluacion del body o la actual
+            calificacion: calificacion || '',
+            ubicacion: ubicacion || ''
+        };
+        
+        await mongo.EvaluacionCliente.create(datosMongo);
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Evaluación creada exitosamente');
+        return res.apiResponse(
+            { idEvaluacion }, 
+            201, 
+            'Evaluación creada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al crear evaluación de cliente:', error.message);
-        return res.apiError('Error al crear evaluación de cliente', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al crear evaluación:', error);
+        res.flash('error', 'Error al crear la evaluación');
+        return res.apiError('Error interno del servidor al crear la evaluación', 500);
     }
 };
 
-// RENOMBRADA: 'actualizarEvaluacionCliente' a 'actualizarEvaluacion' para coincidir con el archivo de rutas
-const actualizarEvaluacion = async (req, res) => {
-    // Aquí va tu lógica para actualizar una evaluación de cliente
-    // Asegúrate de usar req.params.id y req.body
+// Actualizar evaluación de cliente
+evaluacionClienteCtl.actualizarEvaluacion = async (req, res) => {
     try {
-        // Ejemplo de lógica (REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE DB)
         const { id } = req.params;
-        const datosActualizados = req.body;
-        // Actualiza la evaluación en tu base de datos
-        console.log(`Actualizando evaluación de cliente ${id}:`, datosActualizados);
-        return res.apiResponse({ id, ...datosActualizados }, 200, 'Evaluación de cliente actualizada con éxito');
+        const { puntuacion, comentario, tipo_evaluacion, fecha_evaluacion, calificacion, ubicacion } = req.body;
+
+        // Verificar la existencia de la evaluación en SQL
+        const [evaluacionExistenteSql] = await sql.promise().query(`
+            SELECT * FROM evaluaciones_clientes WHERE idEvaluacion = ?
+        `, [id]);
+
+        if (evaluacionExistenteSql.length === 0) {
+            res.flash('error', 'Evaluación no encontrada');
+            return res.apiError('Evaluación no encontrada', 404);
+        }
+
+        const currentTime = new Date().toLocaleString();
+
+        // Actualizar en SQL
+        const datosActualizacionSql = {
+            puntuacion: puntuacion !== undefined ? puntuacion : evaluacionExistenteSql[0].puntuacion,
+            updateEvaluacion: currentTime // Campo de fecha de actualización en SQL
+        };
+        
+        await orm.evaluacionCliente.update(datosActualizacionSql, {
+            where: { idEvaluacion: id }
+        });
+
+        // Actualizar en MongoDB
+        const datosMongoActualizacion = {};
+        if (comentario !== undefined) datosMongoActualizacion.comentario = comentario;
+        if (tipo_evaluacion !== undefined) datosMongoActualizacion.tipo_evaluacion = tipo_evaluacion;
+        if (fecha_evaluacion !== undefined) datosMongoActualizacion.fecha_evaluacion = fecha_evaluacion;
+        if (calificacion !== undefined) datosMongoActualizacion.calificacion = calificacion;
+        if (ubicacion !== undefined) datosMongoActualizacion.ubicacion = ubicacion;
+
+        await mongo.EvaluacionCliente.findOneAndUpdate(
+            { id_evaluacionSql: parseInt(id) },
+            datosMongoActualizacion,
+            { new: true } // Para devolver el documento actualizado
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Evaluación actualizada exitosamente');
+        return res.apiResponse(
+            { idEvaluacion: id }, 
+            200, 
+            'Evaluación actualizada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al actualizar evaluación de cliente:', error.message);
-        return res.apiError('Error al actualizar evaluación de cliente', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al actualizar evaluación:', error);
+        res.flash('error', 'Error al actualizar la evaluación');
+        return res.apiError('Error interno del servidor al actualizar la evaluación', 500);
     }
 };
 
-// RENOMBRADA: 'eliminarEvaluacionCliente' a 'eliminarEvaluacion' para coincidir con el archivo de rutas
-const eliminarEvaluacion = async (req, res) => {
-    // Aquí va tu lógica para eliminar una evaluación de cliente
-    // Asegúrate de usar req.params.id
+// Eliminar evaluación de cliente
+evaluacionClienteCtl.eliminarEvaluacion = async (req, res) => {
     try {
-        // Ejemplo de lógica (REEMPLAZA ESTO CON TU IMPLEMENTACIÓN REAL DE DB)
         const { id } = req.params;
-        // Elimina la evaluación de tu base de datos
-        console.log(`Eliminando evaluación de cliente ${id}`);
-        return res.apiResponse(null, 200, 'Evaluación de cliente eliminada con éxito');
+
+        // Verificar la existencia de la evaluación en SQL
+        const [evaluacionExistenteSql] = await sql.promise().query(`
+            SELECT * FROM evaluaciones_clientes WHERE idEvaluacion = ?
+        `, [id]);
+
+        if (evaluacionExistenteSql.length === 0) {
+            res.flash('error', 'Evaluación no encontrada');
+            return res.apiError('Evaluación no encontrada', 404);
+        }
+
+        // Eliminar en SQL
+        await orm.evaluacionCliente.destroy({
+            where: { idEvaluacion: id }
+        });
+
+        // Eliminar en MongoDB
+        await mongo.EvaluacionCliente.findOneAndDelete({ id_evaluacionSql: parseInt(id) });
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Evaluación eliminada exitosamente');
+        return res.apiResponse(
+            null, 
+            200, 
+            'Evaluación eliminada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al eliminar evaluación de cliente:', error.message);
-        return res.apiError('Error al eliminar evaluación de cliente', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al eliminar evaluación:', error);
+        res.flash('error', 'Error al eliminar la evaluación');
+        return res.apiError('Error interno del servidor al eliminar la evaluación', 500);
     }
 };
 
-// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
-module.exports = {
-    obtenerEvaluacion, // Exportado con el nombre corregido
-    crearEvaluacion,    // Exportado con el nombre corregido
-    actualizarEvaluacion, // Exportado con el nombre corregido
-    eliminarEvaluacion // Exportado con el nombre corregido
-    // Si tienes otras funciones en este controlador que no se usan en las rutas,
-    // puedes exportarlas aquí también si son necesarias en otro lugar.
-};
+module.exports = evaluacionClienteCtl;

@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const ClaseSchema = new mongoose.Schema({
- id_clase: Number,
- descripcion: String
+ id_claseSql: String,
+ descripcion: String,
+ estadistica: String,
+ categoria: String,
+ ultima_modificacion: String
 }, {
  // Especifica el nombre de la colección como "clases"
  collection: 'clases',

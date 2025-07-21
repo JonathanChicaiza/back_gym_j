@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const EmpleadoSchema = new mongoose.Schema({
- id_empleado: Number,
- salario: Number,
- fecha_contratacion: Date
+ id_empleadoSql: String,
+ fecha_contratacion: String,
+ fecha_nacimiento: String,
+ pais: String
 }, {
  // Especifica el nombre de la colección como "empleados"
  collection: 'empleados',

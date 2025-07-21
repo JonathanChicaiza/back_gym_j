@@ -1,14 +1,13 @@
-const visita = (sequelize, DataTypes) => {
+const visita = (sequelize, type) => {
     return sequelize.define('visitas', {
         idVisita: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clienteId: DataTypes.INTEGER,
-        stateVisita: DataTypes.STRING,
-        createVisita: DataTypes.STRING,
-        updateVisita: DataTypes.STRING
+        stateVisita: type.STRING,
+        createVisita: type.STRING,
+        updateVisita: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Visitas'

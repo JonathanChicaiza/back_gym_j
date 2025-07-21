@@ -1,17 +1,15 @@
-const ventaProducto = (sequelize, DataTypes) => {
+const ventaProducto = (sequelize, type) => {
     return sequelize.define('ventas_productos', {
         idVenta: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clienteId: DataTypes.INTEGER,
-        productoId: DataTypes.INTEGER,
-        cantidad: DataTypes.INTEGER,
-        total: DataTypes.DECIMAL(10, 2),
-        stateVenta: DataTypes.STRING,
-        createVenta: DataTypes.STRING,
-        updateVenta: DataTypes.STRING
+        cantidad: type.STRING,
+        total: type.STRING,
+        stateVenta: type.STRING,
+        createVenta: type.STRING,
+        updateVenta:type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Ventas de Productos'

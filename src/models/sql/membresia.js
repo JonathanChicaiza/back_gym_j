@@ -1,16 +1,16 @@
-const membresia = (sequelize, DataTypes) => {
+const membresia = (sequelize, type) => {
     return sequelize.define('membresias', {
         idMembresia: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        nombre: DataTypes.STRING,
-        precio: DataTypes.DECIMAL(10, 2),
-        duracionDias: DataTypes.INTEGER,
-        stateMembresia: DataTypes.STRING,
-        createMembresia: DataTypes.STRING,
-        updateMembresia: DataTypes.STRING
+        nombre: type.STRING,
+        precio: type.STRING,
+        duracionDias: type.STRING,
+        stateMembresia: type.STRING,
+        createMembresia:type.STRING,
+        updateMembresia: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Membresías'

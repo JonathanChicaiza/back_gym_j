@@ -1,16 +1,16 @@
-const producto = (sequelize, DataTypes) => {
+const producto = (sequelize, type) => {
     return sequelize.define('productos', {
         idProducto: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        nombre: DataTypes.STRING,
-        precio: DataTypes.DECIMAL(10, 2),
-        categoria: DataTypes.STRING,
-        stateProducto: DataTypes.STRING,
-        createProducto: DataTypes.STRING,
-        updateProducto: DataTypes.STRING
+        nombre: type.STRING,
+        precio: type.STRING,
+        categoria: type.STRING,
+        stateProducto: type.STRING,
+        createProducto: type.STRING,
+        updateProducto: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Productos'

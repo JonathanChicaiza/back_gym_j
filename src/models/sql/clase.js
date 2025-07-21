@@ -1,17 +1,16 @@
-const clase = (sequelize, DataTypes) => {
+const clase = (sequelize, type) => {
     return sequelize.define('clases', {
         idClase: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        nombre: DataTypes.STRING,
-        capacidadMaxima: DataTypes.INTEGER,
-        horario: DataTypes.STRING,
-        profesorId: DataTypes.INTEGER,
-        stateClase: DataTypes.STRING,
-        createClase: DataTypes.STRING,
-        updateClase: DataTypes.STRING
+        nombre: type.STRING,
+        capacidadMaxima: type.STRING,
+        horario: type.STRING,
+        stateClase: type.STRING,
+        createClase: type.STRING,
+        updateClase: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Clases'

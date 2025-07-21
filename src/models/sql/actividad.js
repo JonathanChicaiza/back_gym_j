@@ -1,16 +1,14 @@
-const actividad = (sequelize, DataTypes) => {
+const actividad = (sequelize, type) => {
     return sequelize.define('actividades', {
         idLog: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
+            type: type.INTEGER,
             primaryKey: true,
         },
-        usuarioId: DataTypes.INTEGER,
-        accion: DataTypes.STRING,
-        tablaAfectada: DataTypes.STRING,
-        stateLog: DataTypes.STRING,
-        createLog: DataTypes.STRING,
-        updateLog: DataTypes.STRING
+        accion: type.STRING,
+        tablaAfectada: type.STRING,
+        stateLog: type.STRING,
+        createLog: type.STRING,
+        updateLog: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Actividades'

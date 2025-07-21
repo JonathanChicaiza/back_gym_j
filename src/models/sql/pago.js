@@ -1,17 +1,16 @@
-const pago = (sequelize, DataTypes) => {
+const pago = (sequelize, type) => {
     return sequelize.define('pagos', {
         idPago: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        monto: DataTypes.DECIMAL(10, 2),
-        fechaPago: DataTypes.STRING,
-        metodoPago: DataTypes.STRING,
-        clienteId: DataTypes.INTEGER,
-        statePago: DataTypes.STRING,
-        createPago: DataTypes.STRING,
-        updatePago: DataTypes.STRING
+        monto: type.STRING,
+        fechaPago: type.STRING,
+        metodoPago: type.STRING,
+        statePago: type.STRING,
+        createPago: type.STRING,
+        updatePago: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Pagos'

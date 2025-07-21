@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const InventarioSchema = new mongoose.Schema({
- id_inventario: Number,
- fecha_actualizacion: Date
+ id_inventarioSql: String,
+ fecha_actualizacion: String,
+ categoria: String,
+ stock: String,
 }, {
  // Especifica el nombre de la colección como "inventario"
  collection: 'inventario',

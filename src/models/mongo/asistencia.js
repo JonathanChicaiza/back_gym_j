@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const AsistenciaSchema = new mongoose.Schema({
- id_asistencia: Number,
- fecha_asistencia: Date
+ id_asistenciaSql: String,
+ fecha_asistencia: String,
+ ubicacion: String,
+ dispositivo: String,
+ observaciones: String
 }, {
  // Especifica el nombre de la colección como "asistencias"
  collection: 'asistencias',

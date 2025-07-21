@@ -69,9 +69,7 @@ const pagoModel = require('../models/mongo/pago');
 const productoModel = require('../models/mongo/producto');
 const profesorModel = require('../models/mongo/profesor');
 const reservaModel = require('../models/mongo/reserva');
-const rolModel = require('../models/mongo/rol');
 const rutinaModel = require('../models/mongo/rutina');
-const usuarioModel = require('../models/mongo/usuario');
 const ventaProductoModel = require('../models/mongo/ventaProducto');
 const visitaModel = require('../models/mongo/visita');
 
@@ -92,9 +90,7 @@ module.exports = {
   productoModel,
   profesorModel,
   reservaModel,
-  rolModel,
   rutinaModel,
-  usuarioModel,
   ventaProductoModel,
   visitaModel,
 };

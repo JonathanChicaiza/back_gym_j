@@ -1,21 +1,18 @@
-const usuario = (sequelize, DataTypes) => {
+const usuario = (sequelize,type) => {
     return sequelize.define('usuarios', {
         idUsuario: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        nombre: DataTypes.STRING,
-        apellido: DataTypes.STRING,
-        correo: {
-            type: DataTypes.STRING,
-            unique: true
-        },
-        contraseña: DataTypes.STRING,
-        rolId: DataTypes.INTEGER,
-        estado: DataTypes.STRING,
-        createUsuario: DataTypes.STRING,
-        updateUsuario: DataTypes.STRING
+        nombre: type.STRING,
+        apellido: type.STRING,
+        correo: type.STRING,
+        contraseña: type.STRING,
+        telefono: type.STRING,
+        estado: type.STRING,
+        createUsuario: type.STRING,
+        updateUsuario: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Usuarios'

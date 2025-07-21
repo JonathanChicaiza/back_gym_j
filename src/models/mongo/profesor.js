@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const ProfesorSchema = new mongoose.Schema({
- id_profesor: Number,
- horario_trabajo: [{
+ id_profesorSql: String,
+ horario_trabajo:String,
    dia: String,
    inicio: String,
-   fin: String
- }]
+   fin: String,
+   experiencia: String,
+   formacion_academica: String
 }, {
  // Especifica el nombre de la colección como "profesores"
  collection: 'profesores',

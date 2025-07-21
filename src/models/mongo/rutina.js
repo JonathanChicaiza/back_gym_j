@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const RutinaSchema = new mongoose.Schema({
- id_rutina: Number,
+ id_rutinaSql: String,
  descripcion: String,
- fecha_asignacion: Date
+ fecha_asignacion: String,
+ ejercicios: String,
+ nivel_dificultad: String,
+ progreso_actual: String
 }, {
  // Especifica el nombre de la colección como "rutinas"
  collection: 'rutinas',

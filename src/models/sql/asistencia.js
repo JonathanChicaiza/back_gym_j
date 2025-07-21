@@ -1,16 +1,14 @@
-const asistencia = (sequelize, DataTypes) => {
+const asistencia = (sequelize, type) => {
     return sequelize.define('asistencias', {
         idAsistencia: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clienteId: DataTypes.INTEGER,
-        claseId: DataTypes.INTEGER,
-        estado: DataTypes.STRING,
-        stateAsistencia: DataTypes.STRING,
-        createAsistencia: DataTypes.STRING,
-        updateAsistencia: DataTypes.STRING
+        estado: type.STRING,
+        stateAsistencia: type.STRING,
+        createAsistencia: type.STRING,
+        updateAsistencia: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Asistencias'

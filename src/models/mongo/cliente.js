@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const ClienteSchema = new mongoose.Schema({
- id_cliente: Number,
- fecha_nacimiento: Date
+ id_clienteSql: String,
+ fecha_nacimiento: String,
+ genero: String,
+ preferencia: String,
+ ultimo_acceso: String,
+ historial_compras: String
 }, {
  // Especifica el nombre de la colección como "clientes"
  collection: 'clientes',

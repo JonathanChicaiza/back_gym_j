@@ -1,87 +1,222 @@
-// src/controller/clase.controller.js
+const orm = require('../Database/dataBase.orm');
+const sql = require('../Database/dataBase.sql');
+const mongo = require('../Database/dataBaseMongose');
 
-// Importar módulos necesarios (ajusta según lo que necesites en este controlador)
-// const orm = require('../Database/dataBase.orm');
-// const sql = require('../Database/dataBase.sql');
-// const mongo = require('../Database/dataBaseMongose');
-// const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+const claseCtl = {};
 
-// =======================================================
-// FUNCIONES DEL CONTROLADOR (EXPORTADAS DIRECTAMENTE)
-// =======================================================
-
-// Asumiendo que clase.routes.js usa 'obtenerClase'
-const obtenerClase = async (req, res) => {
-    // Aquí va tu lógica para obtener una clase por ID
-    // Asegúrate de usar req.params.id, req.query, etc.
+// Obtener todas las clases
+claseCtl.obtenerClases = async (req, res) => {
     try {
-        // Ejemplo de lógica (reemplaza con tu implementación real)
-        const clase = { id: req.params.id, nombre: 'Yoga', horario: 'L-M-X 18:00' };
-        if (!clase) {
+        // Consultar todas las clases desde la base de datos SQL
+        const [listaClases] = await sql.promise().query(`
+            SELECT * FROM clases
+        `);
+
+        // Para cada clase SQL, buscar su contraparte en MongoDB
+        const clasesCompletas = await Promise.all(
+            listaClases.map(async (clase) => {
+                // Asumiendo que idClase en SQL se mapea a id_claseSql en MongoDB
+                const claseMongo = await mongo.Clase.findOne({ 
+                    id_claseSql: clase.idClase 
+                });
+                return {
+                    ...clase,
+                    detallesMongo: claseMongo
+                };
+            })
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Clases obtenidas exitosamente');
+        return res.apiResponse(clasesCompletas, 200, 'Clases obtenidas exitosamente');
+    } catch (error) {
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener clases:', error);
+        res.flash('error', 'Error al obtener clases');
+        return res.apiError('Error interno del servidor al obtener clases', 500);
+    }
+};
+
+// Obtener una clase por ID
+claseCtl.obtenerClase = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Consultar la clase por ID desde la base de datos SQL
+        const [clase] = await sql.promise().query(`
+            SELECT * FROM clases WHERE idClase = ?
+        `, [id]);
+
+        // Si no se encuentra la clase en SQL, enviar error 404
+        if (clase.length === 0) {
+            res.flash('error', 'Clase no encontrada');
             return res.apiError('Clase no encontrada', 404);
         }
-        return res.apiResponse(clase, 200, 'Clase obtenida con éxito');
+
+        // Buscar la clase correspondiente en MongoDB
+        const claseMongo = await mongo.Clase.findOne({ 
+            id_claseSql: parseInt(id) 
+        });
+
+        // Combinar los datos de SQL y MongoDB
+        const claseCompleta = {
+            ...clase[0],
+            detallesMongo: claseMongo
+        };
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Clase obtenida exitosamente');
+        return res.apiResponse(claseCompleta, 200, 'Clase obtenida exitosamente');
     } catch (error) {
-        console.error('Error al obtener clase:', error.message);
-        return res.apiError('Error al obtener clase', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al obtener clase:', error);
+        res.flash('error', 'Error al obtener clase');
+        return res.apiError('Error interno del servidor al obtener la clase', 500);
     }
 };
 
-// Asumiendo que clase.routes.js usa 'crearClase'
-const crearClase = async (req, res) => {
-    // Aquí va tu lógica para crear una clase
-    // Asegúrate de usar req.body para acceder a los datos
+// Crear nueva clase
+claseCtl.crearClase = async (req, res) => {
     try {
-        // Ejemplo de lógica (reemplaza con tu implementación real)
-        const nuevaClase = req.body;
-        // Guarda la nueva clase en tu base de datos
-        console.log('Creando clase:', nuevaClase);
-        return res.apiResponse(nuevaClase, 201, 'Clase creada con éxito');
+        const { nombre, capacidadMaxima, horario, descripcion, estadistica, categoria } = req.body;
+
+        // Validar campos requeridos para la creación de la clase en SQL
+        if (!nombre || !capacidadMaxima || !horario) {
+            res.flash('error', 'Faltan campos requeridos para crear la clase SQL (nombre, capacidadMaxima, horario).');
+            return res.apiError('Faltan campos requeridos para crear la clase SQL.', 400);
+        }
+
+        // Crear la clase en SQL
+        const datosSql = {
+            nombre,
+            capacidadMaxima,
+            horario,
+            stateClase: 'activa', // Estado por defecto
+            createClase: new Date().toLocaleString() // Campo de fecha de creación en SQL
+        };
+        
+        const nuevaClaseSql = await orm.clase.create(datosSql);
+        const idClase = nuevaClaseSql.idClase; // Obtener el ID generado por SQL
+
+        // Crear la clase en MongoDB, vinculándola con el ID de SQL
+        const datosMongo = {
+            id_claseSql: idClase,
+            descripcion: descripcion || '',
+            estadistica: estadistica || '',
+            categoria: categoria || '',
+            ultima_modificacion: new Date().toLocaleString()
+        };
+        
+        await mongo.Clase.create(datosMongo);
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Clase creada exitosamente');
+        return res.apiResponse(
+            { idClase }, 
+            201, 
+            'Clase creada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al crear clase:', error.message);
-        return res.apiError('Error al crear clase', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al crear clase:', error);
+        res.flash('error', 'Error al crear la clase');
+        return res.apiError('Error interno del servidor al crear la clase', 500);
     }
 };
 
-// Asumiendo que clase.routes.js usa 'actualizarClase'
-const actualizarClase = async (req, res) => {
-    // Aquí va tu lógica para actualizar una clase
-    // Asegúrate de usar req.params.id y req.body
+// Actualizar clase
+claseCtl.actualizarClase = async (req, res) => {
     try {
-        // Ejemplo de lógica (reemplaza con tu implementación real)
         const { id } = req.params;
-        const datosActualizados = req.body;
-        // Actualiza la clase en tu base de datos
-        console.log(`Actualizando clase ${id}:`, datosActualizados);
-        return res.apiResponse({ id, ...datosActualizados }, 200, 'Clase actualizada con éxito');
+        const { nombre, capacidadMaxima, horario, descripcion, estadistica, categoria } = req.body;
+
+        // Verificar la existencia de la clase en SQL
+        const [claseExistenteSql] = await sql.promise().query(`
+            SELECT * FROM clases WHERE idClase = ?
+        `, [id]);
+
+        if (claseExistenteSql.length === 0) {
+            res.flash('error', 'Clase no encontrada');
+            return res.apiError('Clase no encontrada', 404);
+        }
+
+        // Actualizar en SQL
+        const datosActualizacionSql = {
+            nombre: nombre !== undefined ? nombre : claseExistenteSql[0].nombre,
+            capacidadMaxima: capacidadMaxima !== undefined ? capacidadMaxima : claseExistenteSql[0].capacidadMaxima,
+            horario: horario !== undefined ? horario : claseExistenteSql[0].horario,
+            updateClase: new Date().toLocaleString() // Campo de fecha de actualización en SQL
+        };
+        
+        await orm.clase.update(datosActualizacionSql, {
+            where: { idClase: id }
+        });
+
+        // Actualizar en MongoDB
+        const datosMongoActualizacion = {
+            ultima_modificacion: new Date().toLocaleString()
+        };
+        if (descripcion !== undefined) datosMongoActualizacion.descripcion = descripcion;
+        if (estadistica !== undefined) datosMongoActualizacion.estadistica = estadistica;
+        if (categoria !== undefined) datosMongoActualizacion.categoria = categoria;
+
+        await mongo.Clase.findOneAndUpdate(
+            { id_claseSql: parseInt(id) },
+            datosMongoActualizacion,
+            { new: true } // Para devolver el documento actualizado
+        );
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Clase actualizada exitosamente');
+        return res.apiResponse(
+            { idClase: id }, 
+            200, 
+            'Clase actualizada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al actualizar clase:', error.message);
-        return res.apiError('Error al actualizar clase', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al actualizar clase:', error);
+        res.flash('error', 'Error al actualizar la clase');
+        return res.apiError('Error interno del servidor al actualizar la clase', 500);
     }
 };
 
-// Asumiendo que clase.routes.js usa 'eliminarClase'
-const eliminarClase = async (req, res) => {
-    // Aquí va tu lógica para eliminar una clase
-    // Asegúrate de usar req.params.id
+// Eliminar clase
+claseCtl.eliminarClase = async (req, res) => {
     try {
-        // Ejemplo de lógica (reemplaza con tu implementación real)
         const { id } = req.params;
-        // Elimina la clase de tu base de datos
-        console.log(`Eliminando clase ${id}`);
-        return res.apiResponse(null, 200, 'Clase eliminada con éxito');
+
+        // Verificar la existencia de la clase en SQL
+        const [claseExistenteSql] = await sql.promise().query(`
+            SELECT * FROM clases WHERE idClase = ?
+        `, [id]);
+
+        if (claseExistenteSql.length === 0) {
+            res.flash('error', 'Clase no encontrada');
+            return res.apiError('Clase no encontrada', 404);
+        }
+
+        // Eliminar en SQL
+        await orm.clase.destroy({
+            where: { idClase: id }
+        });
+
+        // Eliminar en MongoDB
+        await mongo.Clase.findOneAndDelete({ id_claseSql: parseInt(id) });
+
+        // Establecer mensaje flash de éxito y enviar respuesta API
+        res.flash('success', 'Clase eliminada exitosamente');
+        return res.apiResponse(
+            null, 
+            200, 
+            'Clase eliminada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al eliminar clase:', error.message);
-        return res.apiError('Error al eliminar clase', 500, error.message);
+        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        console.error('Error al eliminar clase:', error);
+        res.flash('error', 'Error al eliminar la clase');
+        return res.apiError('Error interno del servidor al eliminar la clase', 500);
     }
 };
 
-// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
-module.exports = {
-    obtenerClase,
-    crearClase,
-    actualizarClase,
-    eliminarClase
-    // Si tienes otras funciones en este controlador que no se usan en las rutas,
-    // puedes exportarlas aquí también si son necesarias en otro lugar.
-};
+module.exports = claseCtl;

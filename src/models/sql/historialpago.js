@@ -1,15 +1,14 @@
-const historialpago = (sequelize, DataTypes) => {
+const historialpago = (sequelize, type) => {
     return sequelize.define('historial_pagos', {
         idHistorial: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        pagoId: DataTypes.INTEGER,
-        fechaRegistro: DataTypes.STRING,
-        stateHistorial: DataTypes.STRING,
-        createHistorial: DataTypes.STRING,
-        updateHistorial: DataTypes.STRING
+        fechaRegistro: type.STRING,
+        stateHistorial: type.STRING,
+        createHistorial: type.STRING,
+        updateHistorial: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Historial de Pagos'

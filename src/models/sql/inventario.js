@@ -1,15 +1,14 @@
-const inventario = (sequelize, DataTypes) => {
+const inventario = (sequelize, type) => {
     return sequelize.define('inventarios', {
         idInventario: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        productoId: DataTypes.INTEGER,
-        cantidad: DataTypes.INTEGER,
-        stateInventario: DataTypes.STRING,
-        createInventario: DataTypes.STRING,
-        updateInventario: DataTypes.STRING
+        cantidad: type.STRING,
+        stateInventario: type.STRING,
+        createInventario: type.STRING,
+        updateInventario: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Inventario'

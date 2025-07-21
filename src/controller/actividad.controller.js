@@ -1,61 +1,49 @@
-// src/controller/actividad.controller.js
+const orm = require('../Database/dataBase.orm');
+const sql = require('../Database/dataBase.sql');
+const mongo = require('../Database/dataBaseMongose');
 
-// Importar módulos necesarios
-const orm = require('../Database/dataBase.orm'); // Sequelize para MySQL
-const sql = require('../Database/dataBase.sql'); // Consultas SQL puras
-const mongo = require('../Database/dataBaseMongose'); // MongoDB
-const { cifrarDatos, descifrarDatos } = require('../lib/encrypDates');
+const actividadCtl = {};
 
-// Función auxiliar para descifrar datos de forma segura
-function safeDecrypt(data) {
+// Obtener todas las actividades
+actividadCtl.obtenerActividades = async (req, res) => {
     try {
-        return descifrarDatos(data);
+        const [listaActividades] = await sql.promise().query(`
+            SELECT * FROM actividades
+        `);
+
+        const actividadesCompletas = await Promise.all(
+            listaActividades.map(async (actividad) => {
+                const actividadMongo = await mongo.Actividad.findOne({
+                    id_log: actividad.idLog // Asegurarse de que el campo de unión sea correcto
+                });
+                return {
+                    ...actividad,
+                    detallesMongo: actividadMongo
+                };
+            })
+        );
+
+        res.flash('success', 'Actividades obtenidas exitosamente');
+        return res.apiResponse(actividadesCompletas, 200, 'Actividades obtenidas exitosamente');
     } catch (error) {
-        console.error('Error al descifrar datos:', error.message);
-        return '';
-    }
-}
-
-// =======================================================
-// FUNCIONES DEL CONTROLADOR (AHORA EXPORTADAS DIRECTAMENTE)
-// =======================================================
-
-// Mostrar todas las actividades (MySQL + MongoDB)
-const mostrarActividades = async (req, res) => { // Renombrada para exportación directa si se usa
-    try {
-        const [actividades] = await sql.promise().query('SELECT * FROM actividades');
-
-        const actividadesCompletas = [];
-
-        for (const actividadSql of actividades) {
-            const actividadMongo = await mongo.Actividad.findOne({
-                id_log: actividadSql.idLog
-            });
-
-            actividadesCompletas.push({
-                mysql: actividadSql,
-                mongo: actividadMongo || null
-            });
-        }
-        return res.apiResponse(actividadesCompletas, 200, 'Actividades obtenidas con éxito');
-    } catch (error) {
-        console.error('Error al obtener actividades:', error.message);
-        return res.apiError('Error al obtener actividades', 500, error.message);
+        console.error('Error al obtener actividades:', error);
+        res.flash('error', 'Error al obtener actividades');
+        return res.apiError('Error interno del servidor', 500);
     }
 };
 
-// Obtener una actividad por ID (MySQL + MongoDB)
-// RENOMBRADA: 'mostrarActividadPorId' a 'obtenerActividad' para coincidir con actividad.routes.js
-const obtenerActividad = async (req, res) => {
-    const { id } = req.params;
-
+// Obtener una actividad por ID
+actividadCtl.obtenerActividad = async (req, res) => {
     try {
-        const [actividadSql] = await sql.promise().query(
-            'SELECT * FROM actividades WHERE idLog = ?', [id]
-        );
+        const { id } = req.params;
 
-        if (actividadSql.length === 0) {
-            return res.apiError('Actividad no encontrada en MySQL', 404);
+        const [actividad] = await sql.promise().query(`
+            SELECT * FROM actividades WHERE idLog = ?
+        `, [id]);
+
+        if (actividad.length === 0) {
+            res.flash('error', 'Actividad no encontrada');
+            return res.apiError('Actividad no encontrada', 404);
         }
 
         const actividadMongo = await mongo.Actividad.findOne({
@@ -63,23 +51,32 @@ const obtenerActividad = async (req, res) => {
         });
 
         const actividadCompleta = {
-            mysql: actividadSql[0],
-            mongo: actividadMongo || null
+            ...actividad[0],
+            detallesMongo: actividadMongo
         };
-        return res.apiResponse(actividadCompleta, 200, 'Actividad obtenida con éxito');
+
+        res.flash('success', 'Actividad obtenida exitosamente');
+        return res.apiResponse(actividadCompleta, 200, 'Actividad obtenida exitosamente');
     } catch (error) {
-        console.error('Error al obtener actividad:', error.message);
-        return res.apiError('Error al obtener actividad', 500, error.message);
+        console.error('Error al obtener actividad:', error);
+        res.flash('error', 'Error al obtener actividad');
+        return res.apiError('Error interno del servidor', 500);
     }
 };
 
-// Crear una actividad (MySQL + MongoDB)
-const crearActividad = async (req, res) => {
-    const { usuarioId, accion, tablaAfectada, stateLog } = req.body;
-
+// Crear nueva actividad
+actividadCtl.crearActividad = async (req, res) => {
     try {
-        // Crear en MySQL
-        const nuevaActividad = {
+        const { usuarioId, accion, tablaAfectada, stateLog, ciudad, pais } = req.body;
+
+        // Validar campos requeridos antes de la creación
+        if (!usuarioId || !accion || !tablaAfectada || !stateLog) {
+            res.flash('error', 'Faltan campos requeridos para crear la actividad SQL.');
+            return res.apiError('Faltan campos requeridos para crear la actividad SQL.', 400);
+        }
+
+        // Crear en SQL
+        const datosSql = {
             usuarioId,
             accion,
             tablaAfectada,
@@ -87,111 +84,124 @@ const crearActividad = async (req, res) => {
             createLog: new Date().toLocaleString()
         };
 
-        const resultado = await orm.actividad.create(nuevaActividad);
-        const idLog = resultado.idLog;
+        const nuevaActividad = await orm.actividad.create(datosSql);
+        const idLog = nuevaActividad.idLog;
 
         // Crear en MongoDB
-        const nuevaActividadMongo = new mongo.Actividad({
+        const fechaActual = new Date();
+        const datosMongo = {
             id_log: idLog,
-            fecha_hora: new Date().toLocaleString()
-        });
+            fecha: fechaActual.toLocaleDateString(),
+            hora: fechaActual.toLocaleTimeString(),
+            ciudad: ciudad || 'N/A', // Usar 'ciudad' del body
+            pais: pais || 'N/A'     // Usar 'pais' del body
+        };
 
-        await nuevaActividadMongo.save();
+        await mongo.Actividad.create(datosMongo);
 
-        return res.apiResponse({ idLog }, 201, 'Actividad creada con éxito');
+        res.flash('success', 'Actividad creada exitosamente');
+        return res.apiResponse(
+            { idLog },
+            201,
+            'Actividad creada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al crear actividad:', error.message);
-        return res.apiError('Error al crear actividad', 500, error.message);
+        console.error('Error al crear actividad:', error);
+        res.flash('error', 'Error al crear la actividad');
+        return res.apiError('Error al crear la actividad', 500);
     }
 };
 
-// Actualizar una actividad (MySQL + MongoDB)
-const actualizarActividad = async (req, res) => {
-    const { id } = req.params;
-    const { usuarioId, accion, tablaAfectada, stateLog } = req.body;
-
+// Actualizar actividad
+actividadCtl.actualizarActividad = async (req, res) => {
     try {
-        // Actualizar en MySQL
-        const [actividadExistente] = await sql.promise().query(
-            'SELECT * FROM actividades WHERE idLog = ?', [id]
-        );
+        const { id } = req.params;
+        const { usuarioId, accion, tablaAfectada, stateLog, ciudad, pais } = req.body;
+
+        // Verificar existencia en SQL
+        const [actividadExistente] = await sql.promise().query(`
+ SELECT * FROM actividades WHERE idLog = ?
+ `, [id]);
 
         if (actividadExistente.length === 0) {
-            return res.apiError('Actividad no encontrada en MySQL', 404);
+            res.flash('error', 'Actividad no encontrada');
+            return res.apiError('Actividad no encontrada', 404);
         }
 
-        const actividadActualizada = {
-            usuarioId: usuarioId || actividadExistente[0].usuarioId,
-            accion: accion || actividadExistente[0].accion,
-            tablaAfectada: tablaAfectada || actividadExistente[0].tablaAfectada,
-            stateLog: stateLog || actividadExistente[0].stateLog,
+        // Actualizar en SQL
+        const datosActualizacion = {
+            usuarioId: usuarioId !== undefined ? usuarioId : actividadExistente[0].usuarioId,
+            accion: accion !== undefined ? accion : actividadExistente[0].accion,
+            tablaAfectada: tablaAfectada !== undefined ? tablaAfectada : actividadExistente[0].tablaAfectada,
+            stateLog: stateLog !== undefined ? stateLog : actividadExistente[0].stateLog,
             updateLog: new Date().toLocaleString()
         };
 
-        await orm.actividad.update(actividadActualizada, {
+        await orm.actividad.update(datosActualizacion, {
             where: { idLog: id }
         });
 
-        // Actualizar en MongoDB - solo fecha_hora
-        const actividadMongo = await mongo.Actividad.findOne({
-            id_log: parseInt(id)
-        });
+        // Actualizar en MongoDB
+        const fechaActual = new Date();
+        const datosMongoActualizacion = {
+            fecha: fechaActual.toLocaleDateString(),
+            hora: fechaActual.toLocaleTimeString(),
+            ciudad: ciudad !== undefined ? ciudad : actividadExistente[0].ciudad, // Usar 'ciudad' del body
+            pais: pais !== undefined ? pais : actividadExistente[0].pais       // Usar 'pais' del body
+        };
 
-        if (!actividadMongo) {
-            return res.apiError('Actividad no encontrada en MongoDB', 404);
-        }
+        await mongo.Actividad.findOneAndUpdate(
+            { id_log: parseInt(id) },
+            datosMongoActualizacion
+        );
 
-        actividadMongo.fecha_hora = new Date().toLocaleString();
-        await actividadMongo.save();
-
-        return res.apiResponse({ idLog: id }, 200, 'Actividad actualizada con éxito');
+        res.flash('success', 'Actividad actualizada exitosamente');
+        return res.apiResponse(
+            { idLog: id },
+            200,
+            'Actividad actualizada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al actualizar actividad:', error.message);
-        return res.apiError('Error al actualizar actividad', 500, error.message);
+        console.error('Error al actualizar actividad:', error);
+        res.flash('error', 'Error al actualizar la actividad');
+        return res.apiError('Error al actualizar la actividad', 500);
     }
 };
 
-// Eliminar una actividad (MySQL + MongoDB)
-const eliminarActividad = async (req, res) => {
-    const { id } = req.params;
-
+// Eliminar actividad
+actividadCtl.eliminarActividad = async (req, res) => {
     try {
-        // Eliminar en MySQL
-        const [actividadExistente] = await sql.promise().query(
-            'SELECT * FROM actividades WHERE idLog = ?', [id]
-        );
+        const { id } = req.params;
+
+        // Verificar existencia en SQL
+        const [actividadExistente] = await sql.promise().query(`
+ SELECT * FROM actividades WHERE idLog = ?
+`, [id]);
 
         if (actividadExistente.length === 0) {
-            return res.apiError('Actividad no encontrada en MySQL', 404);
+            res.flash('error', 'Actividad no encontrada');
+            return res.apiError('Actividad no encontrada', 404);
         }
 
+        // Eliminar en SQL
         await orm.actividad.destroy({
             where: { idLog: id }
         });
 
         // Eliminar en MongoDB
-        const actividadMongo = await mongo.Actividad.findOne({
-            id_log: parseInt(id)
-        });
+        await mongo.Actividad.findOneAndDelete({ id_log: parseInt(id) });
 
-        if (!actividadMongo) {
-            return res.apiError('Actividad no encontrada en MongoDB', 404);
-        }
-
-        await actividadMongo.deleteOne();
-
-        return res.apiResponse(null, 200, 'Actividad eliminada con éxito');
+        res.flash('success', 'Actividad eliminada exitosamente');
+        return res.apiResponse(
+            null,
+            200,
+            'Actividad eliminada exitosamente'
+        );
     } catch (error) {
-        console.error('Error al eliminar actividad:', error.message);
-        return res.apiError('Error al eliminar actividad', 500, error.message);
+        console.error('Error al eliminar actividad:', error);
+        res.flash('error', 'Error al eliminar la actividad');
+        return res.apiError('Error al eliminar el cliente', 500);
     }
 };
 
-// Exportar las funciones directamente para que puedan ser desestructuradas en las rutas
-module.exports = {
-    mostrarActividades, // Si se usa en alguna otra ruta
-    obtenerActividad,
-    crearActividad,
-    actualizarActividad,
-    eliminarActividad
-};
+module.exports = actividadCtl;

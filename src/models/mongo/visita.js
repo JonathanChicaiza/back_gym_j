@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const VisitaSchema = new mongoose.Schema({
- id_visita: Number,
- fecha_visita: Date
+ id_visitaSql: String,
+ fecha_visita: String,
+ responsable: String,
+ ubicacion: String,
+ observacion: String
 }, {
  // Especifica el nombre de la colección como "visitas"
  collection: 'visitas',

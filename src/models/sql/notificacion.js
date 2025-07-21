@@ -1,15 +1,14 @@
-const notificacion = (sequelize, DataTypes) => {
+const notificacion = (sequelize, type) => {
     return sequelize.define('notificaciones', {
         idNotificacion: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        usuarioId: DataTypes.INTEGER,
-        mensaje: DataTypes.TEXT,
-        stateNotificacion: DataTypes.STRING,
-        createNotificacion: DataTypes.STRING,
-        updateNotificacion: DataTypes.STRING
+        mensaje: type.STRING,
+        stateNotificacion: type.STRING,
+        createNotificacion: type.STRING,
+        updateNotificacion: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Notificaciones'

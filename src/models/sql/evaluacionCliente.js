@@ -1,16 +1,14 @@
-const evaluacionCliente = (sequelize, DataTypes) => {
+const evaluacionCliente = (sequelize, type) => {
     return sequelize.define('evaluaciones_clientes', {
         idEvaluacion: {
-            type: DataTypes.INTEGER,
+            type: type.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clienteId: DataTypes.INTEGER,
-        claseId: DataTypes.INTEGER,
-        puntuacion: DataTypes.INTEGER,
-        stateEvaluacion: DataTypes.STRING,
-        createEvaluacion: DataTypes.STRING,
-        updateEvaluacion: DataTypes.STRING
+        puntuacion: type.STRING,
+        stateEvaluacion: type.STRING,
+        createEvaluacion: type.STRING,
+        updateEvaluacion: type.STRING
     }, {
         timestamps: false,
         comment: 'Tabla de Evaluaciones de Clientes'

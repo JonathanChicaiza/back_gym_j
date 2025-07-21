@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const EvaluacionClienteSchema = new mongoose.Schema({
- id_evaluacion: Number,
+ id_evaluacionSql: String,
  comentario: String,
- fecha_evaluacion: Date
+ tipo_evaluacion: String,
+ fecha_evaluacion: String,
+ calificacion: String,
+ ubicacion: String
 }, {
  // Especifica el nombre de la colección como "evaluaciones_clientes"
  collection: 'evaluaciones_clientes',
