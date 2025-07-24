@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const reserva = require('../sql/reserva');
 const ReservaSchema = new mongoose.Schema({
  id_reservaSql: String,
  fecha_reserva: String,

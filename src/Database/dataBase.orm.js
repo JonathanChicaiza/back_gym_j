@@ -161,10 +161,6 @@ profesor.hasMany(clase);
 fichaEntrenamiento.belongsTo(profesor);
 profesor.hasMany(fichaEntrenamiento);
 
-// Relación Profesor-Rutina
-rutina.belongsTo(profesor);
-profesor.hasMany(rutina);
-
 // Relación Clase-Reserva
 reserva.belongsTo(clase);
 clase.hasMany(reserva);
