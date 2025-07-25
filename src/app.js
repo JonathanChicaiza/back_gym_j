@@ -28,7 +28,7 @@ require('./lib/passport');
 const app = express();
 
 // ==================== CONFIGURACIÓN BÁSICA ====================
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 8082);
 
 // Habilitar CORS (configura según tus necesidades)
 app.use(cors({
