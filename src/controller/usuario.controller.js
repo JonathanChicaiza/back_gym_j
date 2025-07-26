@@ -1,275 +1,293 @@
-const orm = require('../Database/dataBase.orm');
-const sql = require('../Database/dataBase.sql');
-const mongo = require('../Database/dataBaseMongose'); // Asegúrate de que este archivo exporta 'Usuario'
+// src/controller/usuario.controller.js
+
+const bcrypt = require('bcryptjs');
+// Importar passport y generateToken desde tu archivo passport.js
+const { passport, generateToken } = require('../lib/passport'); 
+const sql = require('../Database/dataBase.sql'); 
+const orm = require('../Database/dataBase.orm'); 
+// ELIMINADO: const mongo = require('../Database/dataBaseMongose'); // No se usa MongoDB
+
+// Asegúrate de que las dependencias para guardarYSubirArchivo estén disponibles
+const fs = require('fs');
+const path = require('path');
+const axios = require('axios');
+const FormData = require('form-data');
+
+// Objeto controlador para agrupar las funciones
 const usuarioCtl = {};
 
+// Función para guardar y subir archivos (se mantiene aquí si es usada por la estrategia Passport)
+const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, req) => {
+    const validaciones = {
+        imagen: [".PNG", ".JPG", ".JPEG", ".GIF", ".TIF", ".png", ".jpg", ".jpeg", ".gif", ".tif", ".ico", ".ICO", ".webp", ".WEBP"],
+        pdf: [".pdf", ".PDF"]
+    };
+    const tipoArchivo = (columnName.includes('photo')) ? 'imagen' : 'pdf';
+    const validacion = path.extname(archivo.name);
+
+    if (!validaciones[tipoArchivo].includes(validacion)) {
+        throw new Error('Archivo no compatible.');
+    }
+
+    return new Promise((resolve, reject) => {
+        archivo.mv(filePath, async (err) => {
+            if (err) {
+                return reject(new Error('Error al guardar el archivo.'));
+            } else {
+                try {
+                    // Actualizar el campo del archivo en la tabla usuarios
+                    await sql.promise().query(`UPDATE usuarios SET ${columnName} = ? WHERE idUsuario = ?`, [archivo.name, idUser]);
+
+                    const formData = new FormData();
+                    formData.append('image', fs.createReadStream(filePath), {
+                        filename: archivo.name,
+                        contentType: archivo.mimetype,
+                    });
+
+                    // Mantener el token CSRF en la petición
+                    const response = await axios.post(url, formData, {
+                        headers: {
+                            ...formData.getHeaders(),
+                            'X-CSRF-Token': req.csrfToken(),
+                            'Cookie': req.headers.cookie
+                        },
+                    });
+
+                    if (response.status !== 200) {
+                        throw new Error('Error al subir archivo al servidor externo.');
+                    }
+
+                    resolve();
+                } catch (uploadError) {
+                    console.error('Error al subir archivo al servidor externo:', uploadError.message);
+                    reject(new Error('Error al subir archivo al servidor externo.'));
+                }
+            }
+        });
+    });
+};
+
+
+// Controlador para crear un nuevo usuario y generar un token JWT
+usuarioCtl.crearUsuario = async (req, res, next) => {
+    passport.authenticate('local.usuarioSignup', (err, user, info) => {
+        if (err) {
+            console.error('Error en autenticación de registro (controlador crearUsuario):', err);
+            const customError = new Error('Error interno del servidor durante el registro.');
+            customError.statusCode = 500;
+            return next(customError);
+        }
+        if (!user) {
+            const errorMessage = info && info.message ? info.message : 'Error en el registro.';
+            const customError = new Error(errorMessage);
+            customError.statusCode = 400;
+            return next(customError);
+        }
+
+        req.logIn(user, async (err) => {
+            if (err) {
+                console.error('Error al iniciar sesión después del registro (controlador crearUsuario):', err);
+                const customError = new Error('Error interno del servidor al iniciar sesión.');
+                customError.statusCode = 500;
+                return next(customError);
+            }
+
+            const token = generateToken(user); 
+            
+            // ELIMINADO: Lógica de creación de usuario en MongoDB
+
+            return res.status(201).json({ 
+                message: 'Usuario registrado y sesión iniciada exitosamente.', 
+                user: {
+                    idUsuario: user.idUsuario,
+                    nombre: user.nombre,
+                    correo: user.correo,
+                    type: user.type
+                },
+                token: token // Envía el token al cliente
+            });
+        });
+    })(req, res, next);
+};
+
+
 // Obtener todos los usuarios
-usuarioCtl.obtenerUsuarios = async (req, res) => {
+usuarioCtl.obtenerUsuarios = async (req, res, next) => {
     try {
-        // Consultar todos los usuarios desde la base de datos SQL
-        const [listaUsuarios] = await sql.promise().query(`
-            SELECT * FROM usuarios
-        `);
-
-        // Para cada usuario SQL, buscar su contraparte en MongoDB
-        const usuariosCompletos = await Promise.all(
-            listaUsuarios.map(async (usuario) => {
-                // Asumiendo que idUsuario en SQL se mapea a id_usuarioSql en MongoDB
-                const usuarioMongo = await mongo.Usuario.findOne({ 
-                    id_usuarioSql: usuario.idUsuario.toString() // Convertir a string para coincidir con el tipo en Mongo
-                });
-                return {
-                    ...usuario,
-                    detallesMongo: usuarioMongo
-                };
-            })
-        );
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Usuarios obtenidos exitosamente');
-        return res.apiResponse(usuariosCompletos, 200, 'Usuarios obtenidos exitosamente');
+        const [listaUsuarios] = await sql.promise().query(`SELECT * FROM usuarios`);
+        
+        // ELIMINADO: Búsqueda y combinación con MongoDB
+        
+        return res.status(200).json({
+            success: true,
+            message: 'Usuarios obtenidos exitosamente',
+            data: listaUsuarios // Solo devuelve los usuarios de SQL
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener usuarios:', error);
-        res.flash('error', 'Error al obtener usuarios');
-        return res.apiError('Error interno del servidor al obtener usuarios', 500);
+        const customError = new Error('Error interno del servidor al obtener usuarios.');
+        customError.statusCode = 500;
+        next(customError);
     }
 };
 
 // Obtener un usuario por ID
-usuarioCtl.obtenerUsuario = async (req, res) => {
+usuarioCtl.obtenerUsuario = async (req, res, next) => {
     try {
         const { id } = req.params;
+        const [usuario] = await sql.promise().query(`SELECT * FROM usuarios WHERE idUsuario = ?`, [id]);
 
-        // Consultar el usuario por ID desde la base de datos SQL
-        const [usuario] = await sql.promise().query(`
-            SELECT * FROM usuarios WHERE idUsuario = ?
-        `, [id]);
-
-        // Si no se encuentra el usuario en SQL, enviar error 404
         if (usuario.length === 0) {
-            res.flash('error', 'Usuario no encontrado');
-            return res.apiError('Usuario no encontrado', 404);
+            const customError = new Error('Usuario no encontrado.');
+            customError.statusCode = 404;
+            return next(customError);
         }
 
-        // Buscar el usuario correspondiente en MongoDB
-        const usuarioMongo = await mongo.Usuario.findOne({ 
-            id_usuarioSql: id.toString() // Asegurarse de que el ID sea string para la búsqueda en Mongo
+        // ELIMINADO: Búsqueda y combinación con MongoDB
+        
+        return res.status(200).json({
+            success: true,
+            message: 'Usuario obtenido exitosamente',
+            data: usuario[0] // Solo devuelve el usuario de SQL
         });
-
-        // Combinar los datos de SQL y MongoDB
-        const usuarioCompleto = {
-            ...usuario[0],
-            detallesMongo: usuarioMongo
-        };
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Usuario obtenido exitosamente');
-        return res.apiResponse(usuarioCompleto, 200, 'Usuario obtenido exitosamente');
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener usuario:', error);
-        res.flash('error', 'Error al obtener usuario');
-        return res.apiError('Error interno del servidor al obtener el usuario', 500);
-    }
-};
-
-// Crear nuevo usuario
-usuarioCtl.crearUsuario = async (req, res) => {
-    try {
-        const { nombre, apellido, correo, contraseña, telefono, fecha_registro_mongo, preferencias_notificacion } = req.body;
-
-        // Validar campos requeridos para la creación del usuario en SQL
-        if (!nombre || !apellido || !correo || !contraseña || !telefono) {
-            res.flash('error', 'Faltan campos requeridos para crear el usuario SQL (nombre, apellido, correo, contraseña, telefono).');
-            return res.apiError('Faltan campos requeridos para crear el usuario SQL.', 400);
-        }
-
-        const currentTime = new Date().toLocaleString();
-
-        // Crear el usuario en SQL
-        const datosSql = {
-            nombre,
-            apellido,
-            correo,
-            contraseña, // En un entorno real, la contraseña debe ser hasheada antes de guardar
-            telefono,
-            estado: 'activo', // Estado por defecto para el usuario
-            createUsuario: currentTime, // Campo de fecha de creación en SQL
-            updateUsuario: currentTime // Inicialmente igual a create
-        };
-        
-        const nuevoUsuarioSql = await orm.usuario.create(datosSql);
-        const idUsuario = nuevoUsuarioSql.idUsuario; // Obtener el ID generado por SQL
-
-        // Crear el usuario en MongoDB, vinculándolo con el ID de SQL
-        const datosMongo = {
-            id_usuarioSql: idUsuario.toString(), // Convertir a string para el ID de Mongo
-            fecha_registro_mongo: fecha_registro_mongo || currentTime,
-            ultima_actividad: currentTime,
-            preferencias_notificacion: preferencias_notificacion || 'email' // Preferencia por defecto
-        };
-        
-        await mongo.Usuario.create(datosMongo);
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Usuario creado exitosamente');
-        return res.apiResponse(
-            { idUsuario }, 
-            201, 
-            'Usuario creado exitosamente'
-        );
-    } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
-        console.error('Error al crear usuario:', error);
-        res.flash('error', 'Error al crear el usuario');
-        return res.apiError('Error interno del servidor al crear el usuario', 500);
+        const customError = new Error('Error interno del servidor al obtener el usuario.');
+        customError.statusCode = 500;
+        next(customError);
     }
 };
 
 // Actualizar usuario
-usuarioCtl.actualizarUsuario = async (req, res) => {
+usuarioCtl.actualizarUsuario = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { nombre, apellido, correo, telefono, estado, fecha_registro_mongo, ultima_actividad, preferencias_notificacion } = req.body;
+        // ELIMINADO: fecha_registro_mongo, ultima_actividad (si solo son de Mongo)
+        const { nombre, apellido, correo, telefono, estado, preferencias_notificacion } = req.body; 
 
-        // Verificar la existencia del usuario en SQL
-        const [usuarioExistenteSql] = await sql.promise().query(`
-            SELECT * FROM usuarios WHERE idUsuario = ?
-        `, [id]);
+        const [usuarioExistenteSql] = await sql.promise().query(`SELECT * FROM usuarios WHERE idUsuario = ?`, [id]);
 
         if (usuarioExistenteSql.length === 0) {
-            res.flash('error', 'Usuario no encontrado');
-            return res.apiError('Usuario no encontrado', 404);
+            const customError = new Error('Usuario no encontrado.');
+            customError.statusCode = 404;
+            return next(customError);
         }
 
         const currentTime = new Date().toLocaleString();
 
-        // Actualizar en SQL
         const datosActualizacionSql = {
             nombre: nombre !== undefined ? nombre : usuarioExistenteSql[0].nombre,
             apellido: apellido !== undefined ? apellido : usuarioExistenteSql[0].apellido,
             correo: correo !== undefined ? correo : usuarioExistenteSql[0].correo,
             telefono: telefono !== undefined ? telefono : usuarioExistenteSql[0].telefono,
             estado: estado !== undefined ? estado : usuarioExistenteSql[0].estado,
-            updateUsuario: currentTime // Campo de fecha de actualización en SQL
+            updateUsuario: currentTime,
+            preferencias_notificacion: preferencias_notificacion !== undefined ? preferencias_notificacion : usuarioExistenteSql[0].preferencias_notificacion
         };
         
         await orm.usuario.update(datosActualizacionSql, {
             where: { idUsuario: id }
         });
 
-        // Actualizar en MongoDB
-        const datosMongoActualizacion = {
-            ultima_actividad: currentTime // Actualizar la fecha de última actividad
-        };
-        if (fecha_registro_mongo !== undefined) datosMongoActualizacion.fecha_registro_mongo = fecha_registro_mongo;
-        if (preferencias_notificacion !== undefined) datosMongoActualizacion.preferencias_notificacion = preferencias_notificacion;
+        // ELIMINADO: Actualización en MongoDB
 
-        await mongo.Usuario.findOneAndUpdate(
-            { id_usuarioSql: id.toString() }, // Asegurarse de que el ID sea string para la búsqueda en Mongo
-            datosMongoActualizacion,
-            { new: true } // Para devolver el documento actualizado
-        );
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Usuario actualizado exitosamente');
-        return res.apiResponse(
-            { idUsuario: id }, 
-            200, 
-            'Usuario actualizado exitosamente'
-        );
+        return res.status(200).json({
+            success: true,
+            message: 'Usuario actualizado exitosamente.',
+            data: { idUsuario: id }
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al actualizar usuario:', error);
-        res.flash('error', 'Error al actualizar el usuario');
-        return res.apiError('Error interno del servidor al actualizar el usuario', 500);
+        const customError = new Error('Error interno del servidor al actualizar el usuario.');
+        customError.statusCode = 500;
+        next(customError);
     }
 };
 
 // Eliminar usuario
-usuarioCtl.eliminarUsuario = async (req, res) => {
+usuarioCtl.eliminarUsuario = async (req, res, next) => {
     try {
         const { id } = req.params;
-
-        // Verificar la existencia del usuario en SQL
-        const [usuarioExistenteSql] = await sql.promise().query(`
-            SELECT * FROM usuarios WHERE idUsuario = ?
-        `, [id]);
+        const [usuarioExistenteSql] = await sql.promise().query(`SELECT * FROM usuarios WHERE idUsuario = ?`, [id]);
 
         if (usuarioExistenteSql.length === 0) {
-            res.flash('error', 'Usuario no encontrado');
-            return res.apiError('Usuario no encontrado', 404);
+            const customError = new Error('Usuario no encontrado.');
+            customError.statusCode = 404;
+            return next(customError);
         }
 
-        // Eliminar en SQL
         await orm.usuario.destroy({
             where: { idUsuario: id }
         });
 
-        // Eliminar en MongoDB
-        await mongo.Usuario.findOneAndDelete({ id_usuarioSql: id.toString() }); // Asegurarse de que el ID sea string para la búsqueda en Mongo
+        // ELIMINADO: Eliminación en MongoDB
 
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Usuario eliminado exitosamente');
-        return res.apiResponse(
-            null, 
-            200, 
-            'Usuario eliminado exitosamente'
-        );
+        return res.status(200).json({
+            success: true,
+            message: 'Usuario eliminado exitosamente.',
+            data: null
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al eliminar usuario:', error);
-        res.flash('error', 'Error al eliminar el usuario');
-        return res.apiError('Error interno del servidor al eliminar el usuario', 500);
+        const customError = new Error('Error interno del servidor al eliminar el usuario.');
+        customError.statusCode = 500;
+        next(customError);
     }
 };
 
 // Cambiar contraseña de usuario
-usuarioCtl.cambiarPassword = async (req, res) => {
+usuarioCtl.cambiarPassword = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { nuevaContraseña } = req.body; // Asumimos que se envía la nueva contraseña
+        const { oldPassword, newPassword } = req.body; 
 
-        // Validar que se haya proporcionado una nueva contraseña
-        if (!nuevaContraseña) {
-            res.flash('error', 'Se requiere la nueva contraseña para actualizar.');
-            return res.apiError('Se requiere la nueva contraseña para actualizar.', 400);
+        if (!newPassword) {
+            const customError = new Error('Se requiere la nueva contraseña para actualizar.');
+            customError.statusCode = 400;
+            return next(customError);
         }
 
-        // Verificar la existencia del usuario en SQL
-        const [usuarioExistenteSql] = await sql.promise().query(`
-            SELECT * FROM usuarios WHERE idUsuario = ?
-        `, [id]);
+        const [usuarioExistenteSql] = await sql.promise().query(`SELECT contraseña FROM usuarios WHERE idUsuario = ?`, [id]);
 
         if (usuarioExistenteSql.length === 0) {
-            res.flash('error', 'Usuario no encontrado');
-            return res.apiError('Usuario no encontrado', 404);
+            const customError = new Error('Usuario no encontrado.');
+            customError.statusCode = 404;
+            return next(customError);
+        }
+
+        const user = usuarioExistenteSql[0];
+        const validPassword = await bcrypt.compare(oldPassword, user.contraseña);
+
+        if (!validPassword) {
+            const customError = new Error('Contraseña actual incorrecta.');
+            customError.statusCode = 400;
+            return next(customError);
         }
 
         const currentTime = new Date().toLocaleString();
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        // Actualizar la contraseña en SQL
-        // En un entorno real, la nuevaContraseña debe ser hasheada antes de guardar
         const datosActualizacionSql = {
-            contraseña: nuevaContraseña, // Aquí se debería usar un hash de la contraseña
+            contraseña: hashedPassword, 
             updateUsuario: currentTime
         };
 
         await orm.usuario.update(datosActualizacionSql, {
             where: { idUsuario: id }
         });
-        res.flash('success', 'Contraseña actualizada exitosamente');
-        return res.apiResponse(
-            { idUsuario: id }, 
-            200, 
-            'Contraseña actualizada exitosamente'
-        );
+        
+        return res.status(200).json({
+            success: true,
+            message: 'Contraseña actualizada exitosamente.',
+            data: { idUsuario: id }
+        });
     } catch (error) {
         console.error('Error al cambiar la contraseña:', error);
-        res.flash('error', 'Error al cambiar la contraseña');
-        return res.apiError('Error interno del servidor al cambiar la contraseña', 500);
+        const customError = new Error('Error interno del servidor al cambiar la contraseña.');
+        customError.statusCode = 500;
+        next(customError);
     }
 };
 
+// Exportar el objeto controlador
 module.exports = usuarioCtl;

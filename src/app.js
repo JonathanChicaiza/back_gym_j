@@ -100,7 +100,8 @@ app.use(morgan(morganFormat, {
 app.use((req, res, next) => {
     if (toobusy()) {
         logger.warn('Server too busy!');
-        res.status(503).json({ error: 'Server too busy. Please try again later.' });
+        // Usar res.apiError directamente
+        return res.apiError('Server too busy. Please try again later.', 503);
     } else {
         next();
     }
@@ -122,9 +123,8 @@ const limiter = rateLimit({
     max: 100,
     handler: (req, res) => {
         logger.warn(`Rate limit exceeded for IP: ${req.ip}`);
-        res.status(429).json({
-            error: 'Too many requests, please try again later.'
-        });
+        // Usar res.apiError directamente
+        return res.apiError('Too many requests, please try again later.', 429);
     }
 });
 app.use(limiter);
@@ -172,16 +172,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use(session(sessionConfig));
 app.use(flash());
 
-// 11. CSRF Protection mejorada
-const csrfProtection = csrf({
-    cookie: {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
-    }
-});
-app.use(csrfProtection);
-
 // 12. Headers de seguridad adicionales
 app.use((req, res, next) => {
     res.setHeader('X-Frame-Options', 'DENY');
@@ -191,12 +181,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// 13. Validación de entrada global
+// 13. Validación de entrada global (Sanitización)
 app.use((req, res, next) => {
     // Sanitizar parámetros de consulta
     for (const key in req.query) {
         if (typeof req.query[key] === 'string') {
-            req.query[key] = escape(req.query[key]);
+            req.query[key] = escape(req.query[key]); // `escape` es obsoleto, considera `encodeURIComponent` o librerías de sanitización
         }
     }
 
@@ -204,7 +194,7 @@ app.use((req, res, next) => {
     if (req.body) {
         for (const key in req.body) {
             if (typeof req.body[key] === 'string') {
-                req.body[key] = escape(req.body[key]);
+                req.body[key] = escape(req.body[key]); // `escape` es obsoleto
             }
         }
     }
@@ -230,7 +220,7 @@ app.use(compression());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware para pasar datos comunes a las respuestas
+// Middleware para pasar datos comunes a las respuestas (res.apiResponse/apiError)
 app.use((req, res, next) => {
     // Para API responses en JSON
     res.apiResponse = (data, status = 200, message = '') => {
@@ -253,6 +243,27 @@ app.use((req, res, next) => {
 
     next();
 });
+
+// 11. CSRF Protection mejorada (Aplicado CONDICIONALMENTE ANTES de las rutas API)
+// Este middleware se aplicará SOLO a rutas que NO comiencen con '/api'.
+// Esto asegura que las rutas API (que usarán JWT) no requieran CSRF.
+const csrfProtection = csrf({
+    cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    }
+});
+
+app.use((req, res, next) => {
+    // Excluir rutas que comienzan con '/api' del CSRF
+    if (req.originalUrl.startsWith('/api')) {
+        return next();
+    }
+    // Si no es una ruta API, aplicar la protección CSRF
+    csrfProtection(req, res, next);
+});
+
 
 // ==================== RUTAS API ====================
 // Importar y configurar rutas como API con prefijo '/api'
@@ -282,7 +293,7 @@ app.use('/api/inventarios', require('./router/inventario.routes'));
 app.use('/api/productos', require('./router/producto.routes'));
 app.use ('/api/configuracion', require('./router/configuracion.routes'));
 
-// Configurar variables globales
+// Configurar variables globales (para flash messages y req.user, si se usan en vistas tradicionales)
 app.use((req, res, next) => {
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
@@ -300,29 +311,55 @@ app.use((err, req, res, next) => {
 
     logger.error(`Error: ${err.message}\nStack: ${err.stack}`);
 
-    // Respuestas de error estandarizadas
+    // Determina el código de estado del error
+    let statusCode = err.statusCode || 500;
+    let message = err.message || 'Ocurrió un error interno del servidor.';
+    let errors = null;
+
+    // Manejo específico de errores
     if (err.name === 'ValidationError') {
-        return res.apiError('Validation error', 400, err.errors);
+        statusCode = 400;
+        message = 'Error de validación.';
+        errors = err.errors; 
+    } else if (err.code === 'EBADCSRFTOKEN') {
+        statusCode = 403;
+        message = 'Fallo en la validación del token CSRF.';
+    } else if (err.name === 'UnauthorizedError') { 
+        statusCode = 401;
+        message = 'Token de autenticación inválido o expirado.';
+    } else if (err.message === 'Acceso denegado. No se proporcionó un token.' || err.message === 'Token inválido o expirado. Acceso no autorizado.') {
+        statusCode = err.statusCode || 403; 
+        message = err.message;
+    } else if (err.message === 'Server too busy. Please try again later.') { // Errores de toobusy-js
+        statusCode = err.statusCode || 503;
+        message = err.message;
+    } else if (err.message === 'Too many requests, please try again later.') { // Errores de rate-limit
+        statusCode = err.statusCode || 429;
+        message = err.message;
     }
 
-    if (err.code === 'EBADCSRFTOKEN') {
-        return res.apiError('CSRF token validation failed', 403);
+
+    // Envía una respuesta JSON estandarizada usando res.apiError
+    // Si res.apiError no está disponible por alguna razón, se usa res.status().json() como fallback
+    if (res.apiError) {
+        return res.apiError(message, statusCode, errors);
+    } else {
+        // Fallback si res.apiError no se ha adjuntado
+        const errorResponse = {
+            success: false,
+            message: message,
+            errors: errors,
+            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        };
+        return res.status(statusCode).json(errorResponse);
     }
-
-    // Error no manejado
-    const errorResponse = {
-        message: 'Internal server error',
-        error: process.env.NODE_ENV === 'development' ? err.message : undefined,
-        stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
-    };
-
-    res.status(500).json(errorResponse);
 });
 
 // Middleware para rutas no encontradas (API)
 app.use((req, res, next) => {
     logger.warn(`404 Not Found: ${req.originalUrl}`);
-    res.apiError('Endpoint not found', 404);
+    // Usar res.apiError para el 404
+    return res.apiError('Endpoint not found', 404);
 });
 
 // Exportar la aplicación
