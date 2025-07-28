@@ -4627,3 +4627,145 @@ Stack: ForbiddenError: invalid csrf token
 2025-07-26 01:06:38 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
 2025-07-26 01:06:38 [INFO]: 🚀 MongoDB conectado correctamente
 2025-07-26 01:06:39 [INFO]: Base de Datos sincronizadas
+2025-07-28 13:47:25 [INFO]: El servidor está escuchando en el puerto 8082
+2025-07-28 13:47:25 [ERROR]: Error inesperado: Unknown database 'gym_db'
+2025-07-28 13:47:25 [ERROR]: No se pudo conectar a la base de datos: Unknown database 'gym_db'
+2025-07-28 13:47:25 [ERROR]: Error al sincronizar la Base de Datos: SequelizeConnectionError: Unknown database 'gym_db'
+2025-07-28 13:47:26 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 13:47:26 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 13:48:52 [INFO]: El servidor está escuchando en el puerto 8082
+2025-07-28 13:48:52 [INFO]: Base de datos conectada
+2025-07-28 13:48:52 [INFO]: Conexión establecida con la base de datos
+2025-07-28 13:48:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 13:48:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 13:48:53 [INFO]: Base de Datos sincronizadas
+2025-07-28 13:53:55 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 13:53:55 [INFO]: Base de datos conectada
+2025-07-28 13:53:55 [INFO]: Conexión establecida con la base de datos
+2025-07-28 13:53:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 13:53:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 13:53:58 [INFO]: Base de Datos sincronizadas
+2025-07-28 13:54:02 [WARN]: 404 Not Found: /api/auth/signup
+2025-07-28 13:54:02 [INFO]: [0mPOST /api/auth/signup [33m404[0m 58.123 ms - 62[0m
+2025-07-28 13:54:12 [WARN]: 404 Not Found: /api/auth/signup
+2025-07-28 13:54:12 [INFO]: [0mPOST /api/auth/signup [33m404[0m 5.599 ms - 62[0m
+2025-07-28 13:58:56 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 13:58:57 [INFO]: Base de datos conectada
+2025-07-28 13:58:57 [INFO]: Conexión establecida con la base de datos
+2025-07-28 13:58:57 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 13:58:57 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 13:58:59 [WARN]: Server too busy!
+2025-07-28 13:58:59 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 13:58:59 [INFO]: [0mPOST /api/auth/signup [31m500[0m 14.566 ms - 74[0m
+2025-07-28 13:59:00 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:00:14 [WARN]: 404 Not Found: /api/auth/signin
+2025-07-28 14:00:14 [INFO]: [0mPOST /api/auth/signin [33m404[0m 45.432 ms - 62[0m
+2025-07-28 14:00:22 [WARN]: 404 Not Found: /api/auth/signup
+2025-07-28 14:00:22 [INFO]: [0mPOST /api/auth/signup [33m404[0m 4.950 ms - 62[0m
+2025-07-28 14:00:25 [WARN]: 404 Not Found: /api/auth/signup
+2025-07-28 14:00:25 [INFO]: [0mPOST /api/auth/signup [33m404[0m 4.629 ms - 62[0m
+2025-07-28 14:01:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:01:41 [INFO]: Base de datos conectada
+2025-07-28 14:01:41 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:01:42 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:01:42 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:02:00 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:02:00 [INFO]: Base de datos conectada
+2025-07-28 14:02:00 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:02:01 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:02:01 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:02:03 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:02:08 [ERROR]: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+Stack: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+    at C:\Users\wiliam\Desktop\back_gym_j\src\controller\usuario.controller.js:74:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:112:28)
+2025-07-28 14:02:08 [INFO]: [0mPOST /api/auth/signup [33m400[0m 265.137 ms - 116[0m
+2025-07-28 14:02:23 [ERROR]: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+Stack: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+    at C:\Users\wiliam\Desktop\back_gym_j\src\controller\usuario.controller.js:74:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:112:28)
+2025-07-28 14:02:23 [INFO]: [0mPOST /api/auth/signup [33m400[0m 167.706 ms - 116[0m
+2025-07-28 14:04:48 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:04:48 [INFO]: Base de datos conectada
+2025-07-28 14:04:48 [WARN]: Server too busy!
+2025-07-28 14:04:48 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 14:04:48 [INFO]: [0mPOST /api/auth/signup [31m500[0m 21.198 ms - 74[0m
+2025-07-28 14:04:48 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:04:48 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:04:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:04:52 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:05:03 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:05:03 [INFO]: Base de datos conectada
+2025-07-28 14:05:03 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:05:03 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:05:03 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:05:04 [WARN]: Server too busy!
+2025-07-28 14:05:04 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 14:05:04 [INFO]: [0mPOST /api/auth/signup [31m500[0m 58.198 ms - 74[0m
+2025-07-28 14:05:07 [ERROR]: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+Stack: Error: Faltan campos requeridos (nombre, apellido, correo, password, telefono).
+    at C:\Users\wiliam\Desktop\back_gym_j\src\controller\usuario.controller.js:74:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:112:28)
+2025-07-28 14:05:07 [INFO]: [0mPOST /api/auth/signup [33m400[0m 260.423 ms - 116[0m
+2025-07-28 14:05:08 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:08:32 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:08:32 [INFO]: Base de datos conectada
+2025-07-28 14:08:32 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:08:33 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:08:33 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:08:35 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:10:22 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:10:22 [INFO]: Base de datos conectada
+2025-07-28 14:10:22 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:10:22 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:10:22 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:10:25 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:10:29 [INFO]: [0mPOST /api/auth/signup [32m201[0m 344.699 ms - 369[0m
+2025-07-28 14:11:15 [INFO]: [0mPOST /api/auth/signin [32m200[0m 176.493 ms - 344[0m
+2025-07-28 14:11:36 [INFO]: [0mPOST /api/auth/signup [32m201[0m 251.875 ms - 369[0m
+2025-07-28 14:11:52 [INFO]: [0mPOST /api/auth/signin [32m200[0m 166.452 ms - 344[0m

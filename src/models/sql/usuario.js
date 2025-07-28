@@ -6,11 +6,9 @@ const usuario = (sequelize,type) => {
             primaryKey: true,
         },
         nombre: type.STRING,
-        apellido: type.STRING,
         correo: type.STRING,
         contraseña: type.STRING,
         telefono: type.STRING,
-        estado: type.STRING,
         createUsuario: type.STRING,
         updateUsuario: type.STRING
     }, {

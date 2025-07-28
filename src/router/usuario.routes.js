@@ -1,21 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const {
-  obtenerUsuarios,
-  obtenerUsuario,
-  crearUsuario,
-  actualizarUsuario,
-  eliminarUsuario,
-  cambiarPassword
+    obtenerUsuarios,
+    obtenerUsuario,
+    crearUsuario,
+    actualizarUsuario,
+    cambiarPassword
 } = require('../controller/usuario.controller');
 
-// Rutas públicas
-router.post('/', crearUsuario);
+// Public routes (e.g., for registration)
+router.post('/', crearUsuario); // This route might be better placed under an /auth prefix if it handles signup
 
-// Rutas protegidas (autenticación manejada en controlador)
+// Routes for authenticated users (assuming these are protected by middleware elsewhere)
+router.get('/', obtenerUsuarios); // Added a route to get all users
 router.get('/:id', obtenerUsuario);
 router.put('/:id', actualizarUsuario);
-router.delete('/:id', eliminarUsuario);
 router.post('/:id/cambiar-password', cambiarPassword);
 
 module.exports = router;

@@ -1,22 +1,16 @@
-// src/controller/usuario.controller.js
-
 const bcrypt = require('bcryptjs');
-// Importar passport y generateToken desde tu archivo passport.js
-const { passport, generateToken } = require('../lib/passport'); 
-const sql = require('../Database/dataBase.sql'); 
-const orm = require('../Database/dataBase.orm'); 
-// ELIMINADO: const mongo = require('../Database/dataBaseMongose'); // No se usa MongoDB
+const { passport, generateToken } = require('../lib/passport');
+const sql = require('../Database/dataBase.sql');
+const orm = require('../Database/dataBase.orm');
 
-// Asegúrate de que las dependencias para guardarYSubirArchivo estén disponibles
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 
-// Objeto controlador para agrupar las funciones
 const usuarioCtl = {};
 
-// Función para guardar y subir archivos (se mantiene aquí si es usada por la estrategia Passport)
+// This function is still included if it's used by other parts of your application (e.g., Passport strategy)
 const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, req) => {
     const validaciones = {
         imagen: [".PNG", ".JPG", ".JPEG", ".GIF", ".TIF", ".png", ".jpg", ".jpeg", ".gif", ".tif", ".ico", ".ICO", ".webp", ".WEBP"],
@@ -35,7 +29,6 @@ const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, 
                 return reject(new Error('Error al guardar el archivo.'));
             } else {
                 try {
-                    // Actualizar el campo del archivo en la tabla usuarios
                     await sql.promise().query(`UPDATE usuarios SET ${columnName} = ? WHERE idUsuario = ?`, [archivo.name, idUser]);
 
                     const formData = new FormData();
@@ -44,7 +37,6 @@ const guardarYSubirArchivo = async (archivo, filePath, columnName, idUser, url, 
                         contentType: archivo.mimetype,
                     });
 
-                    // Mantener el token CSRF en la petición
                     const response = await axios.post(url, formData, {
                         headers: {
                             ...formData.getHeaders(),
@@ -92,19 +84,17 @@ usuarioCtl.crearUsuario = async (req, res, next) => {
                 return next(customError);
             }
 
-            const token = generateToken(user); 
-            
-            // ELIMINADO: Lógica de creación de usuario en MongoDB
+            const token = generateToken(user);
 
-            return res.status(201).json({ 
-                message: 'Usuario registrado y sesión iniciada exitosamente.', 
+            return res.status(201).json({
+                message: 'Usuario registrado y sesión iniciada exitosamente.',
                 user: {
                     idUsuario: user.idUsuario,
                     nombre: user.nombre,
                     correo: user.correo,
-                    type: user.type
+                    // Remove user.type if it's not a standard field you're using or returning
                 },
-                token: token // Envía el token al cliente
+                token: token
             });
         });
     })(req, res, next);
@@ -115,13 +105,11 @@ usuarioCtl.crearUsuario = async (req, res, next) => {
 usuarioCtl.obtenerUsuarios = async (req, res, next) => {
     try {
         const [listaUsuarios] = await sql.promise().query(`SELECT * FROM usuarios`);
-        
-        // ELIMINADO: Búsqueda y combinación con MongoDB
-        
+
         return res.status(200).json({
             success: true,
             message: 'Usuarios obtenidos exitosamente',
-            data: listaUsuarios // Solo devuelve los usuarios de SQL
+            data: listaUsuarios
         });
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -143,12 +131,10 @@ usuarioCtl.obtenerUsuario = async (req, res, next) => {
             return next(customError);
         }
 
-        // ELIMINADO: Búsqueda y combinación con MongoDB
-        
         return res.status(200).json({
             success: true,
             message: 'Usuario obtenido exitosamente',
-            data: usuario[0] // Solo devuelve el usuario de SQL
+            data: usuario[0]
         });
     } catch (error) {
         console.error('Error al obtener usuario:', error);
@@ -162,8 +148,8 @@ usuarioCtl.obtenerUsuario = async (req, res, next) => {
 usuarioCtl.actualizarUsuario = async (req, res, next) => {
     try {
         const { id } = req.params;
-        // ELIMINADO: fecha_registro_mongo, ultima_actividad (si solo son de Mongo)
-        const { nombre, apellido, correo, telefono, estado, preferencias_notificacion } = req.body; 
+        // Fields to update based on your model: nombre, correo, telefono
+        const { nombre, correo, telefono } = req.body; 
 
         const [usuarioExistenteSql] = await sql.promise().query(`SELECT * FROM usuarios WHERE idUsuario = ?`, [id]);
 
@@ -177,19 +163,14 @@ usuarioCtl.actualizarUsuario = async (req, res, next) => {
 
         const datosActualizacionSql = {
             nombre: nombre !== undefined ? nombre : usuarioExistenteSql[0].nombre,
-            apellido: apellido !== undefined ? apellido : usuarioExistenteSql[0].apellido,
             correo: correo !== undefined ? correo : usuarioExistenteSql[0].correo,
             telefono: telefono !== undefined ? telefono : usuarioExistenteSql[0].telefono,
-            estado: estado !== undefined ? estado : usuarioExistenteSql[0].estado,
             updateUsuario: currentTime,
-            preferencias_notificacion: preferencias_notificacion !== undefined ? preferencias_notificacion : usuarioExistenteSql[0].preferencias_notificacion
         };
-        
+
         await orm.usuario.update(datosActualizacionSql, {
             where: { idUsuario: id }
         });
-
-        // ELIMINADO: Actualización en MongoDB
 
         return res.status(200).json({
             success: true,
@@ -204,42 +185,11 @@ usuarioCtl.actualizarUsuario = async (req, res, next) => {
     }
 };
 
-// Eliminar usuario
-usuarioCtl.eliminarUsuario = async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const [usuarioExistenteSql] = await sql.promise().query(`SELECT * FROM usuarios WHERE idUsuario = ?`, [id]);
-
-        if (usuarioExistenteSql.length === 0) {
-            const customError = new Error('Usuario no encontrado.');
-            customError.statusCode = 404;
-            return next(customError);
-        }
-
-        await orm.usuario.destroy({
-            where: { idUsuario: id }
-        });
-
-        // ELIMINADO: Eliminación en MongoDB
-
-        return res.status(200).json({
-            success: true,
-            message: 'Usuario eliminado exitosamente.',
-            data: null
-        });
-    } catch (error) {
-        console.error('Error al eliminar usuario:', error);
-        const customError = new Error('Error interno del servidor al eliminar el usuario.');
-        customError.statusCode = 500;
-        next(customError);
-    }
-};
-
 // Cambiar contraseña de usuario
 usuarioCtl.cambiarPassword = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { oldPassword, newPassword } = req.body; 
+        const { oldPassword, newPassword } = req.body;
 
         if (!newPassword) {
             const customError = new Error('Se requiere la nueva contraseña para actualizar.');
@@ -268,14 +218,14 @@ usuarioCtl.cambiarPassword = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
         const datosActualizacionSql = {
-            contraseña: hashedPassword, 
+            contraseña: hashedPassword,
             updateUsuario: currentTime
         };
 
         await orm.usuario.update(datosActualizacionSql, {
             where: { idUsuario: id }
         });
-        
+
         return res.status(200).json({
             success: true,
             message: 'Contraseña actualizada exitosamente.',
@@ -289,5 +239,4 @@ usuarioCtl.cambiarPassword = async (req, res, next) => {
     }
 };
 
-// Exportar el objeto controlador
 module.exports = usuarioCtl;
