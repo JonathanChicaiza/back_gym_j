@@ -1,58 +1,46 @@
-const orm = require('../Database/dataBase.orm');
+const { profesor } = require('../Database/dataBase.orm');
 const sql = require('../Database/dataBase.sql');
-const mongo = require('../Database/dataBaseMongose'); // Asegúrate de que este archivo exporta 'Profesor'
-
-// Definición del modelo de Mongoose para Profesor (asumiendo corrección del esquema proporcionado)
-// Esto debería estar en tu archivo dataBaseMongose.js o un modelo separado para Profesor en MongoDB
-// Para propósitos de este controlador, asumimos que mongo.Profesor está disponible.
-// Si no lo está, necesitarías definirlo similar a esto en tu archivo de modelos de Mongoose:
-/*
-const mongoose = require('mongoose');
-const ProfesorSchema = new mongoose.Schema({
-    id_profesorSql: String,
-    biografia: String,
-    fecha_ingreso: String,
-    certificaciones: String,
-}, {
-    collection: 'profesores',
-    timestamps: false
-});
-const Profesor = mongoose.model('Profesor', ProfesorSchema);
-module.exports = Profesor; // Y luego importarlo en dataBaseMongose.js para que sea accesible
-*/
 
 const profesorCtl = {};
+
+// Configuración de la zona horaria
+const configTimeZone = { timeZone: 'America/Guayaquil' };
 
 // Obtener todos los profesores
 profesorCtl.obtenerProfesores = async (req, res) => {
     try {
-        // Consultar todos los profesores desde la base de datos SQL
-        const [listaProfesores] = await sql.promise().query(`
-            SELECT * FROM profesores
-        `);
+        const profesores = await profesor.findAll({
+            attributes: [
+                'idProfesor',
+                'nombre',
+                'apellido',
+                'gmail',
+                'telefono',
+                'especialidad',
+                'horario_trabajo',
+                'dia',
+                'inicio',
+                'fin',
+                'experiencia',
+                'formacion_academica',
+                'stateProfesor',
+                'createProfesor',
+                'updateProfesor'
+            ],
+            order: [['idProfesor', 'ASC']]
+        });
 
-        // Para cada profesor SQL, buscar su contraparte en MongoDB
-        const profesoresCompletos = await Promise.all(
-            listaProfesores.map(async (profesor) => {
-                // Asumiendo que idProfesor en SQL se mapea a id_profesorSql en MongoDB
-                const profesorMongo = await mongo.Profesor.findOne({ 
-                    id_profesorSql: profesor.idProfesor 
-                });
-                return {
-                    ...profesor,
-                    detallesMongo: profesorMongo
-                };
-            })
-        );
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Profesores obtenidos exitosamente');
-        return res.apiResponse(profesoresCompletos, 200, 'Profesores obtenidos exitosamente');
+        res.status(200).json({
+            success: true,
+            data: profesores
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener profesores:', error);
-        res.flash('error', 'Error al obtener profesores');
-        return res.apiError('Error interno del servidor al obtener profesores', 500);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener profesores',
+            error: error.message
+        });
     }
 };
 
@@ -61,187 +49,377 @@ profesorCtl.obtenerProfesor = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Consultar el profesor por ID desde la base de datos SQL
-        const [profesor] = await sql.promise().query(`
-            SELECT * FROM profesores WHERE idProfesor = ?
-        `, [id]);
-
-        // Si no se encuentra el profesor en SQL, enviar error 404
-        if (profesor.length === 0) {
-            res.flash('error', 'Profesor no encontrado');
-            return res.apiError('Profesor no encontrado', 404);
-        }
-
-        // Buscar el profesor correspondiente en MongoDB
-        const profesorMongo = await mongo.Profesor.findOne({ 
-            id_profesorSql: parseInt(id) 
+        const profesorEncontrado = await profesor.findByPk(id, {
+            attributes: [
+                'idProfesor',
+                'nombre',
+                'apellido',
+                'gmail',
+                'telefono',
+                'especialidad',
+                'horario_trabajo',
+                'dia',
+                'inicio',
+                'fin',
+                'experiencia',
+                'formacion_academica',
+                'stateProfesor',
+                'createProfesor',
+                'updateProfesor'
+            ]
         });
 
-        // Combinar los datos de SQL y MongoDB
-        const profesorCompleto = {
-            ...profesor[0],
-            detallesMongo: profesorMongo
-        };
+        if (!profesorEncontrado) {
+            return res.status(404).json({
+                success: false,
+                message: 'Profesor no encontrado'
+            });
+        }
 
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Profesor obtenido exitosamente');
-        return res.apiResponse(profesorCompleto, 200, 'Profesor obtenido exitosamente');
+        res.status(200).json({
+            success: true,
+            data: profesorEncontrado
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener profesor:', error);
-        res.flash('error', 'Error al obtener profesor');
-        return res.apiError('Error interno del servidor al obtener el profesor', 500);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener profesor',
+            error: error.message
+        });
     }
 };
 
 // Crear nuevo profesor
 profesorCtl.crearProfesor = async (req, res) => {
+    const t = await profesor.sequelize.transaction();
     try {
-        const { especialidad, nombre, apellido, gmail, telefono, biografia, fecha_ingreso, certificaciones } = req.body;
+        const { 
+            nombre, 
+            apellido, 
+            gmail, 
+            telefono, 
+            especialidad,
+            horario_trabajo,
+            dia,
+            inicio,
+            fin,
+            experiencia,
+            formacion_academica,
+            stateProfesor = 'active'
+        } = req.body;
 
-        // Validar campos requeridos para la creación del profesor en SQL
-        if (!especialidad || !nombre || !apellido || !gmail || !telefono) {
-            res.flash('error', 'Faltan campos requeridos para crear el profesor SQL (especialidad, nombre, apellido, gmail, telefono).');
-            return res.apiError('Faltan campos requeridos para crear el profesor SQL.', 400);
+        // Validaciones básicas
+        if (!nombre || !apellido || !gmail || !telefono || !especialidad) {
+            await t.rollback();
+            return res.status(400).json({
+                success: false,
+                message: 'Faltan campos requeridos: nombre, apellido, gmail, telefono, especialidad'
+            });
         }
 
-        const currentTime = new Date().toLocaleString();
+        // Verificar si el email ya existe
+        const profesorConEmail = await profesor.findOne({ 
+            where: { gmail },
+            transaction: t 
+        });
 
-        // Crear el profesor en SQL
-        const datosSql = {
-            especialidad,
+        if (profesorConEmail) {
+            await t.rollback();
+            return res.status(400).json({
+                success: false,
+                message: 'El correo electrónico ya está registrado'
+            });
+        }
+
+        // Verificar si el teléfono ya existe
+        const profesorConTelefono = await profesor.findOne({ 
+            where: { telefono },
+            transaction: t 
+        });
+
+        if (profesorConTelefono) {
+            await t.rollback();
+            return res.status(400).json({
+                success: false,
+                message: 'El número de teléfono ya está registrado'
+            });
+        }
+
+        // Crear profesor (idProfesor será autoincremental)
+        const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
+        const nuevoProfesor = await profesor.create({
             nombre,
             apellido,
             gmail,
             telefono,
-            stateProfesor: 'activo', // Estado por defecto
-            createProfesor: currentTime, // Campo de fecha de creación en SQL
-            updateProfesor: currentTime // Inicialmente igual a create
-        };
-        
-        const nuevoProfesorSql = await orm.profesor.create(datosSql);
-        const idProfesor = nuevoProfesorSql.idProfesor; // Obtener el ID generado por SQL
+            especialidad,
+            horario_trabajo: horario_trabajo || null,
+            dia: dia || null,
+            inicio: inicio || null,
+            fin: fin || null,
+            experiencia: experiencia || null,
+            formacion_academica: formacion_academica || null,
+            stateProfesor,
+            createProfesor: currentTime,
+            updateProfesor: currentTime
+        }, { transaction: t });
 
-        // Crear el profesor en MongoDB, vinculándolo con el ID de SQL
-        const datosMongo = {
-            id_profesorSql: idProfesor,
-            biografia: biografia || '',
-            fecha_ingreso: fecha_ingreso || currentTime, // Usar fecha_ingreso del body o la actual
-            certificaciones: certificaciones || ''
-        };
-        
-        await mongo.Profesor.create(datosMongo);
+        await t.commit();
 
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Profesor creado exitosamente');
-        return res.apiResponse(
-            { idProfesor }, 
-            201, 
-            'Profesor creado exitosamente'
-        );
+        res.status(201).json({
+            success: true,
+            message: 'Profesor creado exitosamente',
+            data: {
+                idProfesor: nuevoProfesor.idProfesor, // ID autoincremental
+                nombre,
+                apellido
+            }
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        await t.rollback();
         console.error('Error al crear profesor:', error);
-        res.flash('error', 'Error al crear el profesor');
-        return res.apiError('Error interno del servidor al crear el profesor', 500);
+        
+        let errorMessage = 'Error al crear profesor';
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            if (error.fields && error.fields.gmail) {
+                errorMessage = 'El correo electrónico ya está registrado';
+            } else if (error.fields && error.fields.telefono) {
+                errorMessage = 'El número de teléfono ya está registrado';
+            }
+        }
+
+        res.status(500).json({
+            success: false,
+            message: errorMessage,
+            error: error.message
+        });
     }
 };
 
 // Actualizar profesor
 profesorCtl.actualizarProfesor = async (req, res) => {
+    const t = await profesor.sequelize.transaction();
     try {
         const { id } = req.params;
-        const { especialidad, nombre, apellido, gmail, telefono, stateProfesor, biografia, fecha_ingreso, certificaciones } = req.body;
+        const { 
+            nombre, 
+            apellido, 
+            gmail, 
+            telefono, 
+            especialidad,
+            horario_trabajo,
+            dia,
+            inicio,
+            fin,
+            experiencia,
+            formacion_academica,
+            stateProfesor
+        } = req.body;
 
-        // Verificar la existencia del profesor en SQL
-        const [profesorExistenteSql] = await sql.promise().query(`
-            SELECT * FROM profesores WHERE idProfesor = ?
-        `, [id]);
-
-        if (profesorExistenteSql.length === 0) {
-            res.flash('error', 'Profesor no encontrado');
-            return res.apiError('Profesor no encontrado', 404);
+        // Verificar existencia
+        const profesorExistente = await profesor.findByPk(id);
+        if (!profesorExistente) {
+            await t.rollback();
+            return res.status(404).json({
+                success: false,
+                message: 'Profesor no encontrado'
+            });
         }
 
-        const currentTime = new Date().toLocaleString();
+        // Verificar si el nuevo email ya existe
+        if (gmail && gmail !== profesorExistente.gmail) {
+            const profesorConEmail = await profesor.findOne({ 
+                where: { gmail },
+                transaction: t 
+            });
+            
+            if (profesorConEmail) {
+                await t.rollback();
+                return res.status(400).json({
+                    success: false,
+                    message: 'El nuevo correo electrónico ya está registrado'
+                });
+            }
+        }
 
-        // Actualizar en SQL
-        const datosActualizacionSql = {
-            especialidad: especialidad !== undefined ? especialidad : profesorExistenteSql[0].especialidad,
-            nombre: nombre !== undefined ? nombre : profesorExistenteSql[0].nombre,
-            apellido: apellido !== undefined ? apellido : profesorExistenteSql[0].apellido,
-            gmail: gmail !== undefined ? gmail : profesorExistenteSql[0].gmail,
-            telefono: telefono !== undefined ? telefono : profesorExistenteSql[0].telefono,
-            stateProfesor: stateProfesor !== undefined ? stateProfesor : profesorExistenteSql[0].stateProfesor,
-            updateProfesor: currentTime // Campo de fecha de actualización en SQL
-        };
-        
-        await orm.profesor.update(datosActualizacionSql, {
-            where: { idProfesor: id }
+        // Verificar si el nuevo teléfono ya existe
+        if (telefono && telefono !== profesorExistente.telefono) {
+            const profesorConTelefono = await profesor.findOne({ 
+                where: { telefono },
+                transaction: t 
+            });
+            
+            if (profesorConTelefono) {
+                await t.rollback();
+                return res.status(400).json({
+                    success: false,
+                    message: 'El nuevo número de teléfono ya está registrado'
+                });
+            }
+        }
+
+        // Actualizar profesor
+        const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
+        await profesor.update({
+            nombre: nombre || profesorExistente.nombre,
+            apellido: apellido || profesorExistente.apellido,
+            gmail: gmail || profesorExistente.gmail,
+            telefono: telefono || profesorExistente.telefono,
+            especialidad: especialidad || profesorExistente.especialidad,
+            horario_trabajo: horario_trabajo !== undefined ? horario_trabajo : profesorExistente.horario_trabajo,
+            dia: dia !== undefined ? dia : profesorExistente.dia,
+            inicio: inicio !== undefined ? inicio : profesorExistente.inicio,
+            fin: fin !== undefined ? fin : profesorExistente.fin,
+            experiencia: experiencia !== undefined ? experiencia : profesorExistente.experiencia,
+            formacion_academica: formacion_academica !== undefined ? formacion_academica : profesorExistente.formacion_academica,
+            stateProfesor: stateProfesor || profesorExistente.stateProfesor,
+            updateProfesor: currentTime
+        }, {
+            where: { idProfesor: id },
+            transaction: t
         });
 
-        // Actualizar en MongoDB
-        const datosMongoActualizacion = {};
-        if (biografia !== undefined) datosMongoActualizacion.biografia = biografia;
-        if (fecha_ingreso !== undefined) datosMongoActualizacion.fecha_ingreso = fecha_ingreso;
-        if (certificaciones !== undefined) datosMongoActualizacion.certificaciones = certificaciones;
+        await t.commit();
 
-        await mongo.Profesor.findOneAndUpdate(
-            { id_profesorSql: parseInt(id) },
-            datosMongoActualizacion,
-            { new: true } // Para devolver el documento actualizado
-        );
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Profesor actualizado exitosamente');
-        return res.apiResponse(
-            { idProfesor: id }, 
-            200, 
-            'Profesor actualizado exitosamente'
-        );
+        res.status(200).json({
+            success: true,
+            message: 'Profesor actualizado exitosamente'
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
+        await t.rollback();
         console.error('Error al actualizar profesor:', error);
-        res.flash('error', 'Error al actualizar el profesor');
-        return res.apiError('Error interno del servidor al actualizar el profesor', 500);
+        
+        let errorMessage = 'Error al actualizar profesor';
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            if (error.fields && error.fields.gmail) {
+                errorMessage = 'El correo electrónico ya está registrado';
+            } else if (error.fields && error.fields.telefono) {
+                errorMessage = 'El número de teléfono ya está registrado';
+            }
+        }
+
+        res.status(500).json({
+            success: false,
+            message: errorMessage,
+            error: error.message
+        });
     }
 };
 
-// Eliminar profesor
+// Cambiar estado del profesor
+profesorCtl.cambiarEstado = async (req, res) => {
+    const t = await profesor.sequelize.transaction();
+    try {
+        const { id } = req.params;
+        const { stateProfesor } = req.body;
+
+        // Validar estado
+        if (!['active', 'inactive'].includes(stateProfesor)) {
+            await t.rollback();
+            return res.status(400).json({
+                success: false,
+                message: 'Estado no válido (solo "active" o "inactive")'
+            });
+        }
+
+        // Verificar existencia
+        const profesorExistente = await profesor.findByPk(id);
+        if (!profesorExistente) {
+            await t.rollback();
+            return res.status(404).json({
+                success: false,
+                message: 'Profesor no encontrado'
+            });
+        }
+
+        // Actualizar estado
+        const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
+        await profesor.update({
+            stateProfesor,
+            updateProfesor: currentTime
+        }, {
+            where: { idProfesor: id },
+            transaction: t
+        });
+
+        await t.commit();
+
+        res.status(200).json({
+            success: true,
+            message: 'Estado del profesor actualizado exitosamente'
+        });
+    } catch (error) {
+        await t.rollback();
+        console.error('Error al cambiar estado del profesor:', error);
+        
+        // Manejar errores de red específicamente
+        if (error.name === 'SequelizeDatabaseError' || error.message.includes('NetworkError')) {
+            return res.status(503).json({
+                success: false,
+                message: 'Error de conexión con la base de datos. Intente nuevamente.',
+                error: 'NetworkError when attempting to fetch resource'
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Error al cambiar estado del profesor',
+            error: error.message
+        });
+    }
+};
+
+// Eliminar profesor (cambiar estado a inactive)
 profesorCtl.eliminarProfesor = async (req, res) => {
+    const t = await profesor.sequelize.transaction();
     try {
         const { id } = req.params;
 
-        // Verificar la existencia del profesor en SQL
-        const [profesorExistenteSql] = await sql.promise().query(`
-            SELECT * FROM profesores WHERE idProfesor = ?
-        `, [id]);
-
-        if (profesorExistenteSql.length === 0) {
-            res.flash('error', 'Profesor no encontrado');
-            return res.apiError('Profesor no encontrado', 404);
+        // Verificar existencia
+        const profesorExistente = await profesor.findByPk(id);
+        if (!profesorExistente) {
+            await t.rollback();
+            return res.status(404).json({
+                success: false,
+                message: 'Profesor no encontrado'
+            });
         }
 
-        // Eliminar en SQL
-        await orm.profesor.destroy({
-            where: { idProfesor: id }
+        // Cambiar estado a inactive (eliminación lógica)
+        const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
+        await profesor.update({
+            stateProfesor: 'inactive',
+            updateProfesor: currentTime
+        }, {
+            where: { idProfesor: id },
+            transaction: t
         });
 
-        // Eliminar en MongoDB
-        await mongo.Profesor.findOneAndDelete({ id_profesorSql: parseInt(id) });
+        await t.commit();
 
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Profesor eliminado exitosamente');
-        return res.apiResponse(
-            null, 
-            200, 
-            'Profesor eliminado exitosamente'
-        );
+        res.status(200).json({
+            success: true,
+            message: 'Profesor desactivado exitosamente'
+        });
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
-        console.error('Error al eliminar profesor:', error);
-        res.flash('error', 'Error al eliminar el profesor');
-        return res.apiError('Error interno del servidor al eliminar el profesor', 500);
+        await t.rollback();
+        console.error('Error al desactivar profesor:', error);
+        
+        // Manejar errores de red
+        if (error.name === 'SequelizeDatabaseError' || error.message.includes('NetworkError')) {
+            return res.status(503).json({
+                success: false,
+                message: 'Error de conexión con la base de datos. Intente nuevamente.',
+                error: 'NetworkError when attempting to fetch resource'
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Error al desactivar profesor',
+            error: error.message
+        });
     }
 };
 

@@ -4769,3 +4769,788 @@ Stack: Error: Faltan campos requeridos (nombre, apellido, correo, password, tele
 2025-07-28 14:11:15 [INFO]: [0mPOST /api/auth/signin [32m200[0m 176.493 ms - 344[0m
 2025-07-28 14:11:36 [INFO]: [0mPOST /api/auth/signup [32m201[0m 251.875 ms - 369[0m
 2025-07-28 14:11:52 [INFO]: [0mPOST /api/auth/signin [32m200[0m 166.452 ms - 344[0m
+2025-07-28 14:15:28 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:15:28 [INFO]: Base de datos conectada
+2025-07-28 14:15:28 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:15:29 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:15:29 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:15:31 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:20:10 [INFO]: [0mPOST /api/auth/signin [32m200[0m 306.351 ms - 344[0m
+2025-07-28 14:22:04 [INFO]: [0mPOST /api/auth/signup [32m201[0m 275.831 ms - 367[0m
+2025-07-28 14:23:00 [INFO]: [0mPOST /api/auth/signin [32m200[0m 175.892 ms - 344[0m
+2025-07-28 14:30:21 [INFO]: [0mPOST /api/auth/signin [32m200[0m 172.545 ms - 344[0m
+2025-07-28 14:34:29 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:34:29 [INFO]: [0mGET /api/profesores [33m404[0m 19.238 ms - 62[0m
+2025-07-28 14:34:29 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:34:29 [INFO]: [0mGET /api/profesores [33m404[0m 23.262 ms - 62[0m
+2025-07-28 14:34:58 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:34:59 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:34:59 [INFO]: [0mGET /api/profesores [33m404[0m 15.748 ms - 62[0m
+2025-07-28 14:34:59 [INFO]: [0mGET /api/profesores [33m404[0m 5.535 ms - 62[0m
+2025-07-28 14:36:11 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:36:12 [INFO]: Base de datos conectada
+2025-07-28 14:36:12 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:36:13 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:36:13 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:36:15 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:36:43 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:36:43 [INFO]: Base de datos conectada
+2025-07-28 14:36:43 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:36:44 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:36:44 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:36:46 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:36:51 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:36:51 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:36:51 [INFO]: [0mGET /api/profesores [33m404[0m 20.942 ms - 62[0m
+2025-07-28 14:36:51 [INFO]: [0mGET /api/profesores [33m404[0m 9.301 ms - 62[0m
+2025-07-28 14:37:09 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:37:09 [INFO]: Base de datos conectada
+2025-07-28 14:37:10 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:37:10 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:37:10 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:37:12 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:37:19 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:37:19 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:37:19 [INFO]: [0mGET /api/profesores [33m404[0m 38.017 ms - 62[0m
+2025-07-28 14:37:19 [INFO]: [0mGET /api/profesores [33m404[0m 51.654 ms - 62[0m
+2025-07-28 14:38:19 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:38:19 [INFO]: Base de datos conectada
+2025-07-28 14:38:19 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:38:20 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:38:20 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:38:22 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:38:57 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:38:57 [INFO]: Base de datos conectada
+2025-07-28 14:38:58 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:38:58 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:38:58 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:39:00 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:41:56 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:41:56 [INFO]: Base de datos conectada
+2025-07-28 14:41:56 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:41:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:41:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:41:59 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:42:18 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:42:18 [INFO]: Base de datos conectada
+2025-07-28 14:42:19 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:42:19 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:42:19 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:42:21 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:43:14 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:43:14 [INFO]: Base de datos conectada
+2025-07-28 14:43:14 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:52:17 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 14:52:17 [INFO]: Base de datos conectada
+2025-07-28 14:52:17 [INFO]: Conexión establecida con la base de datos
+2025-07-28 14:52:18 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 14:52:18 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 14:52:20 [INFO]: Base de Datos sincronizadas
+2025-07-28 14:56:29 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:56:29 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:56:29 [INFO]: [0mGET /api/profesores [33m404[0m 24.932 ms - 62[0m
+2025-07-28 14:56:29 [INFO]: [0mGET /api/profesores [33m404[0m 6.948 ms - 62[0m
+2025-07-28 14:59:09 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:59:09 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:59:09 [INFO]: [0mGET /api/profesores [33m404[0m 8.700 ms - 62[0m
+2025-07-28 14:59:09 [INFO]: [0mGET /api/profesores [33m404[0m 4.926 ms - 62[0m
+2025-07-28 14:59:13 [INFO]: [0mPOST /api/auth/signin [32m200[0m 268.183 ms - 344[0m
+2025-07-28 14:59:18 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:59:18 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 14:59:18 [INFO]: [0mGET /api/profesores [33m404[0m 6.814 ms - 62[0m
+2025-07-28 14:59:18 [INFO]: [0mGET /api/profesores [33m404[0m 7.236 ms - 62[0m
+2025-07-28 15:03:45 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:03:45 [INFO]: Base de datos conectada
+2025-07-28 15:03:45 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:03:50 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:03:50 [INFO]: Base de datos conectada
+2025-07-28 15:03:50 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:03:51 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:03:51 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:03:54 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:04:19 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 15:04:19 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 15:04:19 [INFO]: [0mGET /api/profesores [33m404[0m 19.493 ms - 62[0m
+2025-07-28 15:04:19 [INFO]: [0mGET /api/profesores [33m404[0m 9.705 ms - 62[0m
+2025-07-28 15:06:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:06:41 [INFO]: Base de datos conectada
+2025-07-28 15:06:41 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:06:41 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:06:41 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:06:44 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:07:15 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:07:15 [INFO]: Base de datos conectada
+2025-07-28 15:07:15 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:07:16 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:07:16 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:07:18 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:07:22 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 15:07:22 [WARN]: 404 Not Found: /api/profesores
+2025-07-28 15:07:22 [INFO]: [0mGET /api/profesores [33m404[0m 18.799 ms - 62[0m
+2025-07-28 15:07:22 [INFO]: [0mGET /api/profesores [33m404[0m 10.796 ms - 62[0m
+2025-07-28 15:08:37 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:08:37 [INFO]: Base de datos conectada
+2025-07-28 15:08:38 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:08:38 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:08:38 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:08:40 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:08:53 [ERROR]: Error al obtener profesores: TypeError: res.flash is not a function
+2025-07-28 15:09:35 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:09:35 [INFO]: Base de datos conectada
+2025-07-28 15:09:35 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:09:35 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:09:35 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:09:37 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:09:43 [ERROR]: Error al obtener profesores: TypeError: res.flash is not a function
+2025-07-28 15:10:32 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:10:33 [INFO]: Base de datos conectada
+2025-07-28 15:10:33 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:10:33 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:10:33 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:10:35 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:10:44 [INFO]: [0mGET /api/profesores [32m200[0m 38.979 ms - 72[0m
+2025-07-28 15:10:44 [INFO]: [0mGET /api/profesores [32m200[0m 26.547 ms - 72[0m
+2025-07-28 15:29:09 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:29:09 [INFO]: Base de datos conectada
+2025-07-28 15:29:09 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:29:09 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:29:09 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:29:12 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:29:19 [INFO]: [0mGET /api/profesores [32m200[0m 51.506 ms - 72[0m
+2025-07-28 15:29:19 [INFO]: [0mGET /api/profesores [32m200[0m 35.673 ms - 72[0m
+2025-07-28 15:30:57 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:30:57 [INFO]: Base de datos conectada
+2025-07-28 15:30:57 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:30:58 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:30:58 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:31:01 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:31:26 [INFO]: [0mGET /api/profesores [36m304[0m 49.558 ms - -[0m
+2025-07-28 15:31:26 [INFO]: [0mGET /api/profesores [36m304[0m 13.135 ms - -[0m
+2025-07-28 15:31:59 [ERROR]: Error al crear profesor: SequelizeDatabaseError: Column 'idProfesor' cannot be null
+2025-07-28 15:31:59 [INFO]: [0mPOST /api/profesores [31m500[0m 184.483 ms - 122[0m
+2025-07-28 15:32:06 [ERROR]: Error al crear profesor: SequelizeDatabaseError: Column 'idProfesor' cannot be null
+2025-07-28 15:32:06 [INFO]: [0mPOST /api/profesores [31m500[0m 7.488 ms - 122[0m
+2025-07-28 15:32:46 [INFO]: [0mGET /api/profesores [32m200[0m 5.575 ms - 72[0m
+2025-07-28 15:32:46 [INFO]: [0mGET /api/profesores [36m304[0m 6.185 ms - -[0m
+2025-07-28 15:34:00 [INFO]: [0mGET /api/profesores [36m304[0m 6.422 ms - -[0m
+2025-07-28 15:34:00 [INFO]: [0mGET /api/profesores [36m304[0m 3.477 ms - -[0m
+2025-07-28 15:34:57 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:34:57 [INFO]: Base de datos conectada
+2025-07-28 15:34:57 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:34:58 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:34:58 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:35:01 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:35:31 [INFO]: [0mGET /api/profesores [36m304[0m 52.130 ms - -[0m
+2025-07-28 15:35:31 [INFO]: [0mGET /api/profesores [36m304[0m 6.878 ms - -[0m
+2025-07-28 15:35:43 [INFO]: [0mGET /api/profesores [36m304[0m 7.809 ms - -[0m
+2025-07-28 15:35:43 [INFO]: [0mGET /api/profesores [36m304[0m 7.455 ms - -[0m
+2025-07-28 15:37:17 [ERROR]: Error detallado al crear profesor: [object Object]
+2025-07-28 15:37:17 [INFO]: [0mPOST /api/profesores [31m500[0m 74.220 ms - 77[0m
+2025-07-28 15:44:12 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:44:12 [INFO]: Base de datos conectada
+2025-07-28 15:44:12 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:44:13 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:44:13 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:44:16 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:44:17 [INFO]: [0mPOST /api/auth/signin [32m200[0m 276.801 ms - 344[0m
+2025-07-28 15:44:22 [INFO]: [0mGET /api/profesores [32m200[0m 15.025 ms - 72[0m
+2025-07-28 15:44:22 [INFO]: [0mGET /api/profesores [36m304[0m 8.376 ms - -[0m
+2025-07-28 15:45:29 [INFO]: [0mPOST /api/profesores [33m400[0m 5.696 ms - 78[0m
+2025-07-28 15:45:43 [ERROR]: Error detallado al crear profesor: [object Object]
+2025-07-28 15:45:43 [INFO]: [0mPOST /api/profesores [31m500[0m 120.903 ms - 77[0m
+2025-07-28 15:55:26 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 15:55:26 [INFO]: [0mGET /api/profesores [31m500[0m 13.658 ms - 144[0m
+2025-07-28 15:55:26 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 15:55:26 [INFO]: [0mGET /api/profesores [31m500[0m 10.945 ms - 144[0m
+2025-07-28 15:55:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:55:41 [INFO]: Base de datos conectada
+2025-07-28 15:55:41 [WARN]: Server too busy!
+2025-07-28 15:55:41 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 15:55:41 [INFO]: [0mGET /api/profesores [31m500[0m 24.803 ms - 74[0m
+2025-07-28 15:55:41 [WARN]: Server too busy!
+2025-07-28 15:55:41 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 15:55:41 [INFO]: [0mGET /api/profesores [31m500[0m 56.100 ms - 74[0m
+2025-07-28 15:55:41 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:55:42 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:55:42 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:55:44 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:55:54 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:55:54 [INFO]: Base de datos conectada
+2025-07-28 15:55:54 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:55:54 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:55:54 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:55:56 [WARN]: Server too busy!
+2025-07-28 15:55:56 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 15:55:56 [INFO]: [0mGET /api/profesores [31m500[0m 62.048 ms - 74[0m
+2025-07-28 15:55:56 [WARN]: Server too busy!
+2025-07-28 15:55:56 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 15:55:56 [INFO]: [0mGET /api/profesores [31m500[0m 32.704 ms - 74[0m
+2025-07-28 15:55:58 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:56:24 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 15:56:25 [INFO]: Base de datos conectada
+2025-07-28 15:56:25 [INFO]: Conexión establecida con la base de datos
+2025-07-28 15:56:25 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 15:56:25 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 15:56:27 [INFO]: Base de Datos sincronizadas
+2025-07-28 15:56:51 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 15:56:51 [INFO]: [0mGET /api/profesores [31m500[0m 43.792 ms - 123[0m
+2025-07-28 15:56:51 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 15:56:51 [INFO]: [0mGET /api/profesores [31m500[0m 45.502 ms - 123[0m
+2025-07-28 16:00:34 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:00:34 [INFO]: Base de datos conectada
+2025-07-28 16:00:34 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:00:35 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:00:35 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:00:37 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:00:53 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:00:53 [INFO]: [0mGET /api/profesores [31m500[0m 38.417 ms - 123[0m
+2025-07-28 16:00:53 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:00:53 [INFO]: [0mGET /api/profesores [31m500[0m 35.317 ms - 123[0m
+2025-07-28 16:02:45 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:02:45 [INFO]: Base de datos conectada
+2025-07-28 16:02:45 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:02:46 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:02:46 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:02:48 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:05:55 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:05:55 [INFO]: [0mGET /api/profesores [31m500[0m 39.037 ms - 123[0m
+2025-07-28 16:05:55 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:05:55 [INFO]: [0mGET /api/profesores [31m500[0m 39.611 ms - 123[0m
+2025-07-28 16:07:52 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:07:52 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:07:52 [INFO]: Base de datos conectada
+2025-07-28 16:07:52 [INFO]: Base de datos conectada
+2025-07-28 16:07:52 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:07:53 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:07:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:07:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:07:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:07:58 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:07:58 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:09:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:09:41 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:09:41 [INFO]: Base de datos conectada
+2025-07-28 16:09:41 [INFO]: Base de datos conectada
+2025-07-28 16:09:41 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:09:41 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:09:41 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUnknownConstraintError: Constraint usuarios_ibfk_1 on table usuarios does not exist
+2025-07-28 16:09:42 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:09:42 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:09:42 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:09:43 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:10:22 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:10:22 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:10:22 [INFO]: Base de datos conectada
+2025-07-28 16:10:22 [INFO]: Base de datos conectada
+2025-07-28 16:10:22 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:10:22 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:10:23 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUnknownConstraintError: Constraint usuarios_ibfk_1 on table usuarios does not exist
+2025-07-28 16:10:23 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:10:23 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:10:23 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:10:26 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:11:13 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:11:13 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:11:13 [INFO]: Base de datos conectada
+2025-07-28 16:11:13 [INFO]: Base de datos conectada
+2025-07-28 16:11:14 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:11:14 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:11:14 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUnknownConstraintError: Constraint usuarios_ibfk_1 on table usuarios does not exist
+2025-07-28 16:11:14 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:11:14 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:11:14 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:11:17 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:11:18 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:11:18 [INFO]: [0mGET /api/profesores [31m500[0m 100.096 ms - 123[0m
+2025-07-28 16:11:18 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:11:18 [INFO]: [0mGET /api/profesores [31m500[0m 236.000 ms - 123[0m
+2025-07-28 16:12:05 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:12:05 [INFO]: [0mGET /api/profesores [31m500[0m 21.941 ms - 123[0m
+2025-07-28 16:12:05 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:12:05 [INFO]: [0mGET /api/profesores [31m500[0m 171.075 ms - 123[0m
+2025-07-28 16:12:29 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:12:29 [INFO]: Base de datos conectada
+2025-07-28 16:12:29 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:12:30 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:12:30 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:12:31 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:12:38 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:12:38 [INFO]: [0mGET /api/profesores [31m500[0m 38.046 ms - 123[0m
+2025-07-28 16:12:38 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:12:38 [INFO]: [0mGET /api/profesores [31m500[0m 30.804 ms - 123[0m
+2025-07-28 16:12:58 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:12:58 [INFO]: Base de datos conectada
+2025-07-28 16:12:58 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:12:59 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:12:59 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:13:01 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:13:45 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:13:45 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:13:45 [INFO]: Base de datos conectada
+2025-07-28 16:13:45 [INFO]: Base de datos conectada
+2025-07-28 16:13:45 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:13:45 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:13:45 [ERROR]: Error al sincronizar la Base de Datos: SequelizeDatabaseError: Can't DROP FOREIGN KEY `usuarios_ibfk_1`; check that it exists
+2025-07-28 16:13:46 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:13:46 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:13:46 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:13:49 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:17:55 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:17:55 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:17:55 [INFO]: Base de datos conectada
+2025-07-28 16:17:55 [INFO]: Base de datos conectada
+2025-07-28 16:17:55 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:17:55 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:17:56 [ERROR]: Error al sincronizar la Base de Datos: SequelizeDatabaseError: Can't DROP FOREIGN KEY `usuarios_ibfk_1`; check that it exists
+2025-07-28 16:17:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:17:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:17:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:17:58 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:18:59 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:18:59 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:18:59 [INFO]: Base de datos conectada
+2025-07-28 16:19:00 [INFO]: Base de datos conectada
+2025-07-28 16:19:00 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:19:00 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:19:00 [ERROR]: Error al sincronizar la Base de Datos: SequelizeDatabaseError: Can't DROP FOREIGN KEY `usuarios_ibfk_1`; check that it exists
+2025-07-28 16:19:00 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:19:00 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:19:00 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:19:02 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:20:48 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:20:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:20:48 [INFO]: Base de datos conectada
+2025-07-28 16:20:48 [INFO]: Base de datos conectada
+2025-07-28 16:20:48 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:20:49 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:20:49 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:20:49 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:20:49 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:20:49 [ERROR]: Error al sincronizar la Base de Datos: SequelizeDatabaseError: Can't DROP FOREIGN KEY `usuarios_ibfk_1`; check that it exists
+2025-07-28 16:20:57 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:20:57 [INFO]: Base de datos conectada
+2025-07-28 16:20:58 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:20:58 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:20:58 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:21:00 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:21:17 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:17 [INFO]: [0mGET /api/profesores [31m500[0m 42.191 ms - 123[0m
+2025-07-28 16:21:17 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:17 [INFO]: [0mGET /api/profesores [31m500[0m 98.348 ms - 123[0m
+2025-07-28 16:21:25 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:25 [INFO]: [0mGET /api/profesores [31m500[0m 12.126 ms - 123[0m
+2025-07-28 16:21:25 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:25 [INFO]: [0mGET /api/profesores [31m500[0m 18.999 ms - 123[0m
+2025-07-28 16:21:29 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:29 [INFO]: [0mGET /api/profesores [31m500[0m 11.259 ms - 123[0m
+2025-07-28 16:21:29 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:29 [INFO]: [0mGET /api/profesores [31m500[0m 11.197 ms - 123[0m
+2025-07-28 16:21:37 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:37 [INFO]: [0mGET /api/profesores [31m500[0m 4.497 ms - 123[0m
+2025-07-28 16:21:41 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:41 [INFO]: [0mGET /api/profesores [31m500[0m 17.120 ms - 123[0m
+2025-07-28 16:21:41 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:41 [INFO]: [0mGET /api/profesores [31m500[0m 19.647 ms - 123[0m
+2025-07-28 16:21:45 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:45 [INFO]: [0mGET /api/profesores [31m500[0m 7.127 ms - 123[0m
+2025-07-28 16:21:57 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:57 [INFO]: [0mGET /api/profesores [31m500[0m 8.615 ms - 123[0m
+2025-07-28 16:21:57 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:21:57 [INFO]: [0mGET /api/profesores [31m500[0m 12.621 ms - 123[0m
+2025-07-28 16:24:49 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:24:49 [INFO]: Base de datos conectada
+2025-07-28 16:24:49 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:24:49 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:24:49 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:24:52 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:25:20 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:25:20 [INFO]: Base de datos conectada
+2025-07-28 16:25:20 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:25:20 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:25:20 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:25:22 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:25:24 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:25:24 [INFO]: [0mGET /api/profesores [31m500[0m 37.082 ms - 123[0m
+2025-07-28 16:25:24 [ERROR]: Error al obtener profesores: TypeError: Cannot read properties of undefined (reading 'findOne')
+2025-07-28 16:25:24 [INFO]: [0mGET /api/profesores [31m500[0m 219.544 ms - 123[0m
+2025-07-28 16:25:48 [INFO]: [0mGET /api/profesores [32m200[0m 12.627 ms - 26[0m
+2025-07-28 16:25:48 [INFO]: [0mGET /api/profesores [32m200[0m 10.794 ms - 26[0m
+2025-07-28 16:39:29 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:39:30 [INFO]: Base de datos conectada
+2025-07-28 16:39:30 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:39:30 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:39:30 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:39:32 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:39:58 [ERROR]: Error al crear profesor: SequelizeDatabaseError: Column 'idProfesor' cannot be null
+2025-07-28 16:39:58 [INFO]: [0mPOST /api/profesores [31m500[0m 200.443 ms - 98[0m
+2025-07-28 16:40:08 [INFO]: [0mGET /api/profesores [32m200[0m 27.732 ms - 26[0m
+2025-07-28 16:40:08 [INFO]: [0mGET /api/profesores [36m304[0m 7.386 ms - -[0m
+2025-07-28 16:40:43 [ERROR]: Error al crear profesor: SequelizeDatabaseError: Column 'idProfesor' cannot be null
+2025-07-28 16:40:43 [INFO]: [0mPOST /api/profesores [31m500[0m 10.104 ms - 98[0m
+2025-07-28 16:42:25 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:42:25 [INFO]: Base de datos conectada
+2025-07-28 16:42:25 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:42:26 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:42:26 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:42:28 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:42:33 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:42:33 [INFO]: [0mPOST /api/profesores [31m500[0m 96.052 ms - 118[0m
+2025-07-28 16:44:54 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:44:54 [INFO]: Base de datos conectada
+2025-07-28 16:44:54 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:44:55 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:44:55 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:44:57 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:45:00 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:45:00 [INFO]: [0mPOST /api/profesores [31m500[0m 97.395 ms - 118[0m
+2025-07-28 16:45:06 [INFO]: [0mGET /api/profesores [32m200[0m 18.186 ms - 26[0m
+2025-07-28 16:45:06 [INFO]: [0mGET /api/profesores [36m304[0m 6.072 ms - -[0m
+2025-07-28 16:45:31 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:45:31 [INFO]: [0mPOST /api/profesores [31m500[0m 15.700 ms - 118[0m
+2025-07-28 16:45:34 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:45:34 [INFO]: [0mPOST /api/profesores [31m500[0m 9.787 ms - 118[0m
+2025-07-28 16:45:49 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:45:49 [INFO]: Base de datos conectada
+2025-07-28 16:45:49 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:45:50 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:45:50 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:45:51 [WARN]: Server too busy!
+2025-07-28 16:45:51 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 16:45:51 [INFO]: [0mPOST /api/profesores [31m500[0m 45.507 ms - 74[0m
+2025-07-28 16:45:53 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:45:55 [ERROR]: Error al crear profesor: SequelizeDatabaseError: Column 'idProfesor' cannot be null
+2025-07-28 16:45:55 [INFO]: [0mPOST /api/profesores [31m500[0m 92.806 ms - 98[0m
+2025-07-28 16:47:46 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:47:46 [INFO]: Base de datos conectada
+2025-07-28 16:47:46 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:47:47 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:47:47 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:47:48 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:48:18 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:48:18 [INFO]: Base de datos conectada
+2025-07-28 16:48:18 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:48:19 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:48:19 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:48:21 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:48:23 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:48:23 [INFO]: [0mPOST /api/profesores [31m500[0m 101.274 ms - 118[0m
+2025-07-28 16:48:26 [ERROR]: Error al crear profesor: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-28 16:48:26 [INFO]: [0mPOST /api/profesores [31m500[0m 14.255 ms - 118[0m
+2025-07-28 16:51:01 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:51:01 [INFO]: Base de datos conectada
+2025-07-28 16:51:01 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:51:02 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:51:02 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:51:03 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:51:13 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:51:13 [INFO]: Base de datos conectada
+2025-07-28 16:51:13 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:51:13 [WARN]: Server too busy!
+2025-07-28 16:51:13 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 16:51:13 [INFO]: [0mPOST /api/profesores [31m500[0m 12.983 ms - 74[0m
+2025-07-28 16:51:14 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:51:14 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:51:16 [WARN]: Server too busy!
+2025-07-28 16:51:16 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 16:51:16 [INFO]: [0mPOST /api/profesores [31m500[0m 21.888 ms - 74[0m
+2025-07-28 16:51:16 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:51:17 [ERROR]: Error al crear profesor: ReferenceError: mongoProfesor is not defined
+2025-07-28 16:51:17 [INFO]: [0mPOST /api/profesores [31m500[0m 100.477 ms - 92[0m
+2025-07-28 16:51:20 [ERROR]: Error al crear profesor: ReferenceError: mongoProfesor is not defined
+2025-07-28 16:51:20 [INFO]: [0mPOST /api/profesores [31m500[0m 9.408 ms - 92[0m
+2025-07-28 16:51:22 [ERROR]: Error al crear profesor: ReferenceError: mongoProfesor is not defined
+2025-07-28 16:51:22 [INFO]: [0mPOST /api/profesores [31m500[0m 8.052 ms - 92[0m
+2025-07-28 16:53:57 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:53:57 [INFO]: Base de datos conectada
+2025-07-28 16:53:58 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:53:58 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:53:58 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:54:01 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:56:16 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:56:17 [INFO]: Base de datos conectada
+2025-07-28 16:56:17 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:56:17 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:56:17 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:56:20 [INFO]: Base de Datos sincronizadas
+2025-07-28 16:57:36 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 16:57:36 [INFO]: Base de datos conectada
+2025-07-28 16:57:36 [INFO]: Conexión establecida con la base de datos
+2025-07-28 16:57:37 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 16:57:37 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 16:57:39 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:01:01 [INFO]: [0mGET /api/profesores [32m200[0m 51.082 ms - 26[0m
+2025-07-28 17:01:01 [INFO]: [0mGET /api/profesores [36m304[0m 8.458 ms - -[0m
+2025-07-28 17:03:43 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:03:43 [INFO]: Base de datos conectada
+2025-07-28 17:03:44 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:03:44 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:03:44 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:03:47 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:03:50 [ERROR]: Error al crear profesor: SequelizeValidationError: Validation error: Validation isEmail on gmail failed
+2025-07-28 17:03:50 [INFO]: [0mPOST /api/profesores [31m500[0m 101.052 ms - 116[0m
+2025-07-28 17:04:10 [INFO]: [0mPOST /api/profesores [32m201[0m 31.954 ms - 105[0m
+2025-07-28 17:04:28 [INFO]: [0mDELETE /api/profesores/undefined [32m200[0m 30.181 ms - 62[0m
+2025-07-28 17:05:15 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:05:15 [INFO]: [0mPOST /api/profesores [31m500[0m 12.085 ms - 80[0m
+2025-07-28 17:05:40 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:05:40 [INFO]: [0mPOST /api/profesores [31m500[0m 9.077 ms - 80[0m
+2025-07-28 17:05:44 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:05:44 [INFO]: [0mPOST /api/profesores [31m500[0m 12.024 ms - 80[0m
+2025-07-28 17:05:47 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:05:47 [INFO]: [0mPOST /api/profesores [31m500[0m 8.677 ms - 80[0m
+2025-07-28 17:05:53 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:05:53 [INFO]: [0mPOST /api/profesores [31m500[0m 7.214 ms - 80[0m
+2025-07-28 17:06:15 [INFO]: [0mGET /api/profesores [32m200[0m 23.843 ms - 333[0m
+2025-07-28 17:06:15 [INFO]: [0mGET /api/profesores [36m304[0m 8.271 ms - -[0m
+2025-07-28 17:07:00 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:07:00 [INFO]: [0mPOST /api/profesores [31m500[0m 8.367 ms - 80[0m
+2025-07-28 17:07:04 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:07:04 [INFO]: [0mPOST /api/profesores [31m500[0m 9.721 ms - 80[0m
+2025-07-28 17:09:20 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:09:20 [INFO]: Base de datos conectada
+2025-07-28 17:09:20 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:09:20 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:09:20 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:09:22 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:09:54 [INFO]: [0mGET /api/profesores [32m200[0m 32.545 ms - 333[0m
+2025-07-28 17:09:54 [INFO]: [0mGET /api/profesores [36m304[0m 11.631 ms - -[0m
+2025-07-28 17:10:33 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:10:33 [INFO]: [0mPOST /api/profesores [31m500[0m 103.377 ms - 80[0m
+2025-07-28 17:13:16 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:13:17 [INFO]: Base de datos conectada
+2025-07-28 17:13:17 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:13:17 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:13:17 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:13:20 [WARN]: Server too busy!
+2025-07-28 17:13:20 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:13:20 [INFO]: [0mGET /api/profesores [31m500[0m 54.000 ms - 74[0m
+2025-07-28 17:13:20 [WARN]: Server too busy!
+2025-07-28 17:13:20 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:13:20 [INFO]: [0mGET /api/profesores [31m500[0m 15.008 ms - 74[0m
+2025-07-28 17:13:21 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:13:23 [INFO]: [0mGET /api/profesores [32m200[0m 46.742 ms - 333[0m
+2025-07-28 17:13:23 [INFO]: [0mGET /api/profesores [32m200[0m 35.558 ms - 333[0m
+2025-07-28 17:13:53 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:13:53 [INFO]: [0mPOST /api/profesores [31m500[0m 101.876 ms - 80[0m
+2025-07-28 17:14:06 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:14:06 [INFO]: [0mPOST /api/profesores [31m500[0m 13.841 ms - 80[0m
+2025-07-28 17:14:10 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:14:10 [INFO]: [0mPOST /api/profesores [31m500[0m 12.665 ms - 80[0m
+2025-07-28 17:14:28 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:14:28 [INFO]: [0mPOST /api/profesores [31m500[0m 13.991 ms - 80[0m
+2025-07-28 17:14:33 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:14:33 [INFO]: [0mPOST /api/profesores [31m500[0m 12.635 ms - 80[0m
+2025-07-28 17:17:16 [INFO]: [0mGET /api/profesores [32m200[0m 5.786 ms - 638[0m
+2025-07-28 17:17:16 [INFO]: [0mGET /api/profesores [36m304[0m 8.977 ms - -[0m
+2025-07-28 17:17:37 [ERROR]: Error al crear profesor: SequelizeValidationError: Validation error: Validation isEmail on gmail failed
+2025-07-28 17:17:37 [INFO]: [0mPOST /api/profesores [31m500[0m 11.053 ms - 116[0m
+2025-07-28 17:17:57 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:17:57 [INFO]: [0mPOST /api/profesores [31m500[0m 13.261 ms - 80[0m
+2025-07-28 17:18:36 [INFO]: [0mGET /api/profesores [32m200[0m 7.360 ms - 26[0m
+2025-07-28 17:18:36 [INFO]: [0mGET /api/profesores [36m304[0m 11.698 ms - -[0m
+2025-07-28 17:19:00 [ERROR]: Error al crear profesor: SequelizeValidationError: Validation error: Validation isEmail on gmail failed
+2025-07-28 17:19:00 [INFO]: [0mPOST /api/profesores [31m500[0m 11.541 ms - 116[0m
+2025-07-28 17:19:27 [INFO]: [0mPOST /api/profesores [32m201[0m 15.109 ms - 102[0m
+2025-07-28 17:19:33 [INFO]: [0mGET /api/profesores [32m200[0m 6.503 ms - 327[0m
+2025-07-28 17:19:33 [INFO]: [0mGET /api/profesores [36m304[0m 7.206 ms - -[0m
+2025-07-28 17:20:08 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:20:08 [INFO]: [0mPOST /api/profesores [31m500[0m 12.697 ms - 80[0m
+2025-07-28 17:20:45 [INFO]: [0mPOST /api/profesores [33m400[0m 8.561 ms - 73[0m
+2025-07-28 17:20:47 [INFO]: [0mPOST /api/profesores [33m400[0m 7.437 ms - 73[0m
+2025-07-28 17:20:55 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:20:55 [INFO]: [0mPOST /api/profesores [31m500[0m 12.206 ms - 80[0m
+2025-07-28 17:21:12 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:21:12 [INFO]: [0mPOST /api/profesores [31m500[0m 12.771 ms - 80[0m
+2025-07-28 17:21:17 [INFO]: [0mDELETE /api/profesores/0 [32m200[0m 37.840 ms - 62[0m
+2025-07-28 17:21:32 [INFO]: [0mGET /api/profesores [32m200[0m 4.608 ms - 329[0m
+2025-07-28 17:21:32 [INFO]: [0mGET /api/profesores [36m304[0m 9.410 ms - -[0m
+2025-07-28 17:25:32 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:25:32 [WARN]: Server too busy!
+2025-07-28 17:25:32 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:25:32 [INFO]: [0mGET /api/profesores [31m500[0m 11.869 ms - 74[0m
+2025-07-28 17:25:32 [INFO]: Base de datos conectada
+2025-07-28 17:25:32 [WARN]: Server too busy!
+2025-07-28 17:25:32 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:25:32 [INFO]: [0mGET /api/profesores [31m500[0m 13.467 ms - 74[0m
+2025-07-28 17:25:32 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:25:33 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:25:33 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:25:35 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:25:41 [INFO]: [0mGET /api/profesores [32m200[0m 45.547 ms - 329[0m
+2025-07-28 17:25:41 [INFO]: [0mGET /api/profesores [32m200[0m 23.292 ms - 329[0m
+2025-07-28 17:26:26 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 17:26:26 [INFO]: [0mPOST /api/profesores [31m500[0m 111.721 ms - 80[0m
+2025-07-28 17:29:39 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:29:39 [INFO]: Base de datos conectada
+2025-07-28 17:29:39 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:29:40 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:29:40 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:29:43 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:30:05 [INFO]: [0mGET /api/profesores [32m200[0m 40.089 ms - 26[0m
+2025-07-28 17:30:05 [INFO]: [0mGET /api/profesores [36m304[0m 8.488 ms - -[0m
+2025-07-28 17:30:54 [INFO]: [0mPOST /api/profesores [33m400[0m 36.287 ms - 93[0m
+2025-07-28 17:30:59 [INFO]: [0mPOST /api/profesores [33m400[0m 5.918 ms - 93[0m
+2025-07-28 17:31:04 [INFO]: [0mPOST /api/profesores [33m400[0m 4.598 ms - 93[0m
+2025-07-28 17:31:21 [INFO]: [0mPOST /api/profesores [33m400[0m 4.178 ms - 93[0m
+2025-07-28 17:32:28 [INFO]: [0mPOST /api/profesores [33m400[0m 3.634 ms - 93[0m
+2025-07-28 17:32:47 [INFO]: [0mPOST /api/profesores [33m400[0m 6.138 ms - 93[0m
+2025-07-28 17:35:08 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 17:35:08 [INFO]: Base de datos conectada
+2025-07-28 17:35:08 [WARN]: Server too busy!
+2025-07-28 17:35:08 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:35:09 [INFO]: [0mGET /api/profesores [31m500[0m 14.570 ms - 74[0m
+2025-07-28 17:35:09 [WARN]: Server too busy!
+2025-07-28 17:35:09 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-28 17:35:09 [INFO]: [0mGET /api/profesores [31m500[0m 7.348 ms - 74[0m
+2025-07-28 17:35:09 [INFO]: Conexión establecida con la base de datos
+2025-07-28 17:35:09 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 17:35:09 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 17:35:12 [INFO]: Base de Datos sincronizadas
+2025-07-28 17:35:17 [INFO]: [0mGET /api/profesores [32m200[0m 32.419 ms - 26[0m
+2025-07-28 17:35:17 [INFO]: [0mGET /api/profesores [32m200[0m 12.239 ms - 26[0m
+2025-07-28 17:35:52 [INFO]: [0mPOST /api/profesores [32m201[0m 105.019 ms - 102[0m
+2025-07-28 17:36:04 [INFO]: [0mGET /api/profesores [32m200[0m 6.455 ms - 329[0m
+2025-07-28 17:36:04 [INFO]: [0mGET /api/profesores [36m304[0m 6.081 ms - -[0m

@@ -292,6 +292,7 @@ app.use('/api/asistencias', require('./router/asistencia.routes'));
 app.use('/api/inventarios', require('./router/inventario.routes'));
 app.use('/api/productos', require('./router/producto.routes'));
 app.use ('/api/configuracion', require('./router/configuracion.routes'));
+app.use ('/api/profesores', require('./router/profesor.routes')); // <--- This line
 
 // Configurar variables globales (para flash messages y req.user, si se usan en vistas tradicionales)
 app.use((req, res, next) => {

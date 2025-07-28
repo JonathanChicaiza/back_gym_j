@@ -1,12 +1,21 @@
 const express = require('express');
 const router = express.Router();
+
 const {
-  mostrarProfesor,
-  crearProfesor
+    obtenerProfesores,
+    obtenerProfesor,
+    crearProfesor,
+    actualizarProfesor,
+    eliminarProfesor,
+    cambiarEstado
 } = require('../controller/profesor.controller');
 
-// Rutas básicas
-router.get('/mostrar', mostrarProfesor);
-router.post('/crear', crearProfesor);
+// Rutas para profesores
+router.get('/', obtenerProfesores);
+router.get('/:id', obtenerProfesor);
+router.post('/', crearProfesor);
+router.put('/:id', actualizarProfesor);
+router.delete('/:id', eliminarProfesor);
+router.patch('/:id/estado', cambiarEstado); // Cambiado a PATCH que es más semántico para cambios de estado
 
 module.exports = router;
