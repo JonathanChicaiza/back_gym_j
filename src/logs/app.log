@@ -5554,3 +5554,31 @@ Stack: TypeError: res.apiError is not a function
 2025-07-28 17:35:52 [INFO]: [0mPOST /api/profesores [32m201[0m 105.019 ms - 102[0m
 2025-07-28 17:36:04 [INFO]: [0mGET /api/profesores [32m200[0m 6.455 ms - 329[0m
 2025-07-28 17:36:04 [INFO]: [0mGET /api/profesores [36m304[0m 6.081 ms - -[0m
+2025-07-28 20:48:23 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 20:48:24 [ERROR]: Error inesperado: connect ETIMEDOUT
+2025-07-28 20:48:25 [INFO]: Conexión establecida con la base de datos
+2025-07-28 20:48:25 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 20:48:25 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 20:48:38 [INFO]: Base de Datos sincronizadas
+2025-07-28 20:49:03 [INFO]: [0mPOST /api/auth/signup [32m201[0m 648.180 ms - 333[0m
+2025-07-28 20:53:35 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-28 20:53:35 [INFO]: Base de datos conectada
+2025-07-28 20:53:36 [INFO]: Conexión establecida con la base de datos
+2025-07-28 20:53:36 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-28 20:53:36 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-28 20:53:41 [INFO]: Base de Datos sincronizadas
+2025-07-28 20:54:24 [INFO]: [0mPOST /api/auth/signin [32m200[0m 480.195 ms - 308[0m
+2025-07-28 20:54:34 [INFO]: [0mGET /api/profesores [36m304[0m 28.956 ms - -[0m
+2025-07-28 20:54:34 [INFO]: [0mGET /api/profesores [36m304[0m 10.270 ms - -[0m
+2025-07-28 20:55:14 [INFO]: [0mPOST /api/profesores [33m400[0m 18.418 ms - 72[0m
+2025-07-28 20:55:21 [INFO]: [0mPOST /api/profesores [33m400[0m 8.788 ms - 73[0m
+2025-07-28 20:55:29 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-28 20:55:29 [INFO]: [0mPOST /api/profesores [31m500[0m 90.450 ms - 80[0m
+2025-07-28 20:55:54 [INFO]: [0mGET /api/profesores [32m200[0m 8.492 ms - 26[0m
+2025-07-28 20:55:54 [INFO]: [0mGET /api/profesores [36m304[0m 24.445 ms - -[0m
+2025-07-28 20:56:24 [INFO]: [0mPOST /api/profesores [32m201[0m 26.230 ms - 105[0m
+2025-07-28 20:56:29 [INFO]: [0mGET /api/profesores [32m200[0m 9.364 ms - 332[0m
+2025-07-28 20:56:29 [INFO]: [0mGET /api/profesores [36m304[0m 9.685 ms - -[0m
+2025-07-28 20:56:35 [INFO]: [0mDELETE /api/profesores/0 [32m200[0m 23.744 ms - 62[0m
+2025-07-28 20:56:42 [INFO]: [0mGET /api/profesores [32m200[0m 14.180 ms - 334[0m
+2025-07-28 20:56:42 [INFO]: [0mGET /api/profesores [36m304[0m 16.544 ms - -[0m

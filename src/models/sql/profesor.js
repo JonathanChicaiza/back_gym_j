@@ -54,12 +54,12 @@ const profesor = (sequelize, type) => {
             comment: 'Hora de fin de disponibilidad'
         },
         experiencia: {
-            type: type.TEXT,
+            type: type.STRING,
             allowNull: true,
             comment: 'Experiencia laboral del profesor'
         },
         formacion_academica: {
-            type: type.TEXT,
+            type: type.STRING,
             allowNull: true,
             comment: 'Formación académica del profesor'
         },
