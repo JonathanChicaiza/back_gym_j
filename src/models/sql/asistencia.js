@@ -5,10 +5,14 @@ const asistencia = (sequelize, type) => {
             autoIncrement: true,
             primaryKey: true,
         },
+        tiporeporte: type.STRING,
+        desde: type.DATE,
+        hasta: type.DATE, 
+        formato: type.STRING, 
         estado: type.STRING,
         stateAsistencia: type.STRING,
-        createAsistencia: type.STRING,
-        updateAsistencia: type.STRING
+        createAsistencia: type.DATE, 
+        updateAsistencia: type.DATE 
     }, {
         timestamps: false,
         comment: 'Tabla de Asistencias'
