@@ -312,7 +312,7 @@ profesorCtl.cambiarEstado = async (req, res) => {
     const t = await profesor.sequelize.transaction();
     try {
         const { id } = req.params;
-        const { stateProfesor } = req.body;
+        const { stateProfesor } = req.body; // Expects 'active' or 'inactive'
 
         // Validar estado
         if (!['active', 'inactive'].includes(stateProfesor)) {
@@ -336,7 +336,7 @@ profesorCtl.cambiarEstado = async (req, res) => {
         // Actualizar estado
         const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
         await profesor.update({
-            stateProfesor,
+            stateProfesor, // Set to the new state received
             updateProfesor: currentTime
         }, {
             where: { idProfesor: id },
@@ -352,8 +352,7 @@ profesorCtl.cambiarEstado = async (req, res) => {
     } catch (error) {
         await t.rollback();
         console.error('Error al cambiar estado del profesor:', error);
-        
-        // Manejar errores de red específicamente
+
         if (error.name === 'SequelizeDatabaseError' || error.message.includes('NetworkError')) {
             return res.status(503).json({
                 success: false,
@@ -371,13 +370,14 @@ profesorCtl.cambiarEstado = async (req, res) => {
 };
 
 // Eliminar profesor (cambiar estado a inactive)
+// Eliminar profesor (eliminación física)
 profesorCtl.eliminarProfesor = async (req, res) => {
     const t = await profesor.sequelize.transaction();
     try {
         const { id } = req.params;
 
         // Verificar existencia
-        const profesorExistente = await profesor.findByPk(id);
+        const profesorExistente = await profesor.findByPk(id, { transaction: t });
         if (!profesorExistente) {
             await t.rollback();
             return res.status(404).json({
@@ -386,12 +386,8 @@ profesorCtl.eliminarProfesor = async (req, res) => {
             });
         }
 
-        // Cambiar estado a inactive (eliminación lógica)
-        const currentTime = new Date().toLocaleString('es-EC', configTimeZone);
-        await profesor.update({
-            stateProfesor: 'inactive',
-            updateProfesor: currentTime
-        }, {
+        // Eliminar físicamente el profesor
+        await profesor.destroy({
             where: { idProfesor: id },
             transaction: t
         });
@@ -400,13 +396,12 @@ profesorCtl.eliminarProfesor = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: 'Profesor desactivado exitosamente'
+            message: 'Profesor eliminado exitosamente'
         });
     } catch (error) {
         await t.rollback();
-        console.error('Error al desactivar profesor:', error);
-        
-        // Manejar errores de red
+        console.error('Error al eliminar profesor:', error);
+
         if (error.name === 'SequelizeDatabaseError' || error.message.includes('NetworkError')) {
             return res.status(503).json({
                 success: false,
@@ -417,7 +412,7 @@ profesorCtl.eliminarProfesor = async (req, res) => {
 
         res.status(500).json({
             success: false,
-            message: 'Error al desactivar profesor',
+            message: 'Error al eliminar profesor',
             error: error.message
         });
     }

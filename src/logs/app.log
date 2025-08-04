@@ -5582,3 +5582,994 @@ Stack: TypeError: res.apiError is not a function
 2025-07-28 20:56:35 [INFO]: [0mDELETE /api/profesores/0 [32m200[0m 23.744 ms - 62[0m
 2025-07-28 20:56:42 [INFO]: [0mGET /api/profesores [32m200[0m 14.180 ms - 334[0m
 2025-07-28 20:56:42 [INFO]: [0mGET /api/profesores [36m304[0m 16.544 ms - -[0m
+2025-07-29 14:03:26 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:03:26 [INFO]: Base de datos conectada
+2025-07-29 14:03:26 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:03:27 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:03:27 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:03:28 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:03:38 [INFO]: [0mGET /api/profesores [36m304[0m 42.545 ms - -[0m
+2025-07-29 14:03:38 [INFO]: [0mGET /api/profesores [36m304[0m 10.311 ms - -[0m
+2025-07-29 14:15:33 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:15:33 [INFO]: Base de datos conectada
+2025-07-29 14:15:33 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:15:34 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:15:34 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:15:37 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:15:53 [INFO]: [0mPOST /api/auth/signin [32m200[0m 273.467 ms - 308[0m
+2025-07-29 14:28:17 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:28:17 [INFO]: Base de datos conectada
+2025-07-29 14:28:17 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:28:18 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:28:18 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:28:20 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:29:28 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:29:28 [INFO]: Base de datos conectada
+2025-07-29 14:29:28 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:29:29 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:29:29 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:29:31 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:29:37 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:29:37 [INFO]: Base de datos conectada
+2025-07-29 14:29:38 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:29:38 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:29:38 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:29:41 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:30:37 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:30:37 [INFO]: Base de datos conectada
+2025-07-29 14:30:37 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:30:38 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:30:38 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:30:40 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:31:52 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:31:52 [INFO]: Base de datos conectada
+2025-07-29 14:31:52 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:31:52 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:31:52 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:31:54 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:32:25 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:32:25 [INFO]: Base de datos conectada
+2025-07-29 14:32:25 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:32:26 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:32:26 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:32:31 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:32:32 [INFO]: Base de datos conectada
+2025-07-29 14:32:32 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:32:32 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:32:32 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:32:35 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:35:05 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:35:05 [INFO]: Base de datos conectada
+2025-07-29 14:35:05 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:35:06 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:35:06 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:35:07 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:36:44 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:36:44 [INFO]: Base de datos conectada
+2025-07-29 14:36:44 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:36:45 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:36:45 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:36:48 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:36:56 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:36:56 [INFO]: Base de datos conectada
+2025-07-29 14:36:56 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:36:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:36:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:36:58 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:38:18 [INFO]: [0mPOST /api/auth/signin [32m200[0m 330.977 ms - 308[0m
+2025-07-29 14:41:15 [INFO]: [0mPOST /api/auth/signin [32m200[0m 192.111 ms - 308[0m
+2025-07-29 14:43:05 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:43:06 [INFO]: Base de datos conectada
+2025-07-29 14:43:06 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:43:06 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:43:06 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:43:11 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:43:17 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:43:18 [INFO]: Base de datos conectada
+2025-07-29 14:43:18 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:43:18 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:43:18 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:43:21 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:56:34 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:56:34 [INFO]: Base de datos conectada
+2025-07-29 14:56:34 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:56:34 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:56:34 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:56:38 [INFO]: Base de Datos sincronizadas
+2025-07-29 14:56:46 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 14:56:46 [INFO]: Base de datos conectada
+2025-07-29 14:56:46 [INFO]: Conexión establecida con la base de datos
+2025-07-29 14:56:47 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 14:56:47 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 14:56:49 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:16:15 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:16:15 [INFO]: Base de datos conectada
+2025-07-29 15:16:15 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:16:15 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:16:15 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:16:18 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:17:01 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:17:01 [INFO]: Base de datos conectada
+2025-07-29 15:17:01 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:17:02 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:17:02 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:17:04 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:17:12 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:17:12 [INFO]: Base de datos conectada
+2025-07-29 15:17:12 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:17:13 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:17:13 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:17:15 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:17:47 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:17:47 [INFO]: Base de datos conectada
+2025-07-29 15:17:47 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:17:47 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:17:47 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:17:49 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:18:53 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:18:53 [INFO]: Base de datos conectada
+2025-07-29 15:18:53 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:18:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:18:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:18:56 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:21:52 [INFO]: [0mPOST /api/auth/signin [32m200[0m 297.639 ms - 344[0m
+2025-07-29 15:22:01 [INFO]: [0mPOST /api/auth/signin [32m200[0m 166.416 ms - 308[0m
+2025-07-29 15:25:59 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:26:00 [INFO]: Base de datos conectada
+2025-07-29 15:26:00 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:26:00 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:26:00 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:26:02 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:26:16 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:26:16 [INFO]: Base de datos conectada
+2025-07-29 15:26:16 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:26:16 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:26:16 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:26:18 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:26:43 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:26:43 [INFO]: Base de datos conectada
+2025-07-29 15:26:43 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:26:44 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:26:44 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:26:46 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:27:29 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:27:29 [INFO]: Base de datos conectada
+2025-07-29 15:27:29 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:27:30 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:27:30 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:27:32 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:40:37 [WARN]: 404 Not Found: /api/actividad?page=1&limit=10
+2025-07-29 15:40:37 [INFO]: [0mGET /api/actividad?page=1&limit=10 [33m404[0m 37.676 ms - 62[0m
+2025-07-29 15:40:40 [WARN]: 404 Not Found: /api/actividad?page=1&limit=10
+2025-07-29 15:40:40 [WARN]: 404 Not Found: /api/actividad?page=1&limit=10
+2025-07-29 15:40:40 [INFO]: [0mGET /api/actividad?page=1&limit=10 [33m404[0m 5.801 ms - 62[0m
+2025-07-29 15:40:40 [INFO]: [0mGET /api/actividad?page=1&limit=10 [33m404[0m 2.794 ms - 62[0m
+2025-07-29 15:41:51 [WARN]: 404 Not Found: /api/actividad?page=1&limit=10
+2025-07-29 15:41:51 [WARN]: 404 Not Found: /api/actividad?page=1&limit=10
+2025-07-29 15:41:51 [INFO]: [0mGET /api/actividad?page=1&limit=10 [33m404[0m 4.070 ms - 62[0m
+2025-07-29 15:41:52 [INFO]: [0mGET /api/actividad?page=1&limit=10 [33m404[0m 3.691 ms - 62[0m
+2025-07-29 15:43:28 [WARN]: 404 Not Found: /api/actividad
+2025-07-29 15:43:28 [INFO]: [0mPOST /api/actividad [33m404[0m 71.436 ms - 62[0m
+2025-07-29 15:43:30 [WARN]: 404 Not Found: /api/actividad
+2025-07-29 15:43:30 [INFO]: [0mPOST /api/actividad [33m404[0m 7.212 ms - 62[0m
+2025-07-29 15:43:30 [WARN]: 404 Not Found: /api/actividad
+2025-07-29 15:43:30 [INFO]: [0mPOST /api/actividad [33m404[0m 7.484 ms - 62[0m
+2025-07-29 15:43:31 [WARN]: 404 Not Found: /api/actividad
+2025-07-29 15:43:31 [INFO]: [0mPOST /api/actividad [33m404[0m 9.573 ms - 62[0m
+2025-07-29 15:44:43 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:44:43 [INFO]: Base de datos conectada
+2025-07-29 15:44:43 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:44:43 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:44:43 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:44:46 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:49:28 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:49:28 [INFO]: Base de datos conectada
+2025-07-29 15:49:28 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:49:29 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:49:29 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:49:31 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:50:25 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 15:50:25 [INFO]: Base de datos conectada
+2025-07-29 15:50:25 [INFO]: Conexión establecida con la base de datos
+2025-07-29 15:50:26 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 15:50:26 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 15:50:28 [INFO]: Base de Datos sincronizadas
+2025-07-29 15:52:26 [INFO]: [0mPOST /api/auth/signin [32m200[0m 291.563 ms - 344[0m
+2025-07-29 15:54:20 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 15:54:20 [INFO]: [0mPOST /api/auth/signin [33m401[0m 13.838 ms - 65[0m
+2025-07-29 15:54:22 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 15:54:22 [INFO]: [0mPOST /api/auth/signin [33m401[0m 26.372 ms - 65[0m
+2025-07-29 15:54:24 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 15:54:24 [INFO]: [0mPOST /api/auth/signin [33m401[0m 11.130 ms - 65[0m
+2025-07-29 15:54:26 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 15:54:26 [INFO]: [0mPOST /api/auth/signin [33m401[0m 26.405 ms - 65[0m
+2025-07-29 15:54:41 [INFO]: [0mPOST /api/auth/signup [32m201[0m 235.152 ms - 355[0m
+2025-07-29 15:54:46 [INFO]: [0mGET /api/profesores [32m200[0m 30.120 ms - 334[0m
+2025-07-29 15:54:46 [INFO]: [0mGET /api/profesores [32m200[0m 28.597 ms - 334[0m
+2025-07-29 16:05:32 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:05:32 [INFO]: [0mGET /api/visitas [33m404[0m 7.810 ms - 62[0m
+2025-07-29 16:05:32 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:05:32 [INFO]: [0mGET /api/visitas [33m404[0m 6.344 ms - 62[0m
+2025-07-29 16:06:29 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:06:29 [INFO]: [0mGET /api/visitas [33m404[0m 15.551 ms - 62[0m
+2025-07-29 16:06:29 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:06:29 [INFO]: [0mGET /api/visitas [33m404[0m 33.507 ms - 62[0m
+2025-07-29 16:06:39 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:06:39 [INFO]: [0mGET /api/visitas [33m404[0m 6.007 ms - 62[0m
+2025-07-29 16:06:45 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:06:45 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 16:06:45 [INFO]: [0mGET /api/visitas [33m404[0m 7.574 ms - 62[0m
+2025-07-29 16:06:45 [INFO]: [0mGET /api/visitas [33m404[0m 11.485 ms - 62[0m
+2025-07-29 16:12:44 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 16:12:44 [INFO]: Base de datos conectada
+2025-07-29 16:12:44 [INFO]: Conexión establecida con la base de datos
+2025-07-29 16:12:44 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 16:12:44 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 16:12:47 [INFO]: Base de Datos sincronizadas
+2025-07-29 16:13:21 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 16:13:21 [INFO]: Base de datos conectada
+2025-07-29 16:13:21 [INFO]: Conexión establecida con la base de datos
+2025-07-29 16:13:21 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 16:13:21 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 16:13:25 [INFO]: Base de Datos sincronizadas
+2025-07-29 16:19:08 [INFO]: [0mGET /api/visitas [32m200[0m 28.729 ms - 69[0m
+2025-07-29 16:19:08 [INFO]: [0mGET /api/visitas [32m200[0m 22.958 ms - 69[0m
+2025-07-29 16:19:14 [INFO]: [0mGET /api/visitas [36m304[0m 8.793 ms - -[0m
+2025-07-29 16:19:14 [INFO]: [0mGET /api/visitas [32m200[0m 7.629 ms - 69[0m
+2025-07-29 16:20:51 [INFO]: [0mGET /api/visitas [32m200[0m 13.084 ms - 69[0m
+2025-07-29 16:20:51 [INFO]: [0mGET /api/visitas [32m200[0m 14.063 ms - 69[0m
+2025-07-29 16:22:07 [INFO]: [0mGET /api/visitas [36m304[0m 53.954 ms - -[0m
+2025-07-29 16:22:07 [INFO]: [0mGET /api/visitas [32m200[0m 60.010 ms - 69[0m
+2025-07-29 16:22:14 [INFO]: [0mGET /api/visitas [36m304[0m 10.489 ms - -[0m
+2025-07-29 16:22:14 [INFO]: [0mGET /api/visitas [36m304[0m 7.104 ms - -[0m
+2025-07-29 16:22:24 [INFO]: [0mGET /api/visitas [36m304[0m 9.476 ms - -[0m
+2025-07-29 16:22:24 [INFO]: [0mGET /api/visitas [36m304[0m 21.904 ms - -[0m
+2025-07-29 16:23:17 [INFO]: [0mGET /api/profesores [36m304[0m 21.333 ms - -[0m
+2025-07-29 16:23:17 [INFO]: [0mGET /api/profesores [36m304[0m 7.387 ms - -[0m
+2025-07-29 16:23:55 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-29 16:23:55 [INFO]: [0mPOST /api/profesores [31m500[0m 118.611 ms - 80[0m
+2025-07-29 16:23:58 [ERROR]: Error al crear profesor: SequelizeUniqueConstraintError: Validation error
+2025-07-29 16:23:58 [INFO]: [0mPOST /api/profesores [31m500[0m 12.979 ms - 80[0m
+2025-07-29 16:29:21 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 16:29:21 [INFO]: [0mPOST /api/auth/signin [33m401[0m 30.317 ms - 65[0m
+2025-07-29 16:29:26 [INFO]: [0mPOST /api/auth/signin [32m200[0m 207.132 ms - 330[0m
+2025-07-29 16:29:33 [INFO]: [0mGET /api/visitas [36m304[0m 9.017 ms - -[0m
+2025-07-29 16:29:33 [INFO]: [0mGET /api/visitas [36m304[0m 5.603 ms - -[0m
+2025-07-29 16:29:42 [INFO]: [0mGET /api/visitas [36m304[0m 7.320 ms - -[0m
+2025-07-29 16:29:42 [INFO]: [0mGET /api/visitas [36m304[0m 5.347 ms - -[0m
+2025-07-29 16:31:56 [INFO]: [0mGET /api/visitas [36m304[0m 13.427 ms - -[0m
+2025-07-29 16:31:56 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 16:31:56 [INFO]: [0mGET /favicon.ico [33m404[0m 16.905 ms - 62[0m
+2025-07-29 16:34:48 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 16:34:48 [INFO]: Base de datos conectada
+2025-07-29 16:34:48 [INFO]: Conexión establecida con la base de datos
+2025-07-29 16:34:48 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 16:34:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 16:34:51 [INFO]: Base de Datos sincronizadas
+2025-07-29 16:34:59 [INFO]: [0mGET /api/visitas [36m304[0m 43.803 ms - -[0m
+2025-07-29 16:34:59 [INFO]: [0mGET /api/visitas [36m304[0m 10.197 ms - -[0m
+2025-07-29 16:35:04 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 16:35:04 [INFO]: [0mPOST /api/auth/signin [33m401[0m 48.569 ms - 65[0m
+2025-07-29 16:35:08 [INFO]: [0mPOST /api/auth/signin [32m200[0m 210.671 ms - 330[0m
+2025-07-29 16:35:14 [INFO]: [0mGET /api/visitas [36m304[0m 6.492 ms - -[0m
+2025-07-29 16:35:14 [INFO]: [0mGET /api/visitas [36m304[0m 5.253 ms - -[0m
+2025-07-29 16:38:26 [INFO]: [0mGET /api/visitas [36m304[0m 7.870 ms - -[0m
+2025-07-29 16:38:33 [INFO]: [0mGET /api/visitas [36m304[0m 4.623 ms - -[0m
+2025-07-29 16:38:33 [INFO]: [0mGET /api/visitas [36m304[0m 9.971 ms - -[0m
+2025-07-29 16:40:18 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 16:40:18 [INFO]: Base de datos conectada
+2025-07-29 16:40:18 [INFO]: Conexión establecida con la base de datos
+2025-07-29 16:40:19 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 16:40:19 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 16:40:21 [INFO]: Base de Datos sincronizadas
+2025-07-29 16:40:49 [INFO]: [0mGET /api/visitas [32m200[0m 52.937 ms - 77[0m
+2025-07-29 16:40:49 [INFO]: [0mGET /api/visitas [36m304[0m 10.919 ms - -[0m
+2025-07-29 16:40:59 [INFO]: [0mGET /api/visitas [36m304[0m 7.365 ms - -[0m
+2025-07-29 16:40:59 [INFO]: [0mGET /api/visitas [36m304[0m 6.623 ms - -[0m
+2025-07-29 16:44:23 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 16:44:23 [INFO]: Base de datos conectada
+2025-07-29 16:44:23 [INFO]: Conexión establecida con la base de datos
+2025-07-29 16:44:24 [INFO]: Base de Datos sincronizadas
+2025-07-29 16:44:24 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 16:44:24 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 16:45:57 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-29 16:45:57 [INFO]: [0mPOST /api/auth/signin [33m401[0m 71.013 ms - 65[0m
+2025-07-29 16:46:07 [INFO]: [0mPOST /api/auth/signup [32m201[0m 277.629 ms - 338[0m
+2025-07-29 16:46:12 [INFO]: [0mGET /api/profesores [32m200[0m 21.930 ms - 26[0m
+2025-07-29 16:46:12 [INFO]: [0mGET /api/profesores [32m200[0m 11.541 ms - 26[0m
+2025-07-29 16:46:24 [INFO]: [0mGET /api/visitas [36m304[0m 7.589 ms - -[0m
+2025-07-29 16:46:24 [INFO]: [0mGET /api/visitas [36m304[0m 8.816 ms - -[0m
+2025-07-29 16:47:02 [INFO]: [0mGET /api/visitas [36m304[0m 5.815 ms - -[0m
+2025-07-29 16:47:02 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 16:47:02 [INFO]: [0mGET /favicon.ico [33m404[0m 14.255 ms - 62[0m
+2025-07-29 16:47:39 [INFO]: [0mGET /api/visitas/crear [33m404[0m 11.404 ms - 50[0m
+2025-07-29 16:47:39 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 16:47:39 [INFO]: [0mGET /favicon.ico [33m404[0m 8.661 ms - 62[0m
+2025-07-29 16:48:44 [INFO]: [0mGET /api/visitas [36m304[0m 10.052 ms - -[0m
+2025-07-29 16:48:44 [INFO]: [0mGET /api/visitas [36m304[0m 14.763 ms - -[0m
+2025-07-29 16:59:52 [INFO]: [0mGET /api/visitas/crear [33m404[0m 5.110 ms - 50[0m
+2025-07-29 17:00:12 [INFO]: [0mGET /api/visitas [32m200[0m 4.376 ms - 77[0m
+2025-07-29 17:00:59 [WARN]: 404 Not Found: /api/visitas/crea
+2025-07-29 17:00:59 [INFO]: [0mPOST /api/visitas/crea [33m404[0m 3.720 ms - 62[0m
+2025-07-29 17:01:02 [WARN]: 404 Not Found: /api/visitas/crea
+2025-07-29 17:01:02 [INFO]: [0mPOST /api/visitas/crea [33m404[0m 8.062 ms - 62[0m
+2025-07-29 17:01:46 [INFO]: [0mPUT /api/visitas/actualizar/:id [33m404[0m 10.058 ms - 50[0m
+2025-07-29 17:01:47 [INFO]: [0mPUT /api/visitas/actualizar/:id [33m404[0m 9.269 ms - 50[0m
+2025-07-29 17:01:52 [INFO]: [0mPUT /api/visitas/actualizar/:id [33m404[0m 4.859 ms - 50[0m
+2025-07-29 17:01:53 [INFO]: [0mPUT /api/visitas/actualizar/:id [33m404[0m 5.654 ms - 50[0m
+2025-07-29 17:03:24 [INFO]: [0mGET /api/profesores [36m304[0m 11.684 ms - -[0m
+2025-07-29 17:03:24 [INFO]: [0mGET /api/profesores [36m304[0m 13.990 ms - -[0m
+2025-07-29 17:03:53 [INFO]: [0mPOST /api/profesores [32m201[0m 45.304 ms - 120[0m
+2025-07-29 17:04:00 [INFO]: [0mGET /api/profesores [32m200[0m 12.838 ms - 349[0m
+2025-07-29 17:04:00 [INFO]: [0mGET /api/profesores [32m200[0m 12.691 ms - 349[0m
+2025-07-29 17:04:12 [INFO]: [0mGET /api/profesores [36m304[0m 9.980 ms - -[0m
+2025-07-29 17:04:12 [INFO]: [0mGET /api/profesores [32m200[0m 11.309 ms - 349[0m
+2025-07-29 17:06:01 [INFO]: El servidor está escuchando en el puerto 4000
+2025-07-29 17:06:01 [INFO]: Base de datos conectada
+2025-07-29 17:06:01 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:06:02 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:06:02 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:06:04 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:06:07 [WARN]: 404 Not Found: /gimnasiologin.jpg
+2025-07-29 17:06:07 [INFO]: [0mGET /gimnasiologin.jpg [33m404[0m 30.209 ms - 62[0m
+2025-07-29 17:06:13 [WARN]: 404 Not Found: /
+2025-07-29 17:06:13 [INFO]: [0mGET / [33m404[0m 14.511 ms - 62[0m
+2025-07-29 17:06:14 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 17:06:14 [INFO]: [0mGET /favicon.ico [33m404[0m 14.303 ms - 62[0m
+2025-07-29 17:06:27 [WARN]: 404 Not Found: /
+2025-07-29 17:06:27 [INFO]: [0mGET / [33m404[0m 6.147 ms - 62[0m
+2025-07-29 17:06:28 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 17:06:28 [INFO]: [0mGET /favicon.ico [33m404[0m 8.520 ms - 62[0m
+2025-07-29 17:06:46 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:06:46 [INFO]: Base de datos conectada
+2025-07-29 17:06:46 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:06:47 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:06:47 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:06:50 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:07:20 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:07:20 [INFO]: Base de datos conectada
+2025-07-29 17:07:20 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:07:21 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:07:21 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:07:23 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:07:38 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:07:38 [INFO]: Base de datos conectada
+2025-07-29 17:07:38 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:07:40 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:07:40 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:07:41 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:10:37 [INFO]: [0mPOST /api/auth/signin [32m200[0m 271.564 ms - 313[0m
+2025-07-29 17:10:48 [INFO]: [0mGET /api/visitas [36m304[0m 20.027 ms - -[0m
+2025-07-29 17:10:48 [INFO]: [0mGET /api/visitas [36m304[0m 8.135 ms - -[0m
+2025-07-29 17:11:12 [INFO]: [0mGET /api/profesores [36m304[0m 13.460 ms - -[0m
+2025-07-29 17:11:12 [INFO]: [0mGET /api/profesores [36m304[0m 4.915 ms - -[0m
+2025-07-29 17:11:39 [INFO]: [0mGET /api/visitas [36m304[0m 10.441 ms - -[0m
+2025-07-29 17:11:39 [INFO]: [0mGET /api/visitas [32m200[0m 9.838 ms - 77[0m
+2025-07-29 17:18:33 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:18:33 [INFO]: Base de datos conectada
+2025-07-29 17:18:34 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:18:45 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:18:45 [INFO]: Base de datos conectada
+2025-07-29 17:18:45 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:18:45 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:18:45 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:18:48 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:19:42 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:19:42 [INFO]: Base de datos conectada
+2025-07-29 17:19:42 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:19:43 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:19:43 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:19:45 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:30:36 [INFO]: [0mPOST /api/auth/signin [32m200[0m 287.947 ms - 313[0m
+2025-07-29 17:30:43 [INFO]: [0mGET /api/visitas [36m304[0m 21.502 ms - -[0m
+2025-07-29 17:30:43 [INFO]: [0mGET /api/visitas [36m304[0m 5.906 ms - -[0m
+2025-07-29 17:34:51 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:34:51 [INFO]: Base de datos conectada
+2025-07-29 17:34:51 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:34:52 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:34:52 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:34:55 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:35:03 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:35:03 [INFO]: Base de datos conectada
+2025-07-29 17:35:03 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:35:04 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:35:04 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:35:07 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:35:39 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 17:35:39 [INFO]: Base de datos conectada
+2025-07-29 17:35:39 [INFO]: Conexión establecida con la base de datos
+2025-07-29 17:35:40 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 17:35:40 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 17:35:42 [INFO]: Base de Datos sincronizadas
+2025-07-29 17:35:52 [INFO]: [0mGET /api/visitas [36m304[0m 37.370 ms - -[0m
+2025-07-29 17:35:52 [INFO]: [0mGET /api/visitas [36m304[0m 7.884 ms - -[0m
+2025-07-29 17:36:49 [INFO]: [0mPOST /api/visitas/crear [32m201[0m 57.904 ms - 262[0m
+2025-07-29 17:37:02 [INFO]: [0mGET /api/visitas [32m200[0m 20.014 ms - 271[0m
+2025-07-29 17:37:02 [INFO]: [0mGET /api/visitas [36m304[0m 11.146 ms - -[0m
+2025-07-29 17:39:19 [INFO]: [0mGET /api/visitas [32m200[0m 8.857 ms - 271[0m
+2025-07-29 17:39:48 [INFO]: [0mPUT /api/visitas/actualizar/1 [32m200[0m 22.387 ms - 263[0m
+2025-07-29 17:40:49 [INFO]: [0mDELETE /api/visitas/eliminar/1 [32m200[0m 9.468 ms - 58[0m
+2025-07-29 17:43:50 [INFO]: [0mGET /api/visitas [32m200[0m 18.893 ms - 77[0m
+2025-07-29 17:43:50 [INFO]: [0mGET /api/visitas [36m304[0m 9.641 ms - -[0m
+2025-07-29 17:43:51 [INFO]: [0mGET /api/visitas [36m304[0m 25.617 ms - -[0m
+2025-07-29 17:43:51 [INFO]: [0mGET /api/visitas [36m304[0m 6.672 ms - -[0m
+2025-07-29 17:43:56 [INFO]: [0mGET /api/visitas [36m304[0m 5.974 ms - -[0m
+2025-07-29 17:43:56 [INFO]: [0mGET /api/visitas [36m304[0m 9.143 ms - -[0m
+2025-07-29 17:46:10 [INFO]: [0mPOST /api/visitas/crear [32m201[0m 10.907 ms - 262[0m
+2025-07-29 17:46:14 [INFO]: [0mPOST /api/visitas/crear [32m201[0m 12.934 ms - 262[0m
+2025-07-29 17:58:37 [INFO]: [0mGET /api/visitas [32m200[0m 32.838 ms - 466[0m
+2025-07-29 17:58:40 [INFO]: [0mGET /api/visitas [36m304[0m 13.417 ms - -[0m
+2025-07-29 17:58:40 [INFO]: [0mGET /api/visitas [36m304[0m 4.183 ms - -[0m
+2025-07-29 17:59:47 [INFO]: [0mGET /api/visitas [36m304[0m 7.810 ms - -[0m
+2025-07-29 17:59:47 [INFO]: [0mGET /api/visitas [36m304[0m 5.832 ms - -[0m
+2025-07-29 18:00:24 [INFO]: [0mGET /api/visitas [36m304[0m 6.349 ms - -[0m
+2025-07-29 18:00:24 [INFO]: [0mGET /api/visitas [36m304[0m 6.388 ms - -[0m
+2025-07-29 18:00:31 [INFO]: [0mGET /api/profesores [36m304[0m 58.669 ms - -[0m
+2025-07-29 18:00:31 [INFO]: [0mGET /api/profesores [32m200[0m 12.180 ms - 349[0m
+2025-07-29 18:00:34 [INFO]: [0mGET /api/visitas [36m304[0m 10.473 ms - -[0m
+2025-07-29 18:00:34 [INFO]: [0mGET /api/visitas [32m200[0m 12.265 ms - 466[0m
+2025-07-29 18:00:53 [INFO]: [0mGET /api/visitas [36m304[0m 8.605 ms - -[0m
+2025-07-29 18:00:53 [INFO]: [0mGET /api/visitas [32m200[0m 8.612 ms - 466[0m
+2025-07-29 18:04:55 [INFO]: El servidor está escuchando en el puerto 4000
+2025-07-29 18:04:55 [INFO]: Base de datos conectada
+2025-07-29 18:04:55 [INFO]: Conexión establecida con la base de datos
+2025-07-29 18:04:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:04:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 18:04:59 [INFO]: Base de Datos sincronizadas
+2025-07-29 18:05:05 [WARN]: 404 Not Found: /src/pages/Admin/Actividades/Visitas/Gestionarvisita.jsx?t=1753830305288
+2025-07-29 18:05:05 [WARN]: 404 Not Found: /src/index.css?t=1753830305288
+2025-07-29 18:05:05 [INFO]: [0mGET /src/pages/Admin/Actividades/Visitas/Gestionarvisita.jsx?t=1753830305288 [33m404[0m 32.194 ms - 62[0m
+2025-07-29 18:05:05 [INFO]: [0mGET /src/index.css?t=1753830305288 [33m404[0m 20.452 ms - 62[0m
+2025-07-29 18:05:11 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:05:11 [INFO]: [0mGET /visitas/registrar [33m404[0m 8.379 ms - 62[0m
+2025-07-29 18:05:11 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:05:11 [INFO]: [0mGET /favicon.ico [33m404[0m 8.732 ms - 62[0m
+2025-07-29 18:05:23 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:05:23 [INFO]: [0mGET /visitas/registrar [33m404[0m 8.388 ms - 62[0m
+2025-07-29 18:05:23 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:05:23 [INFO]: [0mGET /favicon.ico [33m404[0m 7.025 ms - 62[0m
+2025-07-29 18:05:25 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:05:25 [INFO]: [0mGET /visitas/registrar [33m404[0m 6.579 ms - 62[0m
+2025-07-29 18:05:25 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:05:25 [INFO]: [0mGET /favicon.ico [33m404[0m 6.007 ms - 62[0m
+2025-07-29 18:06:37 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 18:06:37 [INFO]: Base de datos conectada
+2025-07-29 18:06:37 [INFO]: Conexión establecida con la base de datos
+2025-07-29 18:06:38 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:06:38 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 18:06:41 [INFO]: Base de Datos sincronizadas
+2025-07-29 18:07:39 [INFO]: [0mGET /api/visitas [36m304[0m 63.021 ms - -[0m
+2025-07-29 18:08:55 [INFO]: El servidor está escuchando en el puerto 4000
+2025-07-29 18:08:55 [INFO]: Base de datos conectada
+2025-07-29 18:08:56 [INFO]: Conexión establecida con la base de datos
+2025-07-29 18:08:56 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:08:56 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 18:08:59 [INFO]: Base de Datos sincronizadas
+2025-07-29 18:09:00 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:09:00 [INFO]: [0mGET /visitas/registrar [33m404[0m 21.104 ms - 62[0m
+2025-07-29 18:09:00 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:09:01 [INFO]: [0mGET /favicon.ico [33m404[0m 118.984 ms - 62[0m
+2025-07-29 18:09:14 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:09:14 [INFO]: [0mGET /visitas/registrar [33m404[0m 22.974 ms - 62[0m
+2025-07-29 18:09:14 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:09:14 [INFO]: [0mGET /favicon.ico [33m404[0m 8.924 ms - 62[0m
+2025-07-29 18:09:15 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:09:15 [INFO]: [0mGET /visitas/registrar [33m404[0m 7.111 ms - 62[0m
+2025-07-29 18:09:15 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:09:16 [INFO]: [0mGET /favicon.ico [33m404[0m 12.239 ms - 62[0m
+2025-07-29 18:09:17 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:09:17 [INFO]: [0mGET /visitas/registrar [33m404[0m 6.350 ms - 62[0m
+2025-07-29 18:09:17 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:09:17 [INFO]: [0mGET /favicon.ico [33m404[0m 28.961 ms - 62[0m
+2025-07-29 18:09:20 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:09:20 [INFO]: [0mGET /visitas/registrar [33m404[0m 43.567 ms - 62[0m
+2025-07-29 18:09:20 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:09:20 [INFO]: [0mGET /favicon.ico [33m404[0m 29.243 ms - 62[0m
+2025-07-29 18:10:20 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:10:20 [INFO]: [0mGET /visitas/registrar [33m404[0m 33.346 ms - 62[0m
+2025-07-29 18:10:20 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:10:20 [INFO]: [0mGET /favicon.ico [33m404[0m 15.032 ms - 62[0m
+2025-07-29 18:10:53 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:10:53 [INFO]: [0mGET /visitas/registrar [33m404[0m 28.434 ms - 62[0m
+2025-07-29 18:10:53 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:10:53 [INFO]: [0mGET /favicon.ico [33m404[0m 15.364 ms - 62[0m
+2025-07-29 18:10:54 [WARN]: 404 Not Found: /visitas/registrar
+2025-07-29 18:10:54 [INFO]: [0mGET /visitas/registrar [33m404[0m 3.346 ms - 62[0m
+2025-07-29 18:10:54 [WARN]: 404 Not Found: /favicon.ico
+2025-07-29 18:10:54 [INFO]: [0mGET /favicon.ico [33m404[0m 7.455 ms - 62[0m
+2025-07-29 18:11:11 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 18:11:11 [INFO]: Base de datos conectada
+2025-07-29 18:11:11 [INFO]: Conexión establecida con la base de datos
+2025-07-29 18:11:12 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:11:12 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 18:11:13 [WARN]: Server too busy!
+2025-07-29 18:11:13 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 18:11:13 [INFO]: [0mGET /api/visitas [31m500[0m 117.622 ms - 74[0m
+2025-07-29 18:11:13 [WARN]: Server too busy!
+2025-07-29 18:11:13 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 18:11:13 [INFO]: [0mGET /api/visitas [31m500[0m 51.584 ms - 74[0m
+2025-07-29 18:11:15 [INFO]: Base de Datos sincronizadas
+2025-07-29 18:12:13 [INFO]: [0mGET /api/visitas [32m200[0m 41.250 ms - 466[0m
+2025-07-29 18:12:13 [INFO]: [0mGET /api/visitas [32m200[0m 20.194 ms - 466[0m
+2025-07-29 18:30:55 [INFO]: ⚠️  Mongoose desconectado de MongoDB
+2025-07-29 18:31:06 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:32:52 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 18:32:52 [INFO]: Base de datos conectada
+2025-07-29 18:32:52 [INFO]: Conexión establecida con la base de datos
+2025-07-29 18:32:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 18:32:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 18:32:55 [INFO]: Base de Datos sincronizadas
+2025-07-29 18:36:27 [INFO]: [0mPOST /api/auth/signin [32m200[0m 311.779 ms - 313[0m
+2025-07-29 18:36:33 [INFO]: [0mGET /api/profesores [32m200[0m 27.846 ms - 349[0m
+2025-07-29 18:36:33 [INFO]: [0mGET /api/profesores [32m200[0m 18.406 ms - 349[0m
+2025-07-29 19:03:51 [INFO]: [0mGET /api/profesores [32m200[0m 38.963 ms - 349[0m
+2025-07-29 19:03:51 [INFO]: [0mGET /api/profesores [32m200[0m 37.507 ms - 349[0m
+2025-07-29 19:05:52 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:05:52 [INFO]: Base de datos conectada
+2025-07-29 19:05:52 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:05:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:05:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:05:55 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:05:55 [INFO]: [0mDELETE /api/profesores/1 [32m200[0m 76.369 ms - 60[0m
+2025-07-29 19:06:48 [INFO]: [0mPOST /api/profesores [32m201[0m 107.364 ms - 126[0m
+2025-07-29 19:08:16 [INFO]: [0mGET /api/profesores [32m200[0m 11.220 ms - 347[0m
+2025-07-29 19:08:16 [INFO]: [0mGET /api/profesores [36m304[0m 13.812 ms - -[0m
+2025-07-29 19:08:48 [INFO]: [0mPOST /api/profesores [32m201[0m 13.345 ms - 126[0m
+2025-07-29 19:08:54 [INFO]: [0mGET /api/profesores [32m200[0m 5.333 ms - 662[0m
+2025-07-29 19:08:54 [INFO]: [0mGET /api/profesores [36m304[0m 9.453 ms - -[0m
+2025-07-29 19:10:02 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:10:02 [INFO]: Base de datos conectada
+2025-07-29 19:10:02 [WARN]: Server too busy!
+2025-07-29 19:10:02 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:02 [INFO]: [0mGET /api/profesores [31m500[0m 10.332 ms - 74[0m
+2025-07-29 19:10:02 [WARN]: Server too busy!
+2025-07-29 19:10:02 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:02 [INFO]: [0mGET /api/profesores [31m500[0m 38.987 ms - 74[0m
+2025-07-29 19:10:02 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:10:03 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:10:03 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:10:05 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:10:11 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:10:11 [INFO]: Base de datos conectada
+2025-07-29 19:10:11 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:10:12 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:10:12 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:10:13 [WARN]: Server too busy!
+2025-07-29 19:10:13 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:13 [INFO]: [0mGET /api/profesores [31m500[0m 9.981 ms - 74[0m
+2025-07-29 19:10:13 [WARN]: Server too busy!
+2025-07-29 19:10:13 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:13 [INFO]: [0mGET /api/profesores [31m500[0m 18.445 ms - 74[0m
+2025-07-29 19:10:15 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:10:27 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:10:27 [INFO]: Base de datos conectada
+2025-07-29 19:10:27 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:10:27 [WARN]: Server too busy!
+2025-07-29 19:10:27 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:27 [INFO]: [0mGET /api/profesores [31m500[0m 89.276 ms - 74[0m
+2025-07-29 19:10:27 [WARN]: Server too busy!
+2025-07-29 19:10:27 [ERROR]: Error: res.apiError is not a function
+Stack: TypeError: res.apiError is not a function
+    at C:\Users\wiliam\Desktop\back_gym_j\src\app.js:104:20
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:280:10)
+    at logger (C:\Users\wiliam\Desktop\back_gym_j\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\wiliam\Desktop\back_gym_j\node_modules\express\lib\router\index.js:286:9
+2025-07-29 19:10:28 [INFO]: [0mGET /api/profesores [31m500[0m 124.057 ms - 74[0m
+2025-07-29 19:10:28 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:10:28 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:10:30 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:11:14 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:11:14 [INFO]: Base de datos conectada
+2025-07-29 19:11:14 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:11:15 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:11:15 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:11:17 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:11:27 [INFO]: [0mPOST /api/auth/signin [32m200[0m 274.166 ms - 313[0m
+2025-07-29 19:11:32 [INFO]: [0mGET /api/profesores [32m200[0m 25.808 ms - 347[0m
+2025-07-29 19:11:32 [INFO]: [0mGET /api/profesores [32m200[0m 19.654 ms - 347[0m
+2025-07-29 19:12:19 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:12:19 [INFO]: Base de datos conectada
+2025-07-29 19:12:19 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:12:19 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:12:19 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:12:21 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:12:49 [INFO]: [0mGET /api/profesores [36m304[0m 97.084 ms - -[0m
+2025-07-29 19:12:49 [INFO]: [0mGET /api/profesores [32m200[0m 25.887 ms - 347[0m
+2025-07-29 19:12:50 [INFO]: [0mGET /api/profesores [36m304[0m 24.215 ms - -[0m
+2025-07-29 19:12:50 [INFO]: [0mGET /api/profesores [36m304[0m 12.172 ms - -[0m
+2025-07-29 19:15:50 [INFO]: [0mGET /api/profesores [36m304[0m 12.570 ms - -[0m
+2025-07-29 19:15:50 [INFO]: [0mGET /api/profesores [36m304[0m 10.126 ms - -[0m
+2025-07-29 19:17:12 [INFO]: [0mPOST /api/profesores [32m201[0m 102.085 ms - 129[0m
+2025-07-29 19:17:24 [INFO]: [0mGET /api/profesores [32m200[0m 6.838 ms - 665[0m
+2025-07-29 19:17:24 [INFO]: [0mGET /api/profesores [36m304[0m 9.845 ms - -[0m
+2025-07-29 19:31:22 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:31:22 [INFO]: Base de datos conectada
+2025-07-29 19:31:22 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:31:23 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:31:23 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:31:24 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:32:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:32:41 [INFO]: Base de datos conectada
+2025-07-29 19:32:41 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:32:41 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:32:41 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:32:43 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:33:02 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:33:02 [INFO]: Base de datos conectada
+2025-07-29 19:33:02 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:33:02 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:33:02 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:33:03 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:38:47 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:38:48 [INFO]: Base de datos conectada
+2025-07-29 19:38:48 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:38:48 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:38:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:38:49 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:39:15 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:39:15 [INFO]: Base de datos conectada
+2025-07-29 19:39:15 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:39:15 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:39:15 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:39:16 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:39:41 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:39:42 [INFO]: Base de datos conectada
+2025-07-29 19:39:42 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:39:42 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:39:42 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:39:43 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:40:27 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:40:27 [INFO]: Base de datos conectada
+2025-07-29 19:40:27 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:40:27 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:40:27 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:40:30 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:41:06 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:41:06 [INFO]: Base de datos conectada
+2025-07-29 19:41:06 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:41:06 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:41:06 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:41:07 [ERROR]: Error al sincronizar la Base de Datos: SequelizeUniqueConstraintError: Validation error
+2025-07-29 19:41:31 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:41:31 [INFO]: Base de datos conectada
+2025-07-29 19:41:31 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:41:32 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:41:32 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:41:34 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:49:53 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:49:53 [INFO]: Base de datos conectada
+2025-07-29 19:49:54 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:49:54 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:49:54 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:49:56 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:50:47 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:50:47 [INFO]: Base de datos conectada
+2025-07-29 19:50:48 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:50:48 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:50:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:50:50 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:53:22 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:53:23 [INFO]: Base de datos conectada
+2025-07-29 19:53:23 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:53:23 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:53:23 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:53:26 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:57:52 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:57:52 [INFO]: Base de datos conectada
+2025-07-29 19:57:52 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:57:53 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:57:53 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:57:55 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:58:28 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:58:29 [INFO]: Base de datos conectada
+2025-07-29 19:58:29 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:58:29 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:58:29 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:58:31 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:59:06 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:59:06 [INFO]: Base de datos conectada
+2025-07-29 19:59:06 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:59:06 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:59:06 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 19:59:08 [INFO]: Base de Datos sincronizadas
+2025-07-29 19:59:47 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 19:59:47 [INFO]: Base de datos conectada
+2025-07-29 19:59:47 [INFO]: Conexión establecida con la base de datos
+2025-07-29 19:59:48 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 19:59:48 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:03:51 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:03:52 [INFO]: Base de datos conectada
+2025-07-29 20:03:52 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:03:52 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:03:52 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:03:54 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:04:00 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:04:00 [INFO]: Base de datos conectada
+2025-07-29 20:04:00 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:04:01 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:04:01 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:04:03 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:04:28 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:04:28 [INFO]: Base de datos conectada
+2025-07-29 20:04:28 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:04:29 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:04:29 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:04:32 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:11:32 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:11:32 [INFO]: Base de datos conectada
+2025-07-29 20:11:32 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:11:32 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:11:32 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:11:34 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:14:22 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:14:23 [INFO]: Base de datos conectada
+2025-07-29 20:14:23 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:14:23 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:14:23 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:14:25 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:15:04 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:15:04 [INFO]: Base de datos conectada
+2025-07-29 20:15:04 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:15:05 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:15:05 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:15:07 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:18:45 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:18:45 [INFO]: Base de datos conectada
+2025-07-29 20:18:46 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:18:46 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:18:46 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:18:49 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:20:07 [INFO]: [0mPOST /api/auth/signin [32m200[0m 567.291 ms - 313[0m
+2025-07-29 20:24:58 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:24:58 [INFO]: Base de datos conectada
+2025-07-29 20:24:58 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:24:59 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:24:59 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:25:00 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:30:46 [ERROR]: Error al crear visita: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-29 20:30:46 [INFO]: [0mPOST /api/visitas/crear [31m500[0m 50.389 ms - 138[0m
+2025-07-29 20:30:48 [ERROR]: Error al crear visita: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-29 20:30:48 [INFO]: [0mPOST /api/visitas/crear [31m500[0m 5.773 ms - 138[0m
+2025-07-29 20:30:49 [ERROR]: Error al crear visita: TypeError: Cannot read properties of undefined (reading 'create')
+2025-07-29 20:30:49 [INFO]: [0mPOST /api/visitas/crear [31m500[0m 5.713 ms - 138[0m
+2025-07-29 20:31:11 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:31:12 [INFO]: [0mPOST /api/visitas [33m404[0m 5.428 ms - 62[0m
+2025-07-29 20:31:22 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:31:22 [INFO]: [0mPOST /api/visitas [33m404[0m 12.381 ms - 62[0m
+2025-07-29 20:31:23 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:31:23 [INFO]: [0mPOST /api/visitas [33m404[0m 7.680 ms - 62[0m
+2025-07-29 20:31:24 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:31:24 [INFO]: [0mPOST /api/visitas [33m404[0m 4.709 ms - 62[0m
+2025-07-29 20:31:25 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:31:25 [INFO]: [0mPOST /api/visitas [33m404[0m 4.667 ms - 62[0m
+2025-07-29 20:45:42 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 20:45:42 [INFO]: Base de datos conectada
+2025-07-29 20:45:42 [INFO]: Conexión establecida con la base de datos
+2025-07-29 20:45:43 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 20:45:43 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 20:45:45 [INFO]: Base de Datos sincronizadas
+2025-07-29 20:46:40 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:46:40 [INFO]: [0mPOST /api/visitas [33m404[0m 55.440 ms - 62[0m
+2025-07-29 20:46:42 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:46:42 [INFO]: [0mPOST /api/visitas [33m404[0m 19.417 ms - 62[0m
+2025-07-29 20:46:42 [WARN]: 404 Not Found: /api/visitas
+2025-07-29 20:46:42 [INFO]: [0mPOST /api/visitas [33m404[0m 8.532 ms - 62[0m
+2025-07-29 20:47:52 [ERROR]: Error al obtener visitas: TypeError: Cannot read properties of undefined (reading 'findAll')
+2025-07-29 21:00:02 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-29 21:00:02 [INFO]: Base de datos conectada
+2025-07-29 21:00:02 [INFO]: Conexión establecida con la base de datos
+2025-07-29 21:00:03 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-29 21:00:03 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-29 21:00:05 [INFO]: Base de Datos sincronizadas
+2025-07-29 21:00:45 [ERROR]: Error al obtener visitas: TypeError: Cannot read properties of undefined (reading 'findAll')
+2025-07-29 21:00:45 [INFO]: [0mGET /api/visitas [31m500[0m 49.337 ms - 89[0m
+2025-07-30 09:34:43 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-30 09:34:43 [INFO]: Base de datos conectada
+2025-07-30 09:34:43 [INFO]: Conexión establecida con la base de datos
+2025-07-30 09:34:44 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-30 09:34:44 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-30 09:34:46 [INFO]: Base de Datos sincronizadas
+2025-07-30 09:35:53 [INFO]: [0mPOST /api/auth/signin [32m200[0m 377.630 ms - 313[0m
+2025-07-30 10:00:31 [INFO]: [0mPOST /api/auth/signin [32m200[0m 202.970 ms - 313[0m
+2025-07-30 10:40:33 [INFO]: [0mPOST /api/auth/signin [32m200[0m 249.291 ms - 313[0m
+2025-07-30 10:51:55 [INFO]: [0mPOST /api/auth/signin [32m200[0m 173.835 ms - 313[0m
+2025-07-30 10:54:32 [INFO]: [0mGET /api/profesores [32m200[0m 147.721 ms - 665[0m
+2025-07-30 10:54:32 [INFO]: [0mGET /api/profesores [32m200[0m 51.712 ms - 665[0m
+2025-07-30 10:57:26 [INFO]: [0mGET /api/profesores [36m304[0m 8.802 ms - -[0m
+2025-07-30 10:57:26 [INFO]: [0mGET /api/profesores [36m304[0m 4.954 ms - -[0m
+2025-07-30 11:01:01 [INFO]: [0mGET /api/profesores [36m304[0m 11.307 ms - -[0m
+2025-07-30 11:01:01 [INFO]: [0mGET /api/profesores [36m304[0m 6.365 ms - -[0m
+2025-07-30 11:14:08 [INFO]: [0mPOST /api/auth/signin [32m200[0m 216.662 ms - 313[0m
+2025-07-30 12:10:59 [INFO]: [0mPOST /api/auth/signin [32m200[0m 274.430 ms - 313[0m
+2025-07-30 13:54:34 [INFO]: El servidor está escuchando en el puerto 3000
+2025-07-30 13:54:34 [INFO]: Base de datos conectada
+2025-07-30 13:54:34 [INFO]: Conexión establecida con la base de datos
+2025-07-30 13:54:35 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-07-30 13:54:35 [INFO]: 🚀 MongoDB conectado correctamente
+2025-07-30 13:54:37 [INFO]: Base de Datos sincronizadas
+2025-07-30 14:09:50 [INFO]: [0mPOST /api/auth/signup [32m201[0m 547.605 ms - 378[0m
+2025-07-30 14:16:27 [INFO]: [0mGET /api/profesores [36m304[0m 39.645 ms - -[0m
+2025-07-30 14:16:27 [INFO]: [0mGET /api/profesores [36m304[0m 7.501 ms - -[0m
+2025-07-30 14:17:18 [INFO]: [0mPOST /api/profesores [32m201[0m 77.297 ms - 120[0m
+2025-07-30 14:17:18 [INFO]: [0mPOST /api/profesores [32m201[0m 68.377 ms - 120[0m
+2025-07-30 14:17:24 [INFO]: [0mGET /api/profesores [32m200[0m 24.514 ms - -[0m
+2025-07-30 14:17:24 [INFO]: [0mGET /api/profesores [36m304[0m 43.138 ms - -[0m
+2025-07-30 14:17:42 [INFO]: [0mDELETE /api/profesores/4 [32m200[0m 31.397 ms - 60[0m
+2025-08-03 22:29:19 [INFO]: El servidor está escuchando en el puerto 3000
+2025-08-03 22:29:19 [INFO]: Base de datos conectada
+2025-08-03 22:29:19 [INFO]: Conexión establecida con la base de datos
+2025-08-03 22:29:20 [INFO]: ✅ Mongoose conectado a MongoDB en: 31.97.42.126
+2025-08-03 22:29:20 [INFO]: 🚀 MongoDB conectado correctamente
+2025-08-03 22:29:22 [INFO]: Base de Datos sincronizadas
+2025-08-03 22:29:24 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-03 22:29:24 [INFO]: [0mPOST /api/auth/signin [33m401[0m 69.101 ms - 65[0m
+2025-08-03 22:29:30 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-03 22:29:30 [INFO]: [0mPOST /api/auth/signin [33m401[0m 9.533 ms - 65[0m
+2025-08-03 22:29:36 [ERROR]: Error: Correo no registrado.
+Stack: Error: Correo no registrado.
+    at C:\Users\wiliam\Desktop\back_gym_j\src\router\auth.routes.js:30:33
+    at allFailed (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at strategy.fail (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport\lib\middleware\authenticate.js:314:9)
+    at verified (C:\Users\wiliam\Desktop\back_gym_j\node_modules\passport-local\lib\strategy.js:82:30)
+    at Strategy._verify (C:\Users\wiliam\Desktop\back_gym_j\src\lib\passport.js:195:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-03 22:29:36 [INFO]: [0mPOST /api/auth/signin [33m401[0m 6.366 ms - 65[0m
+2025-08-03 22:29:48 [INFO]: [0mPOST /api/auth/signup [32m201[0m 382.290 ms - 375[0m
+2025-08-03 22:31:13 [INFO]: [0mGET /api/profesores [32m200[0m 16.243 ms - 975[0m
+2025-08-03 22:31:13 [INFO]: [0mGET /api/profesores [36m304[0m 5.127 ms - -[0m

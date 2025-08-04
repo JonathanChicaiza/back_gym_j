@@ -294,6 +294,7 @@ app.use('/api/productos', require('./router/producto.routes'));
 app.use ('/api/configuracion', require('./router/configuracion.routes'));
 app.use ('/api/profesores', require('./router/profesor.routes')); // <--- This line
 
+app.use('/api/visitas', require('./router/visita.routes'));
 // Configurar variables globales (para flash messages y req.user, si se usan en vistas tradicionales)
 app.use((req, res, next) => {
     app.locals.message = req.flash('message');

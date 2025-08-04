@@ -6,8 +6,12 @@ const clase = (sequelize, type) => {
             primaryKey: true,
         },
         nombre: type.STRING,
+        instructor: type.STRING,
+        fecha: type.STRING,
+        duracion: type.STRING,
         capacidadMaxima: type.STRING,
         horario: type.STRING,
+        descripcion: type.STRING,
         stateClase: type.STRING,
         createClase: type.STRING,
         updateClase: type.STRING

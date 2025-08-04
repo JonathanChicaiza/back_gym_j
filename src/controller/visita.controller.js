@@ -1,38 +1,19 @@
 const orm = require('../Database/dataBase.orm');
 const sql = require('../Database/dataBase.sql');
-const mongo = require('../Database/dataBaseMongose'); // Asegúrate de que este archivo exporta 'Visita'
 
 const visitaCtl = {};
 
-// Obtener todas las visitas
 visitaCtl.obtenerVisitas = async (req, res) => {
     try {
-        // Consultar todas las visitas desde la base de datos SQL
-        const [listaVisitas] = await sql.promise().query(`
-            SELECT * FROM visitas
-        `);
+        const listaVisitas = await orm.Visita.findAll({
+            order: [['fecha', 'DESC']]
+        });
 
-        // Para cada visita SQL, buscar su contraparte en MongoDB
-        const visitasCompletas = await Promise.all(
-            listaVisitas.map(async (visita) => {
-                // Asumiendo que idVisita en SQL se mapea a id_visitaSql en MongoDB
-                const visitaMongo = await mongo.Visita.findOne({ 
-                    id_visitaSql: visita.idVisita.toString() // Convertir a string para coincidir con el tipo en Mongo
-                });
-                return {
-                    ...visita,
-                    detallesMongo: visitaMongo
-                };
-            })
-        );
-
-        // Establecer mensaje flash de éxito y enviar respuesta API
-        res.flash('success', 'Visitas obtenidas exitosamente');
-        return res.apiResponse(visitasCompletas, 200, 'Visitas obtenidas exitosamente');
+        // Instead of res.flash, send the message in the API response
+        return res.apiResponse(listaVisitas, 200, 'Visitas obtenidas exitosamente');
     } catch (error) {
-        // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener visitas:', error);
-        res.flash('error', 'Error al obtener visitas');
+        // Instead of res.flash, send the error message in the API error response
         return res.apiError('Error interno del servidor al obtener visitas', 500);
     }
 };
@@ -42,31 +23,18 @@ visitaCtl.obtenerVisita = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Consultar la visita por ID desde la base de datos SQL
-        const [visita] = await sql.promise().query(`
-            SELECT * FROM visitas WHERE idVisita = ?
-        `, [id]);
+        // Consultar la visita por ID usando ORM
+        const visita = await orm.Visita.findByPk(id);
 
-        // Si no se encuentra la visita en SQL, enviar error 404
-        if (visita.length === 0) {
+        // Si no se encuentra la visita, enviar error 404
+        if (!visita) {
             res.flash('error', 'Visita no encontrada');
             return res.apiError('Visita no encontrada', 404);
         }
 
-        // Buscar la visita correspondiente en MongoDB
-        const visitaMongo = await mongo.Visita.findOne({ 
-            id_visitaSql: id.toString() // Asegurarse de que el ID sea string para la búsqueda en Mongo
-        });
-
-        // Combinar los datos de SQL y MongoDB
-        const visitaCompleta = {
-            ...visita[0],
-            detallesMongo: visitaMongo
-        };
-
         // Establecer mensaje flash de éxito y enviar respuesta API
         res.flash('success', 'Visita obtenida exitosamente');
-        return res.apiResponse(visitaCompleta, 200, 'Visita obtenida exitosamente');
+        return res.apiResponse(visita, 200, 'Visita obtenida exitosamente');
     } catch (error) {
         // Capturar y registrar errores, establecer mensaje flash de error y enviar respuesta API de error
         console.error('Error al obtener visita:', error);
@@ -78,35 +46,25 @@ visitaCtl.obtenerVisita = async (req, res) => {
 // Crear nueva visita
 visitaCtl.crearVisita = async (req, res) => {
     try {
-        const { fecha_visita, responsable, ubicacion, observacion } = req.body;
+        const { nombre, tipodocumento, numerodocumento, tipovisita, observacion, fecha } = req.body;
 
-        const currentTime = new Date().toLocaleString();
-
-        // Crear la visita en SQL (solo campos SQL)
-        const datosSql = {
-            stateVisita: 'activa', // Estado por defecto para la visita
-            createVisita: currentTime, // Campo de fecha de creación en SQL
-            updateVisita: currentTime // Inicialmente igual a create
-        };
-        
-        const nuevaVisitaSql = await orm.visita.create(datosSql);
-        const idVisita = nuevaVisitaSql.idVisita; // Obtener el ID generado por SQL
-
-        // Crear la visita en MongoDB, vinculándola con el ID de SQL
-        const datosMongo = {
-            id_visitaSql: idVisita.toString(), // Convertir a string para el ID de Mongo
-            fecha_visita: fecha_visita || currentTime, // Usar fecha_visita del body o la actual
-            responsable: responsable || '',
-            ubicacion: ubicacion || '',
-            observacion: observacion || ''
-        };
-        
-        await mongo.Visita.create(datosMongo);
+        // Crear la visita con todos los campos del modelo
+        const nuevaVisita = await orm.Visita.create({
+            nombre,
+            tipodocumento,
+            numerodocumento,
+            tipovisita,
+            observacion,
+            fecha,
+            stateVisita: 'activa', // Estado por defecto
+            createVisita: new Date(),
+            updateVisita: new Date()
+        });
 
         // Establecer mensaje flash de éxito y enviar respuesta API
         res.flash('success', 'Visita creada exitosamente');
         return res.apiResponse(
-            { idVisita }, 
+            nuevaVisita, 
             201, 
             'Visita creada exitosamente'
         );
@@ -122,47 +80,34 @@ visitaCtl.crearVisita = async (req, res) => {
 visitaCtl.actualizarVisita = async (req, res) => {
     try {
         const { id } = req.params;
-        const { stateVisita, fecha_visita, responsable, ubicacion, observacion } = req.body;
+        const { nombre, tipodocumento, numerodocumento, tipovisita, observacion, fecha, stateVisita } = req.body;
 
-        // Verificar la existencia de la visita en SQL
-        const [visitaExistenteSql] = await sql.promise().query(`
-            SELECT * FROM visitas WHERE idVisita = ?
-        `, [id]);
-
-        if (visitaExistenteSql.length === 0) {
+        // Verificar la existencia de la visita
+        const visitaExistente = await orm.Visita.findByPk(id);
+        if (!visitaExistente) {
             res.flash('error', 'Visita no encontrada');
             return res.apiError('Visita no encontrada', 404);
         }
 
-        const currentTime = new Date().toLocaleString();
-
-        // Actualizar en SQL
-        const datosActualizacionSql = {
-            stateVisita: stateVisita !== undefined ? stateVisita : visitaExistenteSql[0].stateVisita,
-            updateVisita: currentTime // Campo de fecha de actualización en SQL
+        // Preparar datos de actualización
+        const datosActualizacion = {
+            nombre: nombre !== undefined ? nombre : visitaExistente.nombre,
+            tipodocumento: tipodocumento !== undefined ? tipodocumento : visitaExistente.tipodocumento,
+            numerodocumento: numerodocumento !== undefined ? numerodocumento : visitaExistente.numerodocumento,
+            tipovisita: tipovisita !== undefined ? tipovisita : visitaExistente.tipovisita,
+            observacion: observacion !== undefined ? observacion : visitaExistente.observacion,
+            fecha: fecha !== undefined ? fecha : visitaExistente.fecha,
+            stateVisita: stateVisita !== undefined ? stateVisita : visitaExistente.stateVisita,
+            updateVisita: new Date() // Actualizar fecha de modificación
         };
-        
-        await orm.visita.update(datosActualizacionSql, {
-            where: { idVisita: id }
-        });
 
-        // Actualizar en MongoDB
-        const datosMongoActualizacion = {};
-        if (fecha_visita !== undefined) datosMongoActualizacion.fecha_visita = fecha_visita;
-        if (responsable !== undefined) datosMongoActualizacion.responsable = responsable;
-        if (ubicacion !== undefined) datosMongoActualizacion.ubicacion = ubicacion;
-        if (observacion !== undefined) datosMongoActualizacion.observacion = observacion;
-
-        await mongo.Visita.findOneAndUpdate(
-            { id_visitaSql: id.toString() }, // Asegurarse de que el ID sea string para la búsqueda en Mongo
-            datosMongoActualizacion,
-            { new: true } // Para devolver el documento actualizado
-        );
+        // Actualizar la visita
+        await visitaExistente.update(datosActualizacion);
 
         // Establecer mensaje flash de éxito y enviar respuesta API
         res.flash('success', 'Visita actualizada exitosamente');
         return res.apiResponse(
-            { idVisita: id }, 
+            visitaExistente, 
             200, 
             'Visita actualizada exitosamente'
         );
@@ -179,23 +124,15 @@ visitaCtl.eliminarVisita = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Verificar la existencia de la visita en SQL
-        const [visitaExistenteSql] = await sql.promise().query(`
-            SELECT * FROM visitas WHERE idVisita = ?
-        `, [id]);
-
-        if (visitaExistenteSql.length === 0) {
+        // Verificar la existencia de la visita
+        const visitaExistente = await orm.Visita.findByPk(id);
+        if (!visitaExistente) {
             res.flash('error', 'Visita no encontrada');
             return res.apiError('Visita no encontrada', 404);
         }
 
-        // Eliminar en SQL
-        await orm.visita.destroy({
-            where: { idVisita: id }
-        });
-
-        // Eliminar en MongoDB
-        await mongo.Visita.findOneAndDelete({ id_visitaSql: id.toString() }); // Asegurarse de que el ID sea string para la búsqueda en Mongo
+        // Eliminar la visita
+        await visitaExistente.destroy();
 
         // Establecer mensaje flash de éxito y enviar respuesta API
         res.flash('success', 'Visita eliminada exitosamente');
